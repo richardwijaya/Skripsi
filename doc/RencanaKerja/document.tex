@@ -16,7 +16,7 @@
 \makeatletter
 \renewcommand{\@maketitle} {\begin{center} {\LARGE \textbf{ \textsc{\@title}} \par} \bigskip {\large \textbf{\textsc{\@author}} }\end{center} }
 \renewcommand{\thispagestyle}[1]{}
-\markright{\textbf{\textsc{AIF401/AIF402 \textemdash Rencana Kerja Skripsi \textemdash Sem. Genap 2016/2017}}}
+\markright{\textbf{\textsc{AIF184001 \textemdash Rencana Kerja Skripsi \textemdash Sem. Genap 2019/2020}}}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.4mm}}
 \renewcommand{\baselinestretch}{1}
@@ -31,11 +31,11 @@
 \author{\nama \textendash \@npm} 
 
 %tulis nama dan NPM anda di sini:
-\newcommand{\nama}{Lionov}
-\newcommand{\@npm}{1997730020}
-\newcommand{\@judultopik}{Simulasi Kerumunan di Museum} % Judul/topik anda
+\newcommand{\nama}{Richard Wijaya}
+\newcommand{\@npm}{2016730014}
+\newcommand{\@judultopik}{Virtual Jogging App untuk Google Cardboard} % Judul/topik anda
 \newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
-\newcommand{\tanggal}{01/01/1900}
+\newcommand{\tanggal}{06/02/2020}
 
 % Dokumen hasil template ini harus dicetak bolak-balik !!!!
 
@@ -44,72 +44,69 @@
 \pagenumbering{arabic}
 
 \section{Deskripsi}
-Tuliskan deskripsi dari topik skripsi yang akan anda ajukan. Di sini dapat dituliskan latar belakang, seperti apa penelitian yang sudah ada sebelumnya dan apa yang akan anda kerjakan. Sertakan gambar agar penjelasan anda menjadi lebih baik.
+Pada zaman modern ini, mayoritas orang menekuni berbagai bidang profesi yang tak terhitung banyaknya. Hal ini menyebabkan kesulitan pengaturan waktu untuk berolahraga. Salah satu aktivitas olahraga yang paling mudah dan tidak memerlukan gerakan yang sulit adalah berlari, namun kegiatan ini memerlukan lahan yang cukup besar dan lebih menyenangkan jika dilakukan di luar rumah. Solusi untuk menghemat lahan agar berlari dapat dilakukan di rumah adalah {\it treadmill}, namun masalah lingkungan yang monoton dan membosankan di dalam rumah membuat orang enggan untuk melakukan aktivitas berlari. 
 
-Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan visualisasi dan simulasi kerumunan orang yang berkunjung ke sebuah museum. Dengan menggunakan perangkat lunak tersebut, pengelola museum dapat mengatur tempat peletakan objek sehingga tidak terjadi kerumunan yang terlalu padat.
+Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan simulasi aktivitas berlari pada lingkungan yang diinginkan saat berlari di {\it treadmill}. Dengan menggunakan perangkat lunak tersebut, orang yang berlari dapat menikmati pemandangan yang dipilih saat berlari di dalam rumah sehingga merasa seperti berlari di lingkungan yang dipilih tersebut.
 
-Dari berbagai macam teknik yang dapat digunakan untuk melakukan simulasi kerumunan, dipilih dua buah teknik yaitu teknik {\it flow tiles} dan {\it social force model (steering behaviour)}.
-
-Dst, dst, dst, \ldots\ldots\ldots 
-
-Perangkat lunak akan dibuat dengan bantuan {\it framework} OpenSteer. Sebagai studi kasus, museum yang digunakan untuk melakukan simulasi adalah Museum Geologi Bandung.
-
-Dst, dst, dst, \ldots\ldots\ldots 
+Teknologi yang dapat dimanfaatkan untuk membuat aplikasi VR untuk berlari adalah Google Cardboard dan sensor perangkat bergerak, dan untuk {\it Application Programming Interface} (API) yang digunakan adalah {\it Google Streetview} API dan {\it Google Directions} API.
 
 \section{Rumusan Masalah}
-Tuliskan rumusan dari masalah yang akan anda bahas pada skripsi ini. Rumusan masalah biasanya berupa kalimat pertanyaan. Gunakan itemize seperti contoh di bagian Deskripsi Perangkat Lunak.
+Rumusan masalah yang ada pada skripsi ini adalah:
+\begin{itemize}
+	\item Bagaimana memanfaatkan Google VR SDK for Android untuk menampilkan gambar dengan perangkat VR?
+	\item Bagaimana menampilkan hasil dari Google StreetView API dalam bentuk VR?
+	\item Bagaimana mengintegrasikan Google Directions API, gambar Google StreetView dan Google VR dalam perangkat lunak virtual jogging?
+\end{itemize}
+
 
 \section{Tujuan}
-Tuliskan tujuan dari topik skripsi yang anda ajukan. Tujuan penelitian biasanya berkaitan erat dengan pertanyaan yang diajukan di bagian rumusan masalah. Gunakan itemize seperti contoh di bagian Deskripsi Perangkat Lunak.
+Pada skripsi ini, hal-hal yang coba untuk dicapai adalah :
+\begin{itemize}
+	\item Menggunakan Google VR SDK for Android untuk menampilkan gambar dengan {\it Google Cardboard}.
+	\item Menampilkan hasil gambar dari Google StreetView API pada {\it Google Cardboard}.
+	\item Mengintegrasikan Google Directions API, gambar dari Google StreetView dan Google VR (Cardboard) dalam perangkat lunak {\it virtual jogging}.
+\end{itemize}
+
+%Tuliskan tujuan dari topik skripsi yang anda ajukan. Tujuan penelitian biasanya berkaitan erat dengan pertanyaan yang diajukan di bagian rumusan masalah. Gunakan itemize seperti contoh di bagian Deskripsi Perangkat Lunak.
+
 
 \section{Deskripsi Perangkat Lunak}
-Tuliskan deksripsi dari perangkat lunak yang akan anda hasilkan. Apa saja fitur yang disediakan oleh PL tersebut dan apa saja kemampuan dari PL tersebut. Perhatikan contoh di bawah ini:
-
-Perangkat lunak akhir yang akan dibuat memiliki fitur minimal sebagai berikut:
+Perangkat lunak akhir yang akan dibuat memiliki fitur minimal sebagai berikut :
 \begin{itemize}
-	\item Pengguna dapat melihat denah Musem Geologi Bandung dalam bidang dua dimensi. Sedangkan pengunjung direpresentasikan menggunakan lingkaran-lingkaran kecil (tidak menggunakan gambar manusia yang diambil dari atas)
-	\item Pengguna dapat memunculkan atau menghilangkan gambar {\it flow tiles} pada denah museum. 
-	\item Pengguna dapat mengatur jalannya simulasi: memulai(start) simulasi, menunda(pause) simulasi, melanjutkan(continue) simulasi, maupun menghentikan(stop) simulasi
-	\item Pengguna dapat mengatur banyaknya pengunjung di dalam museum, baik melalui perubahan frekuensi kedatangan pengunjung maupun menambahkan dan menghapus pengunjung satu-persatu secara manual.
-	\item Posisi kamera dapat diubah (pergerakan di bidang tiga dimensi) sehingga pengguna dapat melihat simulasi di museum dari berbagai arah. 
-	\item Posisi kamera dapat diubah untuk emngikuti perjalanan seorang pengunjung di dalam 
-	\item Pengguna dapat memilih apakah akan menggunakan teknik {\it flow tiles} atau tidak pada saat simulasi berlangsung
-	\item Jenis {\it flow tiles} yang digunakan dapat diubah-ubah pada saat simulasi sedang berlangsung
-		
+	\item Pengguna dapat memilih pemandangan yang diinginkan dari yang telah ditawarkan.
+	\item Pengguna dapat melihat pemandangan yang dipilih dalam {\it Google Cardboard}.
+	\item Pengguna dapat merasakan bahwa pemandangan bergerak seolah-olah pengguna sedang berlari saat menggunakan perangkat lunak.
+	\item Pengguna dapat merasakan seperti berjalan di jalan yang ada secara fisik di tempat yang dipilih.
 \end{itemize}
 
 \section{Detail Pengerjaan Skripsi}
-Tuliskan bagian-bagian pengerjaan skripsi secara detail. Bagian pekerjaan tersebut mencakup awal hingga akhir skripsi, termasuk di dalamnya pengerjaan dokumentasi skripsi, pengujian, survei, dll.
-
 Bagian-bagian pekerjaan skripsi ini adalah sebagai berikut :
-	\begin{enumerate}
-		\item Melakukan survei ke Museum Geologi Bandung untuk mendapatkan denah serta mengetahui perilaku pengunjung museum secara umum (arah perjalanan, kecepatan, lama melihat objek, dll)
-		\item Melakukan analisis pada hasil survei terhadap pergerakan pengunjung di museum dan membuat rancangan denah di komputer yang dilengkapi dengan penghalang dan objek di museum.
-		\item Melakukan studi literatur mengenai sifat kolektif suatu kerumunan, teknik {\it social force model} dan teknik {\it flow tiles}
-		\item Mempelajari bahasa pemrograman C++ dan cara menggunakan framework OpenSteer
-		\item Merancang pergerakan kerumunan di dalam museum menggunakan teknik {\it social force model} dan {\it flow tiles} serta menggunakan teknik lainnya seperti konsep pathway dan waypoints. Selain itu, dirancang pula adanya waktu tunggu (pada saat pengunjung melihat objek di museum) dan cara pembuatan jalur bagi setiap individu pengunjung
-		\item Melakukan analisa dan merancang struktur data yang cocok untuk menyimpan penghalang (obstacle)
-		\item Mengimplementasikan keseluruhan algoritma dan struktur data yang dirancang, dengan menggunakan framework OpenSteer 
-		\item Melakukan pengujian (dan eksperimen) yang melibatkan responde untuk menilai hasil simulasi secara kualitatif
-		\item Menulis dokumen skripsi
-	\end{enumerate}
+\begin{enumerate}
+	\item Mempelajari {\it Google StreetView, Cardboard} (Google VR SDK), dan {\it Directions}  API.
+	\item Menampilkan {\it StreetView} dalam {\it Google Cardboard}.
+	\item Mempelajari pergerakan berlari dan bagaimana mempengaruhi sensor perangkat bergerak. 
+	\item Mengimplementasikan rute dari pelari di aplikasi dengan {\it Google Directions} API.
+	\item Mengimplementasikan pergerakkan lingkungan dalam aplikasi dengan memanfaatkan sensor agar terlihat seperti sedang berlari.
+	\item Membuat antarmuka untuk pengguna.
+\end{enumerate}
+
 
 \section{Rencana Kerja}
 Rincian capaian yang direncanakan di Skripsi 1 adalah sebagai berikut:
 \begin{enumerate}
-\item
-\item
-\item
+\item Berhasil menampilkan gambar {\it StreetView} dalam {\it Google Cardboard}. 
+\item Mengetahui bagian sensor yang menerima rangsang saat pergerakan berlari.
 \end{enumerate}
 
 Sedangkan yang akan diselesaikan di Skripsi 2 adalah sebagai berikut:
 \begin{enumerate}
-\item
-\item
-\item
+\item Antarmuka pengguna dapat membantu pengguna menggunakan aplikasi.
+\item Aplikasi dapat membuat pengguna merasakan lingkungan yang ditampilkan {\it Google Cardboard} bergerak seperti saat berlari saat pengguna berlari.  
+\item Dokumen Skripsi sudah lengkap.
 \end{enumerate}
 
-\vspace{1cm}
+
+\vspace{7cm}
 \centering Bandung, \tanggal\\
 \vspace{2cm} \nama \\ 
 \vspace{1cm}
@@ -129,7 +126,8 @@ Menyetujui, \\
 \vspace{0.5cm}
 }{
 % \centering Bandung, \makebox[0.5cm]{\hrulefill}/\makebox[0.5cm]{\hrulefill}/2013\\
-\vspace{2cm} Nama: \makebox[3cm]{\hrulefill}\\ Pembimbing Tunggal
+\vspace{2cm} Pascal Alfadian Nugroho
+%\Nama: makebox[3cm]{\hrulefill}\\ Pembimbing Tunggal
 }
 \end{document}
 
