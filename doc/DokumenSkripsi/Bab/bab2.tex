@@ -1,158 +1,82 @@
 %versi 2 (8-10-2016)
 \chapter{Landasan Teori}
 \label{chap:teori}
+Pada bab ini akan dijelaskan mengenai Google VR SDK, Google StreetView API, Google Directions API, dan sensor.
 
-\section{Skripsi}
-\label{sec:skripsi} 
+%GOOGLE VR
+\section{Google VR SDK}
+\label{sec:vrsdk} 
+Google VR SDK adalah kode program dari aplikasi ({\it virtual reality}) terbuka yang disediakan Google pada repository Github yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS. Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama hellovr dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo hellovr untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi.
+
+\subsection{Aplikasi hellovr}
+\label{subs:hellovr}
+Bagian hellovr pada Google VR SDK adalah sebuah aplikasi demo permainan treasure hunt, yaitu sejenis permainan mencari bentuk yang melayang-layang di dunia VR dengan melihat tepat pada bentuk tersebut dan menyalakan pemicu pada Google Cardboard. Setelah kondisi untuk menangkap bentuk yang ada, bentuk tersebut akan menghilang, lalu bentuk yang lain akan muncul di tempat lain. 
+
+\subsection{Komponen Aplikasi hellovr}
+\label{subs:komponen}
+Dunia VR pada aplikasi ini dibuat dari file {\it Wavefront Object} (OBJ) dengan tekstur file {\it Portable Network Graphics} (PNG) yang telah dengan sangat tepat dipetakan pada .obj yang ada sehingga dunia VR terlihat sangat nyata. Bentuk-bentuk yang akan dicari pengguna dibuat dari tiga file OBJ yang merepresentasikan tiga macam bentuk yang ada. Masing-masing file OBJ memiliki dua tekstur yang telah dipetakan pada masing-masing file OBJ dalam file PNG. Satu tekstur (berwarna biru) digunakan ketika pengguna sedang tidak melihat bentuk, sedangkan satu tekstur yang lain (berwarna merah muda) digunakan ketika pengguna sedang menatap bentuk yang ada di dunia VR.
+
+\subsection{Rancangan kelas Aplikasi hellovr}
+\label{subs:rancangan}
+Dalam program pada aplikasi hellovr, ada empat kelas yang berfungsi dalam aplikasi ini, di antaranya: HelloVrActivity, Texture, TexturedMesh, dan Util. 
+
+\subsubsection{Kelas {\it Util}}
+Kelas Util adalah kelas yang digunakan untuk menghitung vektor dan sudut yang dibentuk antara mata pengguna dan bentuk yang akan dicari, serta mengatur pengaturan yang tepat untuk OpenGL, yang adalah {\it renderer} yang digunakan untuk menggambar bentuk dan ruangan.
+
+
+\subsubsection{Kelas {\it Texture}}
+Kelas Texture adalah kelas yang memuat tekstur yang akan digunakan. 
+
+
+\subsubsection{Kelas {\it TexturedMesh}}
+Kelas TexturedMesh adalah sebuah bentuk tiga dimensi yang sudah diberi tekstur sehingga terlihat indah dan berwarna. 
+
+\subsubsection{Kelas HelloVrActivity}
+Kelas HelloVrActivity adalah kelas yang adalah kelas {\it activity} Google VR. Berikut adalah diagram kelas untuk memperjelas hubungan antara semua kelas aplikasi hellovr.
+
+Kelas HelloVRActivity akan menggunakan tiga kelas lainnya untuk mendapat ruangan dan bentuk yang akan digambar, serta keadaan ({\it state}) dari permainan, seperti sedang menatap pada bentuk atau tidak dan bagian ruangan yang sedang dilihat.
  
-Rencananya akan diisi dengan penjelasan umum mengenai buku skripsi.
 
-\dtext{11-12} 
+%STREETVIEW API
+\section{Google \it{StreetView API}}
+\label{sec:streetview}
+Google StreetView API adalah API yang disediakan Google untuk mendapatkan pemandangan sesuai masukan pengguna. Ada dua jenis {\it StreetView API} yang disediakan Google, yaitu {\it static} dan {\it dynamic}. {\it StreetView API} yang statis akan menampilkan pemandangan yang tetap tanpa pergerakan pada pemandangannya, sedangkan yang dinamis menampilkan pemandangan yang berubah-ubah seperti {\it video}. {\it StreetView API} yang digunakan pada penelitian ini adalah {\it Static StreetView API} 
 
-\section{\LaTeX}
-\label{sec:latex}
+\subsection{{\it API Key}}
+\label{subs:api-key}
+Agar dapat menggunakan {\it API} ini, ada {\it API key} yang harus diperoleh pada Google Cloud Platform Console dengan memasukkan nomor kartu kredit. API {\it key} yang diberikan terdiri atas dua puluh dan delapan belas karakter alfanumerik (bisa huruf kapital dan huruf kecil) yang dihubungkan dengan tanda penghubung (tanda -). API {\it key} yang telah diperoleh akan digunakan sebagai salah satu parameter masukan agar Google API dapat diakses. 
 
-Mengapa menggunakan \LaTeX{} untuk buku skripsi dan apa keunggulan/kerugiannya bagi mahasiswa dan pembuat template. 
+\subsection{Penggunaan {\it API}}
+\label{subs:usage}
 
-\dtext{13-14}
+\subsubsection{Sintaks}
+Secara umum, API diakses menggunakan URL Web \underline{https://maps.googleapis.com/maps/api/streetview?parameters}, dengan "parameters" pada URL Web adalah atribut-atribut dengan parameter yang diterima StreetView. Sintaks parameter tersebut adalah:
+\begin{equation}
+X = Y
+\end{equation}
+X adalah atribut dari StreetView, sedangkan Y adalah nilainya, dan nilai tersebut harus sesuai dengan tipe dan rentang nilai masing-masing atribut. 
 
+Untuk atribut kedua dan seterusnya yang ingin diatur nilainya melalui parameter (jika ada), dapat diteruskan dengan tanda '\&', lalu diikuti dengan pola seperti rumus di atas. 
 
-\section{Template Skripsi FTIS UNPAR}
-\label{sec:template}
- 
-Akan dipaparkan bagaimana menggunakan template ini, termasuk petunjuk singkat membuat referensi, gambar dan tabel.
-Juga hal-hal lain yang belum terpikir sampai saat ini. 
- 
-\dtext{15-16}
+\subsubsection{Hasil Pengaksesan \textit{API}}
+Pada pengaksesan atau pemanggilan {\it StreetView API}, ada dua kemungkinan hasil, yaitu berhasil dan gagal. 
 
-\subsection{Tabel}  
-Berikut adalah contoh pembuatan tabel. 
-Penempatan tabel dan gambar secara umum diatur secara otomatis oleh \LaTeX{}, perhatikan contoh di file bab2.tex untuk melihat bagaimana cara memaksa tabel ditempatkan sesuai keinginan kita.
+\subsection{Atribut Parameter {\it StreetView API}}
+\label{subs:parameter}
+Untuk menampilkan pemandangan yang sesuai keinginan pengguna, beberapa parameter masukan harus ditentukan. Ada dua jenis parameter masukan, di antaranya parameter wajib dan parameter opsional. Pengaksesan atau pemanggilan {\it StreetView API} yang berhasil akan mengembalikan sebuah gambar pemandangan dari lokasi sesuai parameter masukan.
 
-Perhatikan bawa berbeda dengan penempatan judul gambar gambar, keterangan tabel harus diletakkan di atas tabel!!
-Lihat Tabel~\ref{tab:contoh1} berikut ini:
+\subsubsection{Parameter Wajib}
+Parameter wajib adalah parameter yang harus dimasukkan oleh pengguna dan jika tidak dimasukkan akan mengakibatkan pemanggilan yang gagal. 
+Beberapa contoh {\it parameter} wajib {\it StreetView API} adalah {\it location} atau pano untuk menentukan lokasi pemandangan yang ingin ditampilkan dan {\it size} untuk menentukan ukuran gambar pemandangan. 
 
-\begin{table}[H] %atau h saja untuk "kira kira di sini"
-	\centering 
-	\caption{Tabel contoh}
-	\label{tab:contoh1}
-	\begin{tabular}{cccc}
-		\toprule
-		& $v_{start}$ & $\mathcal{S}_{1}$ & $v_{end}$\\
+\subsubsection{Parameter Opsional}
+Selain parameter wajib, ada parameter opsional, yaitu parameter yang tidak perlu diisi agar pengaksesan {\it API} berhasil dan biasanya atribut parameter tersebut sudah memiliki nilai bawaan ({\it default}). Ada beberapa parameter opsional seperti {\it signature}, {\it heading}, {\it fov} ({\it field of view}), {\it pitch}, {\it radius}, dan {\it source}. 
 
-		\midrule
-		$\tau_{1}$ & 1 & 12& 20\\
-		$\tau_{2}$ & 1 &  & 20\\
-		$\tau_{3}$ & 1 & 9 & 20\\
-		$\tau_{4}$ & 1 &  & 20\\
+%DIRECTIONS API
+\section{Google {\it Directions} API}
+\label{sec:directions}
 
-		\bottomrule
-		
-	\end{tabular} 
-\end{table}
-Tabel~\ref{tab:cthwarna1} dan Tabel~\ref{tab:cthwarna2} berikut ini adalah tabel dengan sel yang berwarna dan ada dua tabel yang bersebelahan. 
-\begin{table}[H]
-	\begin{minipage}[c]{0.49\linewidth}
-		\centering
-		\caption{Tabel bewarna(1)}
-		\label{tab:cthwarna1}
-		\begin{tabular}{ccccc}
-			\toprule
-			 & $v_{start}$ & $\mathcal{S}_{2}$ & $\mathcal{S}_{1}$ & $v_{end}$\\
-			
-			\midrule
-			$\tau_{1}$ & 1 & 5 \cellcolor{green}& 12& 20\\
-			$\tau_{2}$ & 1 & 8 \cellcolor{green}& & 20\\
-			$\tau_{3}$ & 1 & 2/8/17 \cellcolor{green}& 9 & 20\\
-			$\tau_{4}$ & 1 & \cellcolor{red}& & 20\\
-			
-			\bottomrule
-
-		\end{tabular}
-	\end{minipage}
-	\begin{minipage}[c]{0.49\linewidth}
-		
-		\centering 
-		\caption{Tabel bewarna(2)}
-		\label{tab:cthwarna2}
-		\begin{tabular}{ccccc}
-			\toprule
-			 & $v_{start}$ & $\mathcal{S}_{1}$ & $\mathcal{S}_{2}$ & $v_{end}$\\
-			
-			\midrule
-			$\tau_{1}$ & 1 & 12& 5 \cellcolor{red} &20\\
-			$\tau_{2}$ & 1 &  &  8 \cellcolor{green} &20\\
-			$\tau_{3}$ & 1 & 9 & 2/8/17 \cellcolor{green} &20\\
-			$\tau_{4}$ & 1 &   & \cellcolor{red} &20\\
-			
-			\bottomrule
-		
-		\end{tabular}
-	\end{minipage}
-\end{table}
-
- 
-\subsection{Kutipan}
-\label{subs:kutipan} 
-Berikut contoh kutipan dari berbagai sumber, untuk keterangan lebih lengkap, silahkan membaca file referensi.bib yang disediakan juga di template ini.
-Contoh kutipan:
-\begin{itemize}
-	\item Buku:~\cite{berg:08:compgeom} 
-	\item Bab dalam buku:~\cite{kreveld:04:GIS}
-	\item Artikel dari Jurnal:~\cite{buchin:13:median}
-	\item Artikel dari prosiding seminar/konferensi:~\cite{kreveld:11:median}
-	\item Skripsi/Thesis/Disertasi:~\cite{lionov:02:animasi}~\cite{wiratma:10:following}~\cite{wiratma:22:later}
-	\item Technical/Scientific Report:~\cite{kreveld:07:watertight}
-	\item RFC (Request For Comments):~\cite{RFC1654}
-	\item Technical Documentation/Technical Manual:~\cite{Z.500}~\cite{unicode:16:stdv9}~\cite{google:16:and7}
-	\item Paten:~\cite{webb:12:comm}
-	\item Tidak dipublikasikan:~\cite{wiratma:09:median}~\cite{lionov:11:cpoly}
-	\item Laman web:~\cite{erickson:03:cgmodel}  
-	\item Lain-lain:~\cite{agung:12:tango}
-\end{itemize}    
-  
-\subsection{Gambar}
-
-Pada hampir semua editor, penempatan gambar di dalam dokumen \LaTeX{} tidak dapat dilakukan melalui proses {\it drag and drop}.
-Perhatikan contoh pada file bab2.tex untuk melihat bagaimana cara menempatkan gambar.
-Beberapa hal yang harus diperhatikan pada saat menempatkan gambar:
-\begin{itemize}
-	\item Setiap gambar {\bf harus} diacu di dalam teks (gunakan {\it field} {\sc label})
-	\item {\it Field} {\sc caption} digunakan untuk teks pengantar pada gambar. Terdapat dua bagian yaitu yang ada di antara tanda $[$ dan $]$ dan yang ada di antara tanda $\{$ dan $\}$. Yang pertama akan muncul di Daftar Gambar, sedangkan yang kedua akan muncul di teks pengantar gambar. Untuk skripsi ini, samakan isi keduanya.
-	\item Jenis file yang dapat digunakan sebagai gambar cukup banyak, tetapi yang paling populer adalah tipe {\sc png} (lihat Gambar~\ref{fig:ularpng}), tipe {\sc jpg} (Gambar~\ref{fig:ularjpg}) dan tipe {\sc pdf} (Gambar~\ref{fig:ularpdf})
-	\item Besarnya gambar dapat diatur dengan {\it field} {\sc scale}.
-	\item Penempatan gambar diatur menggunakan {\it placement specifier} (di antara tanda  $[$ dan $]$ setelah deklarasi gambar.
-	Yang umum digunakan adalah {\bf H} untuk menempatkan gambar {\bf sesuai} penempatannya di file .tex atau  {\bf h} yang berarti "kira-kira" di sini. \\
-	Jika tidak menggunakan {\it placement specifier}, \LaTeX{} akan menempatkan gambar secara otomatis untuk menghindari bagian kosong pada dokumen anda.
-	Walaupun cara ini sangat mudah, hindarkan terjadinya penempatan dua gambar secara berurutan. 	
-	\begin{itemize}
-		\item Gambar~\ref{fig:ularpng} ditempatkan di bagian atas halaman, walaupun penempatannya dilakukan setelah penulisan 3 paragraf setelah penjelasan ini.
-		\item Gambar~\ref{fig:ularjpg} dengan skala 0.5 ditempatkan di antara dua buah paragraf. Perhatikan penulisannya di dalam file bab2.tex!
-		\item Gambar~\ref{fig:ularpdf} ditempatkan menggunakan {\it specifier} {\bf h}.
-	\end{itemize}
-\end{itemize}
- 
-\dtext{17-18}
-\begin{figure} 
-	\centering  
-	\includegraphics[scale=1]{ular-png}  
-	\caption[Gambar {\it Serpentes} dalam format png]{Gambar {\it Serpentes} dalam format png} 
-	\label{fig:ularpng} 
-\end{figure} 
-
-\dtext{19-20}
-\begin{figure}[H]
-	\centering  
-	\includegraphics[scale=0.5]{ular-jpg}  
-	\caption[Ular kecil]{Ular kecil} 
-	\label{fig:ularjpg} 
-\end{figure} 
-\dtext{21-22}
-
-\begin{figure}[ht] 
-	\centering  
-	\includegraphics[scale=1]{ular-pdf}  
-	\caption[ {\it Serpentes} betina]{ {\it Serpentes} jantan} 
-	\label{fig:ularpdf} 
-\end{figure} 
+%SENSOR
+\section{Sensor}
+\label{sec:sensor}
  
