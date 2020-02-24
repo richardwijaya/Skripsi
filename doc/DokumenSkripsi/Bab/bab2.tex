@@ -1,65 +1,86 @@
 %versi 2 (8-10-2016)
 \chapter{Landasan Teori}
 \label{chap:teori}
-Pada bab ini akan dijelaskan mengenai Google VR SDK, Google StreetView API, Google Directions API, dan sensor.
+Pada bab ini akan dijelaskan mengenai Google VR, Google StreetView API, Google Directions API, dan \textit{motion sensor}.
 
 %GOOGLE VR
-\section{Google VR SDK}
-\label{sec:vrsdk} 
-Google VR SDK adalah kode program dari aplikasi ({\it virtual reality}) terbuka yang disediakan Google pada repository Github yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS. Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama hellovr dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo hellovr untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi.
+\section{Google VR}
+\label{sec:google-vr} 
+Google VR adalah teknologi yang diciptakan perusahaan Google untuk membuat pemandangan dunia maya yang terlihat nyata dengan menempatkan \textit{smartphone} pada alat yang bernama \textit{viewer}. \textit{Viewer} adalah alat untuk melihat dunia VR pada aplikasi VR di \textit{smartphone}. Dua \textit{viewer} yang diciptakan Google adalah \textit{Google Daydream} dan \textit{Cardboard}. Pada penelitian ini, yang digunakan \textit{Google Cardboard}. Google menyediakan sebuah alat bantu bagi pengembang perangkat lunak untuk memudahkan pengembangan aplikasi VR yang disebut Google VR SDK.
+
+\subsection{Google VR SDK}
+Google VR SDK adalah alat bantu yang berisi kode program dari aplikasi {\it virtual reality} (VR) terbuka (\textit{open source}) yang disediakan Google pada repository Github yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS. Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama hellovr dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo hellovr untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi. Bagian dari Google VR SDK yang akan digunakan pada penelitian ini adalah aplikasi hellovr yang akan dijelaskan pada Bagian \ref{subs:hellovr}. 
 
 \subsection{Aplikasi hellovr}
 \label{subs:hellovr}
-Bagian hellovr pada Google VR SDK adalah sebuah aplikasi demo permainan treasure hunt, yaitu sejenis permainan mencari bentuk yang melayang-layang di dunia VR dengan melihat tepat pada bentuk tersebut dan menyalakan pemicu pada Google Cardboard. Setelah kondisi untuk menangkap bentuk yang ada, bentuk tersebut akan menghilang, lalu bentuk yang lain akan muncul di tempat lain. 
+Bagian hellovr pada Google VR SDK adalah sebuah aplikasi demo permainan \textit{treasure hunt}, yaitu sejenis permainan mencari bentuk yang mengapung di dunia VR dengan melihat tepat pada bentuk tersebut dan menyalakan pemicu pada Google Cardboard. Setelah kondisi untuk menangkap bentuk yang ada, bentuk tersebut akan menghilang, lalu bentuk yang lain akan muncul di tempat lain. 
 
-\subsection{Komponen Aplikasi hellovr}
-\label{subs:komponen}
+\subsubsection{Komponen Aplikasi hellovr}
 Dunia VR pada aplikasi ini dibuat dari file {\it Wavefront Object} (OBJ) dengan tekstur file {\it Portable Network Graphics} (PNG) yang telah dengan sangat tepat dipetakan pada .obj yang ada sehingga dunia VR terlihat sangat nyata. Bentuk-bentuk yang akan dicari pengguna dibuat dari tiga file OBJ yang merepresentasikan tiga macam bentuk yang ada. Masing-masing file OBJ memiliki dua tekstur yang telah dipetakan pada masing-masing file OBJ dalam file PNG. Satu tekstur (berwarna biru) digunakan ketika pengguna sedang tidak melihat bentuk, sedangkan satu tekstur yang lain (berwarna merah muda) digunakan ketika pengguna sedang menatap bentuk yang ada di dunia VR.
 
-\subsection{Rancangan kelas Aplikasi hellovr}
-\label{subs:rancangan}
-Dalam program pada aplikasi hellovr, ada empat kelas yang berfungsi dalam aplikasi ini, di antaranya: HelloVrActivity, Texture, TexturedMesh, dan Util. 
+\subsubsection{Rancangan kelas Aplikasi hellovr}
+Aplikasi hellovr memiliki empat kelas pada programnya, di antaranya: 
+\begin{itemize}
+	\item Texture
+	
+	Kelas Texture adalah kelas yang memuat tekstur yang akan digunakan.
+	\item TexturedMesh
+	
+	Kelas TexturedMesh adalah sebuah bentuk tiga dimensi yang sudah diberi tekstur sehingga terlihat indah dan berwarna.
+	\item Util
+	
+	Kelas Util adalah kelas yang digunakan untuk menghitung vektor dan sudut yang dibentuk antara mata pengguna dan bentuk yang akan dicari, serta mengatur pengaturan yang tepat untuk OpenGL, yang adalah {\it renderer} yang digunakan untuk menggambar bentuk dan ruangan.
+	\item HelloVrActivity
+	
+	Kelas HelloVrActivity adalah kelas yang adalah kelas {\it activity} Google VR. Berikut adalah diagram kelas untuk memperjelas hubungan antara semua kelas aplikasi hellovr. Kelas ini akan menggunakan tiga kelas lainnya untuk mendapat ruangan dan bentuk yang akan digambar, serta keadaan ({\it state}) dari permainan, seperti sedang menatap pada bentuk atau tidak dan bagian ruangan yang sedang dilihat.
+\end{itemize}
 
-\subsubsection{Kelas {\it Util}}
-Kelas Util adalah kelas yang digunakan untuk menghitung vektor dan sudut yang dibentuk antara mata pengguna dan bentuk yang akan dicari, serta mengatur pengaturan yang tepat untuk OpenGL, yang adalah {\it renderer} yang digunakan untuk menggambar bentuk dan ruangan.
-
-
-\subsubsection{Kelas {\it Texture}}
-Kelas Texture adalah kelas yang memuat tekstur yang akan digunakan. 
-
-
-\subsubsection{Kelas {\it TexturedMesh}}
-Kelas TexturedMesh adalah sebuah bentuk tiga dimensi yang sudah diberi tekstur sehingga terlihat indah dan berwarna. 
-
-\subsubsection{Kelas HelloVrActivity}
-Kelas HelloVrActivity adalah kelas yang adalah kelas {\it activity} Google VR. Berikut adalah diagram kelas untuk memperjelas hubungan antara semua kelas aplikasi hellovr.
-
-Kelas HelloVRActivity akan menggunakan tiga kelas lainnya untuk mendapat ruangan dan bentuk yang akan digambar, serta keadaan ({\it state}) dari permainan, seperti sedang menatap pada bentuk atau tidak dan bagian ruangan yang sedang dilihat.
  
+
 
 %STREETVIEW API
 \section{Google \it{StreetView API}}
 \label{sec:streetview}
-Google StreetView API adalah API yang disediakan Google untuk mendapatkan pemandangan sesuai masukan pengguna. Ada dua jenis {\it StreetView API} yang disediakan Google, yaitu {\it static} dan {\it dynamic}. {\it StreetView API} yang statis akan menampilkan pemandangan yang tetap tanpa pergerakan pada pemandangannya, sedangkan yang dinamis menampilkan pemandangan yang berubah-ubah seperti {\it video}. {\it StreetView API} yang digunakan pada penelitian ini adalah {\it Static StreetView API} 
+Google StreetView API adalah API yang disediakan Google untuk mendapatkan pemandangan sesuai masukan pengguna melalui \textit{HTTP request}. Ada dua jenis {\it StreetView API} yang disediakan Google, yaitu {\it static} dan {\it dynamic}. {\it StreetView API} yang statis akan menampilkan pemandangan yang tetap tanpa pergerakan pada pemandangannya, sedangkan yang dinamis menampilkan pemandangan yang berubah-ubah seperti {\it video}. {\it StreetView API} yang digunakan pada penelitian ini adalah {\it Static StreetView API}.
+
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=6in]{Gambar/google_cloud.png}
+	\caption{Tampilan \textit{UI Google Cloud} saat mengakses \textit{API Key} (\textit{API Key disamarkan})}
+	\label{fig:googlecloud}
+\end{figure}
 
 \subsection{{\it API Key}}
 \label{subs:api-key}
-Agar dapat menggunakan {\it API} ini, ada {\it API key} yang harus diperoleh pada Google Cloud Platform Console dengan memasukkan nomor kartu kredit. API {\it key} yang diberikan terdiri atas dua puluh dan delapan belas karakter alfanumerik (bisa huruf kapital dan huruf kecil) yang dihubungkan dengan tanda penghubung (tanda -). API {\it key} yang telah diperoleh akan digunakan sebagai salah satu parameter masukan agar Google API dapat diakses. 
+Agar dapat menggunakan {\it API} ini, ada {\it API key} yang harus diperoleh pada Google Cloud Platform Console dengan memasukkan nomor kartu kredit. Gambar 2.1 menunjukkan tampilan \textit{Google Cloud} setelah mendapatkan API key. API {\it key} yang diberikan terdiri atas dua puluh dan delapan belas karakter alfanumerik (bisa huruf kapital dan huruf kecil) yang dihubungkan dengan tanda "-". API {\it key} yang telah diperoleh akan digunakan sebagai salah satu parameter masukan agar Google API dapat diakses.
 
-\subsection{Penggunaan {\it API}}
-\label{subs:usage}
+\subsection{Penggunaan {\it StreetView API}}
+\label{subs:streetview-usage}
+Secara umum, API diakses menggunakan URL Web sebagai berikut:
+\begin{quote}
+https://maps.googleapis.com/maps/api/streetview?parameters
+\end{quote}
+"Parameters" pada URL Web adalah atribut-atribut dengan parameter yang diterima StreetView. Sintaks parameter tersebut adalah: $$ X = Y $$
+X adalah atribut dari StreetView, sedangkan Y adalah nilainya, dan nilai tersebut harus sesuai dengan tipe dan rentang nilai masing-masing atribut. Untuk atribut kedua dan seterusnya yang akan dimasukkan dalam parameter (jika ada), dapat diteruskan dengan tanda "\&", lalu diikuti dengan pola seperti rumus di atas. Saat mengakses {\it StreetView API}, ada dua kemungkinan hasil yang diperoleh, yaitu berhasil dan gagal. Pemanggilan \textit{API} yang berhasil akan menghasilkan gambar pemandangan dari lokasi sesuai masukan pengguna, sementara pemanggilan yang gagal menghasilkan sebuah gambar dengan penjelasan bahwa gambar tidak tersedia. 
 
-\subsubsection{Sintaks}
-Secara umum, API diakses menggunakan URL Web \underline{https://maps.googleapis.com/maps/api/streetview?parameters}, dengan "parameters" pada URL Web adalah atribut-atribut dengan parameter yang diterima StreetView. Sintaks parameter tersebut adalah:
-\begin{equation}
-X = Y
-\end{equation}
-X adalah atribut dari StreetView, sedangkan Y adalah nilainya, dan nilai tersebut harus sesuai dengan tipe dan rentang nilai masing-masing atribut. 
+\begin{figure}[h]
+		\includegraphics[scale=0.8]{Gambar/streetview.png}
+	\caption{Pemanggilan \textit{StreetView API} yang berhasil}
+	\label{fig:success-streetview}
+\end{figure}
 
-Untuk atribut kedua dan seterusnya yang ingin diatur nilainya melalui parameter (jika ada), dapat diteruskan dengan tanda '\&', lalu diikuti dengan pola seperti rumus di atas. 
+\begin{figure}[h]
+		\includegraphics[scale=0.8]{Gambar/failed_streetview.png}
+	\caption{Pemanggilan \textit{StreetView API} yang gagal}
+	\label{fig:failed-streetview}
+\end{figure}Gambar \ref{fig:success-streetview} memperlihatkan pemanggilan \textit{StreetView API} yang berhasil, sedangkan Gambar \ref{fig:failed-streetview} memperlihatkan pemanggilan yang gagal. 
 
-\subsubsection{Hasil Pengaksesan \textit{API}}
-Pada pengaksesan atau pemanggilan {\it StreetView API}, ada dua kemungkinan hasil, yaitu berhasil dan gagal. 
+%success streetview
+%https://maps.googleapis.com/maps/api/streetview?size=600x300&location=unpar&radius=3&key=AIzaSyALPfhhnemi3xC4-FUtHkWidaugsZTwJq4
+
+%failed streetview
+%https://maps.googleapis.com/maps/api/streetview?size=600x300&location=aergsddf&radius=10&key=AIzaSyALPfhhnemi3xC4-FUtHkWidaugsZTwJq4
 
 \subsection{Atribut Parameter {\it StreetView API}}
 \label{subs:parameter}
@@ -70,13 +91,64 @@ Parameter wajib adalah parameter yang harus dimasukkan oleh pengguna dan jika ti
 Beberapa contoh {\it parameter} wajib {\it StreetView API} adalah {\it location} atau pano untuk menentukan lokasi pemandangan yang ingin ditampilkan dan {\it size} untuk menentukan ukuran gambar pemandangan. 
 
 \subsubsection{Parameter Opsional}
-Selain parameter wajib, ada parameter opsional, yaitu parameter yang tidak perlu diisi agar pengaksesan {\it API} berhasil dan biasanya atribut parameter tersebut sudah memiliki nilai bawaan ({\it default}). Ada beberapa parameter opsional seperti {\it signature}, {\it heading}, {\it fov} ({\it field of view}), {\it pitch}, {\it radius}, dan {\it source}. 
+Selain parameter wajib, ada parameter opsional, yaitu parameter yang tidak perlu diisi agar pengaksesan {\it API} berhasil dan biasanya atribut parameter tersebut sudah memiliki nilai bawaan ({\it default}). Ada beberapa parameter opsional yang dapat digunakan sebagai parameter untuk mengubah pengaturan dari pemandangan yang diambil:
+\begin{itemize}
+	\item {\it signature}
+	\item {\it heading}
+	\item {\it fov} ({\it field of view})
+	\item {\it pitch}
+	\item {\it radius}
+	\item {\it source}.
+\end{itemize}
+Tabel \ref{tab:atribut-opsional-streetview-api} menjelaskan semua parameter opsional dari \textit{StreetView API}:
+
+\begin{table}[ht!]
+	\centering
+	\caption{Atribut-Atribut Opsional \textit{StreetView API}}
+	\label{tab:atribut-opsional-streetview-api}
+\begin{tabular}{|p{3cm}|p{3cm}|p{5cm}|p{4cm}|}
+
+\hline
+Nama Atribut & Tipe & Penjelasan & Rentang Nilai \textit{Valid} (yang berdampak)\\ \hline
+signature & String (alfabetik) &  Atribut untuk memastikan bahwa \textit{request} dikirim dengan {\it API key} sesuai jenis \textit{signature} yang diatur pemilik {\it API key}. & - \\ \hline
+heading & integer & menyatakan arah pandangan secara horisontal, nilai atribut menyatakan sudut yang dibentuk dari arah utara dengan arah pandang yang diinginkan (sudut yang dibentuk dari arah berlawanan jarum jam) & $ 0 \leq x \leq 360 $ \\ \hline
+fov (\textit{field of view}) & integer & menyatakan seberapa perbesaran pemandangan (nilai dalam satuan derajat) & $ 10 \leq x \leq 120 $ (yang berdampak)\\ \hline
+pitch & integer & menyatakan pandangan pengguna secara vertikal, satuan nilai dalam derajat.& $ -90 \leq  x \leq 90$\\ \hline
+radius & integer & menyatakan jarak dalam meter,  & $ x > 0 $\\ \hline
+source & String (alfabetik) &  & "default" atau "outdoor"\\ 
+\hline
+
+\end{tabular}
+\end{table}
 
 %DIRECTIONS API
-\section{Google {\it Directions} API}
+\section{Google {\it Directions API}}
 \label{sec:directions}
+Google {\it Directions API} adalah layanan berbasis \textit{HTTP}/\textit{HTTPS} dari Google yang membantu mencari dan menghitung arah dari satu tempat ke tempat yang lain (sumber). Ada beberapa \textit{mode} dari arah yang dapat dicari seperti {\it driving}, {\it transit}, {\it walking}, dan {\it cycling}. Pengaksesan \textit{Directions API} sangat mirip dengan {\it StreetView API}, yaitu membutuhkan \textit{API Key}, seperti yang dijelaskan pada Bagian \ref{subs:api-key}, sebagai salah satu atribut wajib, juga memiliki atribut wajib dan opsional yang dapat diatur lewat parameter. 
+
+\subsection{Penggunaan {\it Directions API}}
+Sintaks untuk mengaksesnya pun mirip dengan \textit{StreetView API}, hanya saja ada perbedaan pada bagian "streetview" pada URL Web pada Bagian \ref{subs:streetview-usage} diganti dengan "directions". 
+
+
+
 
 %SENSOR
-\section{Sensor}
-\label{sec:sensor}
- 
+\section{\textit{Motion Sensor}}
+\label{subs:motion-sensor}
+\textit{Motion sensor} adalah sensor pada \textit{smartphone} yang mendeteksi pergerakan gawai \textit{smartphone} (sumber). Pergerakan yang dapat dideteksi termasuk saat gawai dimiringkan, digoyangkan, diayunkan, atau diputar (sumber). Beberapa contoh \textit{motion sensor} pada \textit{smartphone} adalah:
+\begin{itemize}
+	\item \textit{accelerometer}
+	
+	Sensor yang mendeteksi gerakan \textit{smartphone} terhadap sumbu $x, y,$ dan $z$, termasuk gaya gravitasi terhadap masing-masing sumbu.
+	\item \textit{gravity sensor}
+	Sensor yang mendeteksi gaya gravitasi terhadap sumbu $x, y,$ dan $z$
+	\item \textit{gyroscope}
+	
+	\item \textit{linear acceleration sensor}
+	\item \textit{rotation vector sensor}
+	\item \textit{significant motion sensor}
+	\item \textit{step counter}
+	\item \textit{step detector}
+\end{itemize}
+
+%Ada tiga jenis \textit{motion sensor} secara garis besar, yaitu \textit{hardware-based}, \textit{software-based} sensor, dan gabungan. 

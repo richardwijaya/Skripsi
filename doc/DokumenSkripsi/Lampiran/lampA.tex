@@ -14,33 +14,161 @@
 % Perhatian: Abaikan warning tentang textasteriskcentered!!
 %
 
+%\begin{lstlisting}[caption={Hasil pemanggilan \textit{Directions API} yang gagal},language=java]
+%{
+%   "geocoded_waypoints" : [
+%      {
+%         "geocoder_status" : "OK",
+%         "place_id" : "ChIJbYmcEu7maC4RRijB2oKhHLA",
+%         "types" : [ "establishment", "point_of_interest", "university" ]
+%      },
+%      {
+%         "geocoder_status" : "ZERO_RESULTS"
+%      }
+%   ],
+%   "routes" : [],
+%   "status" : "NOT_FOUND"
+%}
+%
+%\end{lstlisting}
+%
+%
+%
+%\begin{lstlisting}[language=Java, caption={Hasil pemanggilan \textit{Directions API} yang berhasil} ]
+%{
+%   "geocoded_waypoints" : [
+%      {
+%         "geocoder_status" : "OK",
+%         "place_id" : "ChIJbYmcEu7maC4RRijB2oKhHLA",
+%         "types" : [ "establishment", "point_of_interest", "university" ]
+%      },
+%      {
+%         "geocoder_status" : "OK",
+%         "place_id" : "ChIJU8k7DlHmaC4RQ2mUo1ERm1k",
+%         "types" : [ "establishment", "hospital", "point_of_interest" ]
+%      }
+%   ],
+%   "routes" : [
+%      {
+%         "bounds" : {
+%            "northeast" : {
+%               "lat" : -6.8746719,
+%               "lng" : 107.6137497
+%            },
+%            "southwest" : {
+%               "lat" : -6.893777099999999,
+%               "lng" : 107.6034922
+%            }
+%         },
+%         "copyrights" : "Map data ©2020",
+%         "legs" : [
+%            {
+%               "distance" : {
+%                  "text" : "3.0 km",
+%                  "value" : 3042
+%               },
+%               "duration" : {
+%                  "text" : "10 mins",
+%                  "value" : 614
+%               },
+%               "end_address" : "Jl. Ir. H. Juanda No.100, Lebakgede, Kecamatan Coblong, Kota Bandung, Jawa Barat 40132, Indonesia",
+%               "end_location" : {
+%                  "lat" : -6.893777099999999,
+%                  "lng" : 107.613021
+%               },
+%               "start_address" : "Jl. Ciumbuleuit No.94, Hegarmanah, Kec. Cidadap, Kota Bandung, Jawa Barat 40141, Indonesia",
+%               "start_location" : {
+%                  "lat" : -6.8746719,
+%                  "lng" : 107.6046127
+%               },
+%               "steps" : [
+%                  {
+%                     "distance" : {
+%                        "text" : "1.0 km",
+%                        "value" : 1008
+%                     },
+%                     "duration" : {
+%                        "text" : "4 mins",
+%                        "value" : 251
+%                     },
+%                     "end_location" : {
+%                        "lat" : -6.8833328,
+%                        "lng" : 107.6049108
+%                     },
+%                     "html_instructions" : "Head \u003cb\u003esouth\u003c/b\u003e on \u003cb\u003eJl. Ciumbuleuit\u003c/b\u003e toward \u003cb\u003eJl. Bukit Hegar\u003c/b\u003e",
+%                     "polyline" : {
+%                        "points" : "tu}h@yowoSdAP|AL`Cb@dAHHBvC`@l@JpAXhBVdANRBdAPN@VD@?B?H?F?F?D?BAD?B?DAHCD?f@KlBe@PGB?BAb@IxA]v@QbAWTGPGTIFE^MRIb@Q@An@WDANGBALGVM"
+%                     },
+%                     "start_location" : {
+%                        "lat" : -6.8746719,
+%                        "lng" : 107.6046127
+%                     },
+%                     "travel_mode" : "DRIVING"
+%                  },
+%                  {
+%                     "distance" : {
+%                        "text" : "1.1 km",
+%                        "value" : 1067
+%                     },
+%                     "duration" : {
+%                        "text" : "3 mins",
+%                        "value" : 191
+%                     },
+%                     "end_location" : {
+%                        "lat" : -6.8852083,
+%                        "lng" : 107.6136492
+%                     },
+%                     "html_instructions" : "Turn \u003cb\u003eleft\u003c/b\u003e onto \u003cb\u003eJl. Siliwangi\u003c/b\u003e",
+%                     "maneuver" : "turn-left",
+%                     "polyline" : {
+%                        "points" : "xk_i@uqwoSCEAECKAM?K?E?G@GBIBCBEBGFGHGBADE@?BALI@Al@_@|@{@HILODEj@w@FMFIBKBO@OGaACm@KsAFc@BMFKLQRULSFODK@IAM?EACACGUQo@Qk@GUEKI[E[Eq@Eq@Ck@?WDa@HUXm@Xa@Ry@Hu@Fi@@QBONkB@KLkAB]?w@"
+%                     },
+%                     "start_location" : {
+%                        "lat" : -6.8833328,
+%                        "lng" : 107.6049108
+%                     },
+%                     "travel_mode" : "DRIVING"
+%                  },
+%                  {
+%                     "distance" : {
+%                        "text" : "1.0 km",
+%                        "value" : 967
+%                     },
+%                     "duration" : {
+%                        "text" : "3 mins",
+%                        "value" : 172
+%                     },
+%                     "end_location" : {
+%                        "lat" : -6.893777099999999,
+%                        "lng" : 107.613021
+%                     },
+%                     "html_instructions" : "Turn \u003cb\u003eright\u003c/b\u003e after McDonald's Simpang Dago (on the left)\u003cdiv style=\"font-size:0.9em\"\u003ePass by Bank BCA DAGO (on the left in 700&nbsp;m)\u003c/div\u003e\u003cdiv style=\"font-size:0.9em\"\u003eDestination will be on the left\u003c/div\u003e",
+%                     "maneuver" : "turn-right",
+%                     "polyline" : {
+%                        "points" : "pw_i@ihyoS@SzCLlAHz@Bd@@fB@tBDfABR@L?^BZ@b@Bj@DP@dBHH@bBJB?`@BbCLh@@J@bDL^BJ?H?X?\\BJ?N?H@F?H@F?p@BB@~@D@?"
+%                     },
+%                     "start_location" : {
+%                        "lat" : -6.8852083,
+%                        "lng" : 107.6136492
+%                     },
+%                     "travel_mode" : "DRIVING"
+%                  }
+%               ],
+%               "traffic_speed_entry" : [],
+%               "via_waypoint" : []
+%            }
+%         ],
+%         "overview_polyline" : {
+%            "points" : "tu}h@yowoSdAP|AL`Cb@dAH`Dd@~Bd@hG|@l@Fr@CNCtCq@|@SpCo@xA_@nAe@pCiAVMCEEQAg@L[XYJGNKl@_@|@{@VYp@}@NWF[EqAOaCJq@T]`@i@L[Aa@m@uBMa@Ow@OoCDy@b@cAXa@Ry@P_BVyCPiB@kAhFV`BD|EFzADlBHzLp@fIXtBH`AD"
+%         },
+%         "summary" : "Jl. Ciumbuleuit, Jl. Siliwangi and Jl. Dago/Jl. Ir. H. Juanda",
+%         "warnings" : [],
+%         "waypoint_order" : []
+%      }
+%   ],
+%   "status" : "OK"
+%}
+%\end{lstlisting}
 
-\begin{lstlisting}[language=Java, caption=MyCode.c]
-
-// This does not make algorithmic sense, 
-// but it shows off significant programming characters.
-
-#include<stdio.h>
-
-void myFunction( int input, float* output ) {
-	switch ( array[i] ) {
-		case 1: // This is silly code
-			if ( a >= 0 || b <= 3 && c != x )
-				*output += 0.005 + 20050;
-			char = 'g';
-			b = 2^n + ~right_size - leftSize * MAX_SIZE;
-			c = (--aaa + &daa) / (bbb++ - ccc % 2 );
-			strcpy(a,"hello $@?"); 
-	}
-	count = ~mask | 0x00FF00AA;
-}
-
-// Fonts for Displaying Program Code in LATEX
-// Adrian P. Robson, nepsweb.co.uk
-// 8 October 2012
-// http://nepsweb.co.uk/docs/progfonts.pdf
-
-\end{lstlisting}
-
-\lstinputlisting[language=Java, caption=MyCode.java]{./Lampiran/MyCode.java} 
+%\lstinputlisting[language=json, caption=success_directions.json]{./Lampiran/success_directions.json} 
 
