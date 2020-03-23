@@ -1,4 +1,4 @@
-  %versi 2 (8-10-2016)
+   %versi 2 (8-10-2016)
 \chapter{Landasan Teori}
 \label{chap:teori}
 Pada bab ini akan dijelaskan mengenai Google VR, Google StreetView API, Google Directions API, dan \textit{motion sensor}.
@@ -11,33 +11,62 @@ Google VR adalah teknologi yang diciptakan perusahaan Google untuk membuat peman
 \subsection{Google VR SDK}
 Google VR SDK adalah alat bantu berlisensi Apache 2.0 yang disediakan Google pada repository Github yang berisi kode program dari aplikasi {\it virtual reality} (VR)  yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS. . Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama HelloVR dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo HelloVR untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi. 
 
-\subsubsection{Kelas-kelas Google VR Java}
-Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{package} com.google.vr.sdk.base agar dapat digunakan pengembang perangkat lunak untuk membuat aplikasi VR. Tabel \ref{tab:kelas-google-vr} menjelaskan mengenai beberapa kelas (atau \textit{interface} yang ada pada package com.google.vr.sdk.base. 
+Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{package} com.google.vr.sdk.base agar dapat digunakan pengembang perangkat lunak untuk membuat aplikasi VR. Tabel \ref{tab:kelas-google-vr} menjelaskan mengenai beberapa kelas (atau \textit{interface} yang ada pada \textit{package} \texttt{com.google.vr.sdk.base}. Berikut adalah beberapa \textit{class} dan \textit{interface} dari \textit{package} \texttt{com.google.vr.sdk.base}:
 
-\begin{table}[ht!]
-	\centering
-	\caption{Beberapa \textit{class} dan \textit{interface} pada \textit{package} com.google.vr.sdk.base}
-	\label{tab:kelas-google-vr}
-	\begin{tabular}{|p{5cm}|p{3cm}|p{4cm}|}
-	\hline
-		Nama & Tipe & Deskripsi\\ \hline \hline
-		GvrView.Renderer & \textit{interface} & me\textit{render} gambar atau pemandangan \textit{stereo} oleh dirinya sendiri\\ \hline
-		GvrView.StereoRenderer & \textit{interface} & interface \textit{renderer} yang menyerahkan penyajian gambar atau pemandangan \textit{stereo} pada \textit{view}\\ \hline
-		Distortion & \textit{class} & Kelas yang mendefinisikan atribut-atribut untuk memperbaiki \textit{distorsi} dari lensa\\ \hline
-		Eye & \textit{class} & Menjelaskan penyajian gambar atau pemandangan \textit{stereo} pada satu mata \\ \hline
-		Eye.Type & \textit{class} & Menjelaskan atribut atau konstan dari sebuah objek kelas \textit{Eye} yang diacu\\ \hline
-		GvrActivity & \textit{class} & Kelas \textit{activity} yang memudahkan diintegrasikan dengan \textit{VR headset} dari Google\\ \hline
-		GvrView & \textit{class} & \textit{view} yang mendukung penyajian pemandangan VR \\ \hline
-		GvrViewerParams & \textit{class} & kelas yang mendefinisikan parameter fisik dari \textit{viewer} Google VR \\ \hline
-%		HeadMountedDisplay & \textit{class} & \\ Kelas yang mengenkapsulasi paramter tampilan \textit{stereo} yang terdiri atas \textit{viewer} Google VR dan layar\hline
-%		HeadTransform & \textit{class} & 
-%		ScreenParams & \textit{class} &\\ \hline
-%		ViewPort & \textit{class} &\\
-	\hline
-	\end{tabular}
-\end{table}
+	\begin{enumerate}
+		\item \texttt{GvrView.StereoRenderer}
+		
+		\textit{Interface} untuk \textit{renderer} yang menyerahkan seluruh penyajian pemandangan stereo pada pemandangan (\textit{view}). \textit{Method-emethod} abstrak yang dimiliki \textit{interface} imi adalah:
+			\begin{itemize}
+				\item \texttt{public abstract void onDrawEye (Eye eye)}
+				
+				
+				
+				\item \texttt{public abstract void onFinishFrame (Viewport viewport)}
+				\item \texttt{public abstract void onNewFrame (HeadTransform headTransform)}
+				\item \texttt{public abstract void onRendererShutdown()}
+				
+				\item \texttt{public abstract void onSurfaceChanged (int width, int height)}
+			\end{itemize}					
+		
+		\item \texttt{AndroidCompat}
+		
+		\item \texttt{Eye}
+		
+		\item \texttt{GvrActivity}
+		
+		\item \texttt{GvrView}
+		
+		\item \texttt{HeadTransform}
+		
+		\item \texttt{Viewport}
+	
+	\end{enumerate}
+
+%\begin{table}[ht!]
+%	\centering
+%	\caption{Beberapa \textit{class} dan \textit{interface} pada \textit{package} com.google.vr.sdk.base}
+%	\label{tab:kelas-google-vr}
+%	\begin{tabular}{|p{7cm}|p{5cm}|}
+%	\hline
+%		Nama/Tipe & Deskripsi\\ \hline \hline
+%		GvrView.Renderer/\textit{interface} & me\textit{render} gambar atau pemandangan \textit{stereo} oleh dirinya sendiri\\ \hline
+%		GvrView.StereoRenderer/\textit{interface} & interface \textit{renderer} yang menyerahkan penyajian gambar atau pemandangan \textit{stereo} pada \textit{view}\\ \hline
+%		Distortion/\textit{class} & Kelas yang mendefinisikan atribut-atribut untuk memperbaiki \textit{distorsi} dari lensa\\ \hline
+%		Eye/\textit{class} & Menjelaskan penyajian gambar atau pemandangan \textit{stereo} pada satu mata \\ \hline
+%		Eye.Type/\textit{class} & Menjelaskan atribut atau konstan dari sebuah objek kelas \textit{Eye} yang diacu\\ \hline
+%		GvrActivity/\textit{class} & Kelas \textit{activity} yang memudahkan diintegrasikan dengan \textit{VR headset} dari Google\\ \hline
+%		GvrView/\textit{class} & \textit{view} yang mendukung penyajian pemandangan VR \\ \hline
+%		GvrViewerParams/\textit{class} & kelas yang mendefinisikan parameter fisik dari \textit{viewer} Google VR \\ \hline
+%%		HeadMountedDisplay & \textit{class} & \\ Kelas yang mengenkapsulasi paramter tampilan \textit{stereo} yang terdiri atas \textit{viewer} Google VR dan layar\hline
+%%		HeadTransform & \textit{class} & 
+%%		ScreenParams & \textit{class} &\\ \hline
+%%		ViewPort & \textit{class} &\\
+%	\hline
+%	\end{tabular}
+%\end{table}
  
-Bagian dari Google VR SDK yang akan digunakan pada penelitian ini adalah aplikasi HelloVR yang akan dijelaskan pada Bagian \ref{subs:hello-vr}. 
+Bagian dari Google VR SDK yang akan digunakan pada penelitian ini adalah aplikasi HelloVR yang akan dijelaskan pada Subbab \ref{subs:hello-vr}. 
 
 \subsection{Aplikasi HelloVR}
 \label{subs:hello-vr}
@@ -53,43 +82,192 @@ HelloVR, aplikasi yang diperoleh dari Google VR SDK pada direktori ./samples/sdk
 \subsubsection{Komponen Aplikasi HelloVR}
 Dunia VR pada aplikasi ini dibuat dari {\it file Wavefront Object} (OBJ) dengan tekstur {\it file Portable Network Graphics} (PNG) (Gambar \ref{fig:vr-room}) yang telah dengan sangat tepat dipetakan pada \textit{file} OBJ yang ada sehingga dunia VR terlihat sangat nyata. Bentuk-bentuk yang akan dicari pengguna dibuat dari tiga file OBJ yang merepresentasikan tiga macam bentuk yang akan muncul. Masing-masing file OBJ memiliki dua tekstur yang telah dipetakan pada masing-masing file OBJ dalam file PNG. Satu tekstur (Gambar \ref{fig:blue-shape}) digunakan ketika bentuk sedang tidak ada di tengah-tengah titik pengelihatan pengguna, sedangkan satu tekstur yang lain (Gambar \ref{fig:pink-shape}) digunakan ketika pengguna sedang melihat bentuk tepat di titik tengah pengelihatan pengguna.
 
-\begin{figure}[h]
-	\centering
-		\includegraphics[scale=0.2]{Gambar/room.png}
-	\caption{Gambar \textit{asset} dari tekstur ruangan}
-	\label{fig:vr-room}
+%\begin{figure}[h]
+%	\centering
+%		\includegraphics[scale=0.2]{Gambar/room.png}
+%	\caption{Gambar \textit{asset} dari tekstur ruangan}
+%	\label{fig:vr-room}
+%\end{figure}
+
+\begin{figure}[]
+	\begin{subfigure}{.33\textwidth}
+  		\centering
+  		\includegraphics[width=.8\linewidth]{Gambar/room.png}
+  		\caption{\textit{Texture} ruangan VR \\}
+  		\label{fig:vr-room}
+	\end{subfigure}
+	\begin{subfigure}{.33\textwidth}
+  		\centering
+  		\includegraphics[width=.8\linewidth]{Gambar/shape_blue.png}
+  		\caption{\textit{Texture} bentuk pada dunia VR berwarna biru \\}
+  		\label{fig:blue-shape}
+	\end{subfigure}
+	\begin{subfigure}{.33\textwidth}
+  		\centering
+  		\includegraphics[width=.8\linewidth]{Gambar/shape_pink.png}
+  		\caption{\textit{Texture} bentuk pada dunia VR berwarna merah muda}
+  		\label{fig:pink-shape}
+	\end{subfigure}
+	\caption{Gambar-gambar \textit{assets} aplikasi HelloVR \\}
+	\label{fig:hello-vr-assets}
 \end{figure}
 
-\begin{figure}[h]
-	\centering
-		\includegraphics[scale=0.4]{Gambar/shape_blue.png}
-	\caption{Gambar \textit{asset} dari \textit{texture} bentuk yang sedang tidak di tengah-tengah titik pengelihatan pengguna}
-	\label{fig:blue-shape}
-\end{figure}
-
-\begin{figure}[h]
-	\centering
-		\includegraphics[scale=0.4]{Gambar/shape_pink.png}
-	\caption{Gambar \textit{asset} dari \textit{texture} bentuk yang sedang ada di tengah-tengah titik pengelihatan pengguna}
-	\label{fig:pink-shape}
-\end{figure}
+%\begin{figure}[h]
+%	\centering
+%		\includegraphics[scale=0.4]{Gambar/shape_pink.png}
+%	\caption{Gambar \textit{asset} dari \textit{texture} bentuk yang sedang ada di tengah-tengah titik pengelihatan pengguna}
+%	\label{fig:pink-shape}
+%\end{figure}
 
 \subsubsection{Rancangan kelas Aplikasi HelloVR}
 Aplikasi HelloVR memiliki empat kelas pada programnya, di antaranya: 
-\begin{itemize}
-	\item Texture
+\begin{enumerate}
+	\item \texttt{Texture}
 	
-	Kelas Texture adalah kelas yang memuat tekstur yang akan digunakan.
-	\item TexturedMesh
+	Kelas yang memuat tekstur yang akan digunakan. Atribut yang dimiliki kelas ini adalah:
+		\begin{itemize}
+			\item \texttt{int[] textureId} - Atribut yang menyimpan representasi tekstur ruangan yang dapat digunakan dalam kode program. 
+		\end{itemize}			
+		\textit{Method-method} yang dimiliki kelas ini di antaranya:
+		\begin{itemize}
+			\item \texttt{public void bind()}
+			
+			\textit{Method} ini adalah \textit{method} mengikat tekstur ke \texttt{GL\_TEXTURE0} dari \texttt{GLES20}, yang adalah penyaji (\textit{renderer}) dari dunia VR.
+		\end{itemize}		 
+	\item \texttt{TexturedMesh}
 	
-	Kelas TexturedMesh adalah sebuah bentuk tiga dimensi yang sudah diberi tekstur sehingga terlihat indah dan berwarna.
-	\item Util
+	Kelas ini memuat sebuah bentuk tiga dimensi yang sudah diberi tekstur sehingga terlihat indah dan berwarna. Atribut-atribut yang dimiliki kelas ini adalah:
+		\begin{itemize}
+			\item \texttt{private final FloatBuffer vertices}
+			
+			Atribut ini adalah atribut dari sudut-sudut ruang tiga dimensi.
+  			\item \texttt{private final FloatBuffer uv}
+  			
+  			Atribut ini adalah atribut dari koordinat tekstur yang digunakan.
+  			\item \texttt{private final ShortBuffer indices}
+  			
+  			Atribut ini adalah atribut indeks sudut-sudut dari permukaan ruang tiga dimensi.
+  			\item \texttt{private final int positionAttrib}
+  			
+  			Atribut ini adalah atribut dari posisi ruang tiga dimensi pada \textit{shader}.
+  			\item \texttt{private final int uvAttrib}
+  			
+  			Atribut ini adalah atribut dari koordinat tekstur pada \textit{shader}. \textit{Shader} adalah program yang mewarnai ruang.
+		\end{itemize}
+		
+	Method yang dimiliki kelas ini adalah:
+		\texttt{public void draw()}
+			
+		Method untuk menggambar ruang dengan tekstur.
+	\item \texttt{Util}
 	
-	Kelas Util adalah kelas yang digunakan untuk menghitung vektor dan sudut yang dibentuk antara mata pengguna dan bentuk yang akan dicari, serta mengatur pengaturan yang tepat untuk OpenGL, yang adalah {\it renderer} yang digunakan untuk menggambar bentuk dan ruangan.
-	\item HelloVrActivity
+	Kelas yang digunakan untuk menghitung vektor dan sudut yang dibentuk antara mata pengguna dan bentuk yang akan dicari, serta mengatur pengaturan yang tepat untuk \textit{OpenGL}, yang adalah {\it renderer} yang digunakan untuk menggambar bentuk dan ruangan. Atribut-atribut yang dimilki kelas ini adalah:
+	\begin{itemize}
+		\item \texttt{private static final boolean HALT\_ON\_GL\_ERROR}
+		
+		Atribut ini menentukan apakah proses \textit{build} program dihentikan jika ada masalah atau tidak.
+	\end{itemize}	 
 	
-	Kelas HelloVrActivity adalah kelas yang adalah kelas {\it activity} Google VR. Berikut adalah diagram kelas untuk memperjelas hubungan antara semua kelas aplikasi HelloVR. Kelas ini akan menggunakan tiga kelas lainnya untuk mendapat ruangan dan bentuk yang akan digambar, serta keadaan ({\it state}) dari permainan, seperti sedang menatap pada bentuk atau tidak dan bagian ruangan yang sedang dilihat.
-\end{itemize}
+	\textit{Method-method} yang dimiliki kelas ini di antaranya:
+	\begin{itemize}
+		\item \texttt{public static void checkGlError(String label)}
+		
+		\textit{Method} ini digunakan untuk menjalankan \texttt{GLES20}.
+		
+		\textbf{Parameter:}
+		\begin{itemize}
+			\item \texttt{String label}
+			
+			Parameter ini adalah nilai \textit{label} yang akan diteruskan saat galat terjadi.			
+		\end{itemize}
+		\textbf{\textit{Return Value}:} Tidak ada
+			
+		\textbf{\textit{Exception}:} Tidak ada		
+		
+		%second point
+		\item \texttt{public static int compileProgram(String[] vertexCode, String[] fragmentCode)}
+		
+		\textit{Method} ini digunakan untuk meng-\textit{compile} program \textit{shader} \texttt{GLES20}.
+		
+		\textbf{Parameter:}
+		\begin{itemize}
+			\item \texttt{String[] vertexCode}
+			
+			Parameter ini adalah nilai kumpulan sudut dari program \textit{shader} \texttt{GLES20}	
+			\item \texttt{String[] fragmentCode}
+			
+			Parameter ini adalah nilai pecahan-pecahan program \textit{shader} \texttt{GLES20}.		
+		\end{itemize}
+		\textbf{\textit{Return Value}:} \textit{id} dari program \texttt{GLES20}.
+			
+		\textbf{\textit{Exception}:} Tidak ada
+	\end{itemize}
+	
+	
+	\item \texttt{HelloVrActivity}
+	
+	Kelas yang adalah kelas {\it activity} Google VR. Berikut adalah diagram kelas untuk memperjelas hubungan antara semua kelas aplikasi HelloVR. Kelas ini akan menggunakan tiga kelas lainnya untuk mendapat ruangan dan bentuk yang akan digambar, serta keadaan ({\it state}) dari permainan, seperti sedang menatap pada bentuk atau tidak dan bagian ruangan yang sedang dilihat. Atribut-atribut yang dimiliki kelas ini adalah sebagai berikut:
+
+	\begin{itemize}
+  		\item \texttt{private float[] camera}
+  		
+  		Atribut \textit{camera} yang direpresentasikan kumpulan bilangan \textit{float}.
+  		\item \texttt{private int objectProgram}
+  		
+  		Atribut dari \textit{id} program \textit{shader}.
+  		\item \texttt{private int objectPositionParam}
+  		
+  		Atribut dari \textit{id} parameter posisi dari objek-objek dalam dunia tiga dimensi.
+  		\item \texttt{private int objectUvParam}
+  		
+  		Atribut dari \textit{id} parameter koordinat tekstur dari objek-objek dunia tiga dimensi.
+  		\item \texttt{private int objectModelViewProjectionParam}
+  		
+  		Atribut dari \textit{id} parameter model view dari objek-objek dunia tiga dimensi.
+  		\item \texttt{private TexturedMesh room}
+  		
+  		Atribut dari ruang tiga dimensi yang telah diberi tekstur.
+  		\item \texttt{private Texture roomTex}
+  		
+  		Atribut dari tekstur yang akan digunakan untuk ruang tiga dimensi.
+  		\item \texttt{private ArrayList<TexturedMesh> targetObjectMeshes}
+  		
+  		Atribut yang memuat kumpulan bentuk tiga dimensi dari target.
+  		\item \texttt{private ArrayList<Texture> targetObjectNotSelectedTextures}
+  		
+  		
+  		Atribut yang memuat tekstur dari objek yang sedang tidak dilihat.
+  		\item \texttt{private ArrayList<Texture> targetObjectSelectedTextures}
+  		
+  		Atribut yang memuat tekstur dari objek yang sedang dilihat.
+	\end{itemize}
+	
+	\textit{Method-method} yang dimiliki kelas ini adalah:
+	
+	\begin{itemize}
+		\item \texttt{public void initializeGvrView()}
+		
+		\textit{Method} yang digunakan untuk menginisialisasi pemandangan VR.
+		\textbf{Parameter:} Tidak ada
+		\textbf{\textit{Return Value}:} Tidak ada
+		\textbf{\textit{Exception}:} Tidak ada		
+		
+		\item \texttt{public void onSurfaceCreated(EGLConfig config)}
+		
+		\textbf{Parameter:}
+			\begin{itemize}
+			\item EGLConfig config
+			
+		Konfigurasi dari OpenGL yang akan digunakan.
+		\textbf{\textit{Return Value}:} Tidak ada
+		\textbf{\textit{Exception}:} Tidak ada		
+					
+			
+\end{itemize}					
+		
+	\end{itemize}
+	
+\end{enumerate}
 
 
 %STREETVIEW API
@@ -107,11 +285,11 @@ Google StreetView API adalah API yang disediakan Google untuk mendapatkan pemand
 
 \subsection{{\it API Key}}
 \label{subs:api-key}
-Agar dapat menggunakan {\it StreetView API} (dan \textit{Directions API} pada Bagian \ref{sec:directions}), ada {\it API key} yang harus diperoleh pada Google Cloud Platform Console dengan memasukkan nomor kartu kredit. Gambar \ref{fig:success-streetview} menunjukkan tampilan \textit{Google Cloud} setelah mendapatkan API key. API {\it key} yang diberikan terdiri atas dua puluh dan delapan belas karakter alfanumerik (bisa huruf kapital dan huruf kecil) yang dihubungkan dengan tanda "-". API {\it key} yang telah diperoleh akan digunakan sebagai salah satu parameter masukan agar Google API dapat diakses.
+Agar dapat menggunakan {\it StreetView API} (dan \textit{Directions API} pada Subbab \ref{sec:directions}), ada {\it API key} yang harus diperoleh pada Google Cloud Platform Console dengan memasukkan nomor kartu kredit. Gambar \ref{fig:success-streetview} menunjukkan tampilan \textit{Google Cloud} setelah mendapatkan API key. API {\it key} yang diberikan terdiri atas dua puluh dan delapan belas karakter alfanumerik (bisa huruf kapital dan huruf kecil) yang dihubungkan dengan tanda "-". API {\it key} yang telah diperoleh akan digunakan sebagai salah satu parameter masukan agar Google API dapat diakses.
 
 %\subsection{Atribut \textit{location}}
 %\label{subs:location-attr}
-%Salah satu Atribut yang sering digunakan untuk menggunakan \textit{StreetView API} (dan \texit{Directions API} pada Bagian \ref{sec:directions}) adalah \textit{location}. Ada beberapa jenis parameter yang diterima untuk atribut \textit{location}, di antaranya:
+%Salah satu Atribut yang sering digunakan untuk menggunakan \textit{StreetView API} (dan \texit{Directions API} pada Subbab \ref{sec:directions}) adalah \textit{location}. Ada beberapa jenis parameter yang diterima untuk atribut \textit{location}, di antaranya:
 %\begin{itemize}
 %	\item Garis lintang dan garis bujur (\textit{longitude} dan \textit{latitude}.
 %	\item place
@@ -149,12 +327,12 @@ Beberapa parameter wajib pada {\it StreetView API} adalah
 \begin{itemize}
 	\item \textit{key}
 	
-	\textit{API key} yang dijelaskan pada Bagian \ref{subs:api-key}.
+	\textit{API key} yang dijelaskan pada Subbab \ref{subs:api-key}.
 	\item \textit{location} atau \textit{pano} (salah satu)
+	 
 	 Lokasi dari pemandangan yang ingin ditampilkan. \textit{locaction} menerima dua jenis parameter garis lintang dan garis bujur (\textit{longitude} dan \textit{latitude}) atau \textit{String} nama lokasi, sementara \textit{pano} menerima \textit{panorama id} dari lokasi atau panorama. 
-	 \item 
-\end{itemize}
-{\it location} atau pano untuk menentukan lokasi pemandangan yang ingin ditampilkan dan {\it size} untuk menentukan ukuran gambar pemandangan.    
+	 
+\end{itemize}   
 
 \subsubsection{Parameter Opsional}
 Selain parameter wajib, ada parameter opsional, yaitu parameter yang tidak perlu diisi agar pengaksesan {\it API} berhasil dan biasanya atribut parameter tersebut sudah memiliki nilai bawaan ({\it default}). Ada beberapa parameter opsional yang dapat digunakan sebagai parameter untuk mengubah pengaturan dari pemandangan yang diambil:
@@ -172,15 +350,15 @@ Tabel \ref{tab:atribut-opsional-streetview-api} menjelaskan semua parameter opsi
 	\centering
 	\caption{Atribut-Atribut Opsional \textit{StreetView API}}
 	\label{tab:atribut-opsional-streetview-api}
-\begin{tabular}{|p{2.5cm}|p{3cm}|p{5cm}|p{4cm}|}
+\begin{tabular}{|p{7cm}|p{7cm}|}
 \hline
-Nama Atribut & Tipe & Penjelasan & Rentang Nilai \textit{Valid} (yang berdampak)\\ \hline \hline
-signature & String (alfabetik) &  Atribut untuk memastikan bahwa \textit{request} dikirim dengan {\it API key} sesuai jenis \textit{signature} yang diatur pemilik {\it API key}. & - \\ \hline
-heading & integer & menyatakan arah pandangan secara horisontal, nilai atribut menyatakan sudut yang dibentuk dari arah utara dengan arah pandang yang diinginkan (sudut yang dibentuk dari arah berlawanan jarum jam) & $ 0 \leq x \leq 360 $ \\ \hline
-fov (\textit{field of view}) & integer & menyatakan seberapa perbesaran pemandangan (nilai dalam satuan derajat) & $ 10 \leq x \leq 120 $ (yang berdampak)\\ \hline
-pitch & integer & menyatakan pandangan pengguna secara vertikal, satuan nilai dalam derajat.& $ -90 \leq  x \leq 90$\\ \hline
-radius & integer & menyatakan jarak dalam meter, yang adalah titik pengambilan pemandangan & $ x > 0 $\\ \hline
-source & String (alfabetik) & menyatakan pemandangan, \textit{default} atau \textit{outdoor} & "default" atau "outdoor"\\ 
+Nama Atribut/Tipe/Rentang Nilai & Penjelasan \\ \hline \hline
+signature/String (alfabetik)/- &  Atribut untuk memastikan bahwa \textit{request} dikirim dengan {\it API key} sesuai jenis \textit{signature} yang diatur pemilik {\it API key}.  \\ \hline
+heading/integer/$ 0 \leq x \leq 360 $ & menyatakan arah pandangan secara horisontal, nilai atribut menyatakan sudut yang dibentuk dari arah utara dengan arah pandang yang diinginkan (sudut yang dibentuk dari arah berlawanan jarum jam) \\ \hline
+fov (\textit{field of view})/integer/$ 10 \leq x \leq 120 $ (yang berdampak) & menyatakan seberapa perbesaran pemandangan (nilai dalam satuan derajat) \\ \hline
+pitch/integer/$ -90 \leq  x \leq 90$ & menyatakan pandangan pengguna secara vertikal, satuan nilai dalam derajat.\\ \hline
+radius/integer/$ x > 0 $ & menyatakan jarak dalam meter, yang adalah titik pengambilan pemandangan\\ \hline
+source/String (alfabetik)/"default" atau "outdoor" & menyatakan pemandangan, \textit{default} atau \textit{outdoor}\\ 
 \hline
 
 \end{tabular}
@@ -189,28 +367,32 @@ source & String (alfabetik) & menyatakan pemandangan, \textit{default} atau \tex
 %DIRECTIONS API
 \section{Google {\it Directions API}}
 \label{sec:directions}
-Google {\it Directions API} adalah layanan berbasis \textit{HTTP}/\textit{HTTPS} dari Google yang membantu mencari dan menghitung arah dari satu tempat ke tempat yang lain (sumber). Ada beberapa \textit{mode} dari arah yang dapat dicari seperti {\it driving}, {\it transit}, {\it walking}, dan {\it cycling}. Pengaksesan \textit{Directions API} sangat mirip dengan {\it StreetView API}, yaitu membutuhkan \textit{API Key}, seperti yang dijelaskan pada Bagian \ref{subs:api-key}, sebagai salah satu atribut wajib, juga memiliki atribut wajib dan opsional yang dapat diatur lewat parameter. 
+Google {\it Directions API} adalah layanan berbasis \textit{HTTP}/\textit{HTTPS} dari Google yang membantu mencari dan menghitung arah dari satu tempat ke tempat yang lain (sumber). Ada beberapa \textit{mode} dari arah yang dapat dicari seperti {\it driving}, {\it transit}, {\it walking}, dan {\it cycling}. Pengaksesan \textit{Directions API} sangat mirip dengan {\it StreetView API}, yaitu membutuhkan \textit{API Key}, seperti yang dijelaskan pada Subbab \ref{subs:api-key}, sebagai salah satu atribut wajib, juga memiliki atribut wajib dan opsional yang dapat diatur lewat parameter. 
 
 \subsection{Penggunaan {\it Directions API}}
-Sintaks untuk mengaksesnya pun mirip dengan \textit{StreetView API}, hanya saja ada perbedaan pada bagian "streetview" pada URL Web pada Bagian \ref{subs:streetview-usage} diganti dengan "directions". Selain sintaks, {\it Directions API} juga memiliki dua jenis parameter, wajib dan opsional. Tabel \ref{tab:atribut-directions-api} menyebutkan dan menjelaskan mengenai atribut-atribut parameter dari \textit{Directions API}.
+Sintaks untuk mengaksesnya pun mirip dengan \textit{StreetView API} dengan URL sebagai berikut:
+\begin{quote}
+https://maps.googleapis.com/maps/api/directions/filetype?parameter
+\end{quote}
+Bagian "filetype" pada URL diganti dengan tipe \textit{file} keluaran atau hasil (xml atau json). Bagian "parameter" diganti dengan parameter-parameter dari {\it Directions API}.  {\it Directions API} juga memiliki dua jenis parameter seperti {\it StreetView API}: wajib dan opsional. Tabel \ref{tab:atribut-directions-api} menyebutkan serta menjelaskan mengenai atribut-atribut parameter dari \textit{Directions API}.
 
-\begin{table}[ht!]
+\begin{table}[h]
 	\centering
 	\caption{Atribut-Atribut Opsional \textit{Directions API}}
 	\label{tab:atribut-directions-api}
-	\begin{tabular}{|p{3cm}|p{2.5cm}|p{2.5cm}|p{4cm}|p{3cm}|}
+	\begin{tabular}{|p{5cm}|p{6cm}|p{5cm}|}
 
 	\hline
-	Nama Atribut & Wajib/Opsional & Tipe & Penjelasan & Rentang Nilai 		\textit{Valid} (yang berdampak)\\ \hline \hline
-	origin & Wajib & String (alfabetik) &  Atribut yang menyatakan 		lokasi asal yang dimasukkan pengguna. & String lokasi yang \textit{sah} \\ \hline
-	destination & Wajib & String & Atribut yang menyatatkan lokasi tujuan yang dimasukkan pengguna & String lokasi yang \textit{valid} \\ \hline
-	key & Wajib & String & \textit{API Key} pengguna yang membuat pengguna dapat mengakses \textit{API} &  String \textit{API key} yang \textit{valid} (Bagian \ref{subs:api-key})  \\ \hline
-	mode & Opsional & String & menyatakan \textit{mode} perjalanan yang akan ditempuh. & "\textit{driving}", "\textit{walking}", "\textit{bicycling}", atau "\textit{transit}"\\ \hline
-	waypoints & Opsional & integer & menyatakan lokasi yang ingin ditempuh dalam perjalanan & String lokasi yang \textit{valid} \\ \hline
-	alternatives & Opsional & \textit{bit} (\textit{boolean}) & menyatakan apakah rute yang disediakan \textit{Directions API} menyediakan beberapa pilihan rute & \textit{true} atau \textit{false} \\ \hline
-	avoid & Opsional & String (alfabetik) & menyatakan jenis-jenis jalan yang harus dihindari, seperti jalan tol, jembatan, dan lain-lain & "\textit{tolls}", "\textit{highways}", "\textit{ferries}, dan/atau "\textit{indoor} (gunakan "|" jika ada beberapa) \\ \hline
-	language & Opsional & String (alfabetik) & bahasa yang digunakan untuk menyajikan rute perjalanan & Bahasa yang didukung Google \\ \hline
-	units & Opsional & String (alfabetik) & jenis satuan yang akan digunakan & "\textit{metrics}" atau "\textit{imperial}"\\ \hline
+	Nama Atribut/Tipe Parameter(Wajib atau Opsional)/Tipe & Penjelasan & Rentang Nilai \textit{Valid} (yang berdampak)\\ \hline \hline
+	origin/Wajib/String (alfabetik) &  Atribut yang menyatakan lokasi asal yang dimasukkan pengguna. & String lokasi yang \textit{sah} \\ \hline
+	destination/Wajib/String & Atribut yang menyatatkan lokasi tujuan yang dimasukkan pengguna & String lokasi yang \textit{valid} \\ \hline
+	key/Wajib/String & \textit{API Key} pengguna yang membuat pengguna dapat mengakses \textit{API} &  String \textit{API key} yang \textit{valid} (Subbab \ref{subs:api-key})  \\ \hline
+	mode/Opsional/String & menyatakan \textit{mode} perjalanan yang akan ditempuh. & "\textit{driving}", "\textit{walking}", "\textit{bicycling}", atau "\textit{transit}"\\ \hline
+	waypoints/Opsional/integer & menyatakan lokasi yang ingin ditempuh dalam perjalanan & String lokasi yang \textit{valid} \\ \hline
+	alternatives/Opsional/\textit{bit} (\textit{boolean}) & menyatakan apakah rute yang disediakan \textit{Directions API} menyediakan beberapa pilihan rute & \textit{true} atau \textit{false} \\ \hline
+	avoid/Opsional/String (alfabetik) & menyatakan jenis-jenis jalan yang harus dihindari, seperti jalan tol, jembatan, dan lain-lain & "\textit{tolls}", "\textit{highways}", "\textit{ferries}, dan/atau "\textit{indoor} (gunakan "|" jika ada beberapa) \\ \hline
+	language/Opsional/String (alfabetik) & bahasa yang digunakan untuk menyajikan rute perjalanan & Bahasa yang didukung Google \\ \hline
+	units/Opsional/String (alfabetik) & jenis satuan yang akan digunakan & "\textit{metrics}" atau "\textit{imperial}"\\ \hline
 %region & Opsional & String (alfabetik) &  & \\ \hline
 %arrival\_time & Opsional & String (alfabetik) & & \\ \hline
 %departure\_time & Opsional & String (alfabetik) & & \\ \hline
