@@ -1,4 +1,4 @@
-   %versi 2 (8-10-2016)
+%versi 2 (8-10-2016)
 \chapter{Landasan Teori}
 \label{chap:teori}
 Pada bab ini akan dijelaskan mengenai Google VR, Google StreetView API, Google Directions API, dan \textit{motion sensor}.
@@ -6,71 +6,160 @@ Pada bab ini akan dijelaskan mengenai Google VR, Google StreetView API, Google D
 %GOOGLE VR
 \section{Google VR}
 \label{sec:google-vr} 
-Google VR adalah teknologi yang diciptakan perusahaan Google untuk membuat pemandangan dunia maya yang terlihat nyata dengan menempatkan \textit{smartphone} pada alat yang bernama \textit{viewer}. \textit{Viewer} adalah alat untuk melihat dunia VR pada aplikasi VR di \textit{smartphone}. Dua \textit{viewer} yang diciptakan Google adalah \textit{Google Daydream} dan \textit{Cardboard}. Pada penelitian ini, yang digunakan \textit{Google Cardboard}. Google menyediakan sebuah alat bantu bagi pengembang perangkat lunak untuk memudahkan pengembangan aplikasi VR yang disebut Google VR SDK.
+Google VR adalah teknologi yang diciptakan perusahaan Google untuk membuat pemandangan dunia maya yang terlihat nyata dengan menempatkan \textit{smartphone} pada alat yang bernama \textit{viewer} ~\cite{quickstart-google-vr}. \textit{Viewer} adalah alat untuk melihat dunia VR pada aplikasi VR di \textit{smartphone}. Dua \textit{viewer} yang diciptakan Google adalah \textit{Google Daydream} dan \textit{Cardboard} ~\cite{quickstart-google-vr}. Yang digunakan penelitian ini adalah \textit{Google Cardboard}. Google menyediakan sebuah alat bantu bagi pengembang perangkat lunak untuk memudahkan pengembangan aplikasi VR yang disebut Google VR SDK ~\cite{quickstart-google-vr}.
 
 \subsection{Google VR SDK}
-Google VR SDK adalah alat bantu berlisensi Apache 2.0 yang disediakan Google pada repository Github yang berisi kode program dari aplikasi {\it virtual reality} (VR)  yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS. . Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama HelloVR dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo HelloVR untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi. 
+Google VR SDK adalah alat bantu berlisensi Apache 2.0 yang disediakan Google pada repository Github yang berisi kode program dari aplikasi {\it virtual reality} (VR)  yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS ~\cite{all-google-vr}. Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google ~\cite{quickstart-google-vr}. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama HelloVR dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo HelloVR untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi ~\cite{quickstart-google-vr}. 
 
-Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{package} com.google.vr.sdk.base agar dapat digunakan pengembang perangkat lunak untuk membuat aplikasi VR. Tabel \ref{tab:kelas-google-vr} menjelaskan mengenai beberapa kelas (atau \textit{interface} yang ada pada \textit{package} \texttt{com.google.vr.sdk.base}. Berikut adalah beberapa \textit{class} dan \textit{interface} dari \textit{package} \texttt{com.google.vr.sdk.base}:
+Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{package} \texttt{com.google.vr.sdk.base} agar dapat digunakan pengembang perangkat lunak untuk membuat aplikasi VR ~\cite{google-vr-sdk}. Berikut adalah beberapa \textit{class} dan \textit{interface} dari \textit{package} \texttt{com.google.vr.sdk.base}:
 
 	\begin{enumerate}
 		\item \texttt{GvrView.StereoRenderer}
 		
 		\textit{Interface} untuk \textit{renderer} yang menyerahkan seluruh penyajian pemandangan stereo pada pemandangan (\textit{view}). \textit{Method-emethod} abstrak yang dimiliki \textit{interface} imi adalah:
 			\begin{itemize}
+
 				\item \texttt{public abstract void onDrawEye (Eye eye)}
 				
-				
-				
+\textit{Method} yang menggambar pemandangan untuk satu mata. \textit{Method} ini tidak memiliki nilai yang dikembalikan ataupun\textit{exception}. 
+
 				\item \texttt{public abstract void onFinishFrame (Viewport viewport)}
-				\item \texttt{public abstract void onNewFrame (HeadTransform headTransform)}
+\textit{Method} yang dipanggil sebelum \textit{frame} selesai dibuat. Parameter yang dimiliki \texttt{method} ini adalah:
+				\begin{itemize}
+
+					\item \texttt{Viewport viewport}: \textit{Object viewport} yang dari GL \textit{surface}.
+				\end{itemize}
+				
+\textit{Method} ini tidak memiliki nilai yang dikembalikan ataupun\textit{exception}.
+				
+				\item \texttt{public abstract void onNewFrame (HeadTransform headTransform)}				
+\textit{Method} untuk menggambar perubahan \textit{frame} dari pemandangan. Parameter yang dimiliki \texttt{method} ini adalah:
+
+				\begin{itemize}
+					\item \texttt{HeadTransform headTransform}: 						\textit{Object} dari kelas \textit{headtransform}, yang mendefinisikan perubahan posisi kepala pengguna.  
+				\end{itemize}		
+				\textit{Method} ini tidak memiliki nilai yang dikembalikan, juga tidak memiliki \textit{exception}. 						
+				
 				\item \texttt{public abstract void onRendererShutdown()}
+\textit{Method} yang dipanggil ketika \textit{thread renderer} dari pemandangan berhenti atau dimatikan, ketika method \texttt{onSurfaceCreated} dipanggil. \textit{Method} ini tidak memiliki parameter, nilai yang dikembalikan, maupun \textit{exception}.
 				
 				\item \texttt{public abstract void onSurfaceChanged (int width, int height)}
+				\textit{Method}	yang terpanggil ketika ada perubahan dimensi pada permukaan dunia VR. Parameter yang dimiliki \textit{method} ini adalah:
+				
+				\begin{itemize}
+					\item \texttt{int width}: Nilai dari lebar pemandangan satu \textit{eye} dalam satuan \textit{pixel}.
+					
+					\item \texttt{int height}: Nilai dari tinggi pemandangan satu \textit{eye} dalam satuan \textit{pixel}.
+				\end{itemize}
+				
+				\item \texttt{public abstract void onSurfaceCreated (EGLConfig config)}
+\textit{Method} untuk membuat dunia VR. Parameter yang dimiliki \textit{method} ini adalah:
+				\begin{itemize}
+					\item \texttt{EGLConfig config}: Konfigurasi EGL yang digunakan untuk membuat permukaan dunia VR.
+				\end{itemize}
 			\end{itemize}					
 		
 		\item \texttt{AndroidCompat}
+		\textit{Utility class} yang disediakan Android untuk menggunakan fitur-fitur VR.  
+		
+			\begin{itemize}
+				\item \texttt{public static void setSustainedPerformanceMode (Activity activity, boolean enabled)}
+				
+				
+				\item \texttt{public static boolean setVrModeEnabled (Activity activity, boolean enabled)}
+				
+				\item \texttt{public static boolean trySetVrModeEnabled (Activity activity, boolean enabled)}
+			\end{itemize}					
+				
 		
 		\item \texttt{Eye}
 		
+		\textit{Class} yang mendefinisikan rincian \textit{rendering} stereo dari satu \textit{eye}. 
+			\begin{itemize}
+				\item \texttt{public float[] getEyeView ()}
+				
+				\item \texttt{public FieldOfView getFov ()}
+				
+				\item \texttt{public float[] getPerspective (float zNear, float zFar)}
+				
+				\item \texttt{public boolean getProjectionChanged ()}
+				
+				\item \texttt{public int getType ()}
+				
+				\item \texttt{public Viewport getViewport ()}
+				
+				\item \texttt{public void setProjectionChanged()}
+			\end{itemize}
+		
 		\item \texttt{GvrActivity}
+		\textit{Activity} dasar yang mudah diintegrasikan dengan perangkat Google VR. 
+			\begin{itemize}
+				\item \texttt{public GvrView getGvrView ()}
+				
+				\item \texttt{public void onBackPressed ()}
+				
+				\item \texttt{public void onCardboardTrigger ()}
+				
+				\item \texttt{public void setGvrView (GvrView gvrView)}
+				
+				\item \texttt{public void setGvrView (GvrView gvrView, boolean enableVrModeFallbacks)}
+			\end{itemize}	 
 		
 		\item \texttt{GvrView}
+		\textit{View} yang mendukung \textit{rendering} VR.
 		
 		\item \texttt{HeadTransform}
+		\textit{Class} yang mendefinisikan perubahan posisi kepala pengguna terhadap dunia VR.
+		
+		\begin{itemize}
+			\item \texttt{public void getEulerAngles (float[] eulerAngles, int offset)}
+			
+			\item \texttt{public void getForwardVector (float[] forward, int offset)}
+
+			\item \texttt{public void getHeadView (float[] headView, int offset)}
+			
+			\item \texttt{public void getQuaternion (float[] quaternion, int offset)}
+			\item \texttt{public void getRightVector (float[] right, int offset)}
+			
+			\item \texttt{public void getTranslation (float[] translation, int offset)}
+			
+			\item \texttt{public void getUpVector (float[] up, int offset)}
+		\end{itemize}			
 		
 		\item \texttt{Viewport}
-	
+		\textit{Class} yang mendefinisikan \textit{viewport} berbentuk persegi panjang. 
+		
+		Atribut-atribut yang dimiliki kelas ini adalah sebagai berikut:
+		
+		\begin{itemize}
+			\item \texttt{public int height}
+			
+			\item \texttt{public int width}
+			
+			\item \texttt{public int x}
+			
+			\item \texttt{public int y}
+		\end{itemize}
+			
+		\textit{Method-method} yang dimiliki kelas ini adalah sebagai berikut:
+		
+		\begin{itemize}
+			\item \texttt{public void getAsArray (int[] array, int offset)}
+			
+			\item \texttt{public void setGLScissor ()}
+			
+			\item \texttt{public void setGLViewport ()}
+			
+			\item \texttt{public void setViewport (int x, int y, int width, int height)}
+		\end{itemize}
+	 ~\cite{google-vr-sdk}
 	\end{enumerate}
-
-%\begin{table}[ht!]
-%	\centering
-%	\caption{Beberapa \textit{class} dan \textit{interface} pada \textit{package} com.google.vr.sdk.base}
-%	\label{tab:kelas-google-vr}
-%	\begin{tabular}{|p{7cm}|p{5cm}|}
-%	\hline
-%		Nama/Tipe & Deskripsi\\ \hline \hline
-%		GvrView.Renderer/\textit{interface} & me\textit{render} gambar atau pemandangan \textit{stereo} oleh dirinya sendiri\\ \hline
-%		GvrView.StereoRenderer/\textit{interface} & interface \textit{renderer} yang menyerahkan penyajian gambar atau pemandangan \textit{stereo} pada \textit{view}\\ \hline
-%		Distortion/\textit{class} & Kelas yang mendefinisikan atribut-atribut untuk memperbaiki \textit{distorsi} dari lensa\\ \hline
-%		Eye/\textit{class} & Menjelaskan penyajian gambar atau pemandangan \textit{stereo} pada satu mata \\ \hline
-%		Eye.Type/\textit{class} & Menjelaskan atribut atau konstan dari sebuah objek kelas \textit{Eye} yang diacu\\ \hline
-%		GvrActivity/\textit{class} & Kelas \textit{activity} yang memudahkan diintegrasikan dengan \textit{VR headset} dari Google\\ \hline
-%		GvrView/\textit{class} & \textit{view} yang mendukung penyajian pemandangan VR \\ \hline
-%		GvrViewerParams/\textit{class} & kelas yang mendefinisikan parameter fisik dari \textit{viewer} Google VR \\ \hline
-%%		HeadMountedDisplay & \textit{class} & \\ Kelas yang mengenkapsulasi paramter tampilan \textit{stereo} yang terdiri atas \textit{viewer} Google VR dan layar\hline
-%%		HeadTransform & \textit{class} & 
-%%		ScreenParams & \textit{class} &\\ \hline
-%%		ViewPort & \textit{class} &\\
-%	\hline
-%	\end{tabular}
-%\end{table}
  
 Bagian dari Google VR SDK yang akan digunakan pada penelitian ini adalah aplikasi HelloVR yang akan dijelaskan pada Subbab \ref{subs:hello-vr}. 
 
 \subsection{Aplikasi HelloVR}
 \label{subs:hello-vr}
-HelloVR, aplikasi yang diperoleh dari Google VR SDK pada direktori ./samples/sdk-hellovr adalah sebuah aplikasi demo permainan \textit{treasure hunt}, yaitu sejenis permainan mencari bentuk yang mengapung di dunia VR dengan melihat tepat pada bentuk tersebut dan menyalakan pemicu pada Google Cardboard. Setelah kondisi untuk menangkap bentuk yang ada, bentuk tersebut akan menghilang, lalu bentuk yang lain akan muncul di tempat lain. Gambar \ref{fig:treasure-hunt} menunjukkan tampilan \textit{UI} permainan \textit{treasure hunt} HelloVR. 
+HelloVR, aplikasi yang diperoleh dari Google VR SDK pada direktori \texttt{./samples/sdk-hellovr} adalah sebuah aplikasi demo permainan \textit{treasure hunt}, yaitu sejenis permainan mencari bentuk yang mengapung di dunia VR dengan melihat tepat pada bentuk tersebut dan menyalakan pemicu pada Google Cardboard. Setelah kondisi untuk menangkap bentuk yang ada, bentuk tersebut akan menghilang, lalu bentuk yang lain akan muncul di tempat lain. Gambar \ref{fig:treasure-hunt} menunjukkan tampilan \textit{UI} permainan \textit{treasure hunt} HelloVR. 
 
 \begin{figure}[h]
 	\centering
@@ -112,12 +201,6 @@ Dunia VR pada aplikasi ini dibuat dari {\it file Wavefront Object} (OBJ) dengan 
 	\label{fig:hello-vr-assets}
 \end{figure}
 
-%\begin{figure}[h]
-%	\centering
-%		\includegraphics[scale=0.4]{Gambar/shape_pink.png}
-%	\caption{Gambar \textit{asset} dari \textit{texture} bentuk yang sedang ada di tengah-tengah titik pengelihatan pengguna}
-%	\label{fig:pink-shape}
-%\end{figure}
 
 \subsubsection{Rancangan kelas Aplikasi HelloVR}
 Aplikasi HelloVR memiliki empat kelas pada programnya, di antaranya: 
@@ -206,7 +289,7 @@ Aplikasi HelloVR memiliki empat kelas pada programnya, di antaranya:
 	
 	\item \texttt{HelloVrActivity}
 	
-	Kelas yang adalah kelas {\it activity} Google VR. Berikut adalah diagram kelas untuk memperjelas hubungan antara semua kelas aplikasi HelloVR. Kelas ini akan menggunakan tiga kelas lainnya untuk mendapat ruangan dan bentuk yang akan digambar, serta keadaan ({\it state}) dari permainan, seperti sedang menatap pada bentuk atau tidak dan bagian ruangan yang sedang dilihat. Atribut-atribut yang dimiliki kelas ini adalah sebagai berikut:
+	Kelas ini merupakan kelas {\it activity} Google VR. Berikut adalah diagram kelas untuk memperjelas hubungan antara semua kelas aplikasi HelloVR. Kelas ini akan menggunakan tiga kelas lainnya untuk mendapat ruangan dan bentuk yang akan digambar, serta keadaan ({\it state}) dari permainan, seperti sedang menatap pada bentuk atau tidak dan bagian ruangan yang sedang dilihat. Atribut-atribut yang dimiliki kelas ini adalah sebagai berikut:
 
 	\begin{itemize}
   		\item \texttt{private float[] camera}
@@ -249,32 +332,32 @@ Aplikasi HelloVR memiliki empat kelas pada programnya, di antaranya:
 		
 		\textit{Method} yang digunakan untuk menginisialisasi pemandangan VR.
 		\textbf{Parameter:} Tidak ada
+		
 		\textbf{\textit{Return Value}:} Tidak ada
+		
 		\textbf{\textit{Exception}:} Tidak ada		
 		
 		\item \texttt{public void onSurfaceCreated(EGLConfig config)}
 		
 		\textbf{Parameter:}
 			\begin{itemize}
-			\item EGLConfig config
+			\item \texttt{EGLConfig config}
 			
 		Konfigurasi dari OpenGL yang akan digunakan.
 		\textbf{\textit{Return Value}:} Tidak ada
 		\textbf{\textit{Exception}:} Tidak ada		
 					
 			
-\end{itemize}					
-		
+			\end{itemize}					
+
 	\end{itemize}
 	
 \end{enumerate}
 
-
 %STREETVIEW API
 \section{Google \it{StreetView API}}
 \label{sec:streetview}
-Google StreetView API adalah API yang disediakan Google untuk mendapatkan pemandangan sesuai masukan pengguna melalui \textit{HTTP request}. Ada dua jenis {\it StreetView API} yang disediakan Google, yaitu {\it static} dan {\it dynamic}. {\it StreetView API} yang statis akan menampilkan pemandangan yang tetap tanpa pergerakan pada pemandangannya, sedangkan yang dinamis menampilkan pemandangan yang berubah-ubah seperti {\it video}. {\it StreetView API} yang digunakan pada penelitian ini adalah {\it Static StreetView API}.
-
+Google StreetView API adalah API yang disediakan Google untuk mendapatkan pemandangan sesuai masukan pengguna melalui \textit{HTTP request} ~\cite{streetview-api}. Ada dua jenis {\it StreetView API} yang disediakan Google, yaitu {\it static} dan {\it dynamic} ~\cite{streetview-api}. {\it StreetView API} yang statis akan menampilkan pemandangan yang tetap tanpa pergerakan pada pemandangannya, sedangkan yang dinamis menampilkan pemandangan yang berubah-ubah seperti {\it video}. {\it StreetView API} yang digunakan pada penelitian ini adalah {\it Static StreetView API}.
 
 \begin{figure}[h]
 	\centering
@@ -285,7 +368,7 @@ Google StreetView API adalah API yang disediakan Google untuk mendapatkan pemand
 
 \subsection{{\it API Key}}
 \label{subs:api-key}
-Agar dapat menggunakan {\it StreetView API} (dan \textit{Directions API} pada Subbab \ref{sec:directions}), ada {\it API key} yang harus diperoleh pada Google Cloud Platform Console dengan memasukkan nomor kartu kredit. Gambar \ref{fig:success-streetview} menunjukkan tampilan \textit{Google Cloud} setelah mendapatkan API key. API {\it key} yang diberikan terdiri atas dua puluh dan delapan belas karakter alfanumerik (bisa huruf kapital dan huruf kecil) yang dihubungkan dengan tanda "-". API {\it key} yang telah diperoleh akan digunakan sebagai salah satu parameter masukan agar Google API dapat diakses.
+Agar dapat menggunakan {\it StreetView API} (dan \textit{Directions API} pada Subbab \ref{sec:directions}), ada {\it API key} yang harus diperoleh pada Google Cloud Platform Console dengan memasukkan nomor kartu kredit. Gambar \ref{fig:googlecloud} menunjukkan tampilan \textit{Google Cloud} setelah mendapatkan API key ~\cite{api-key}. API {\it key} yang diberikan terdiri atas dua puluh dan delapan belas karakter alfanumerik (bisa huruf kapital dan huruf kecil) yang dihubungkan dengan tanda "-". API {\it key} yang telah diperoleh akan digunakan sebagai salah satu parameter masukan agar Google API dapat diakses.
 
 %\subsection{Atribut \textit{location}}
 %\label{subs:location-attr}
@@ -300,49 +383,42 @@ Agar dapat menggunakan {\it StreetView API} (dan \textit{Directions API} pada Su
 Secara umum, API diakses menggunakan URL Web sebagai berikut:
 \begin{quote}
 https://maps.googleapis.com/maps/api/streetview?parameters
-\end{quote}
+\end{quote} ~\cite{streetview-api}
 "Parameters" pada URL Web adalah atribut-atribut dengan parameter yang diterima StreetView. Sintaks parameter tersebut adalah: $$ X = Y $$
-X adalah atribut dari StreetView, sedangkan Y adalah nilainya, dan nilai tersebut harus sesuai dengan tipe dan rentang nilai masing-masing atribut. Untuk atribut kedua dan seterusnya yang akan dimasukkan dalam parameter (jika ada), dapat diteruskan dengan tanda "\&", lalu diikuti dengan pola seperti rumus di atas. Saat mengakses {\it StreetView API}, ada dua kemungkinan hasil yang diperoleh, yaitu berhasil dan gagal. Pemanggilan \textit{API} yang berhasil akan menghasilkan gambar pemandangan dari lokasi sesuai masukan pengguna, sementara pemanggilan yang gagal menghasilkan sebuah gambar dengan penjelasan bahwa gambar tidak tersedia. Gambar \ref{fig:success-streetview} memperlihatkan pemanggilan \textit{StreetView API} yang berhasil.
-\begin{figure}[h]
-		\includegraphics[scale=0.8]{Gambar/streetview.png}
-	\caption{Pemanggilan \textit{StreetView API} yang berhasil}
-	\label{fig:success-streetview}
-\end{figure}
+X adalah atribut dari StreetView, sedangkan Y adalah nilainya, dan nilai tersebut harus sesuai dengan tipe dan rentang nilai masing-masing atribut ~\cite{streetview-api}. Untuk atribut kedua dan seterusnya yang akan dimasukkan dalam parameter (jika ada), dapat diteruskan dengan tanda "\&", lalu diikuti dengan pola seperti rumus di atas. Saat mengakses {\it StreetView API}, ada dua kemungkinan hasil yang diperoleh, yaitu berhasil dan gagal ~\cite{streetview-api}. Pemanggilan \textit{API} yang berhasil akan menghasilkan gambar pemandangan dari lokasi sesuai masukan pengguna, sementara pemanggilan yang gagal menghasilkan sebuah gambar dengan penjelasan bahwa gambar tidak tersedia. 
 
-%\begin{figure}[h]
-%		\includegraphics[scale=0.8]{Gambar/failed_streetview.png}
-%	\caption{Pemanggilan \textit{StreetView API} yang gagal}
-%	\label{fig:failed-streetview}
-%\end{figure}
-%success streetview
-%https://maps.googleapis.com/maps/api/streetview?size=600x300&location=unpar&radius=3&key=AIzaSyALPfhhnemi3xC4-FUtHkWidaugsZTwJq4
+%Gambar \ref{fig:success-streetview} memperlihatkan pemanggilan \textit{StreetView API} yang berhasil.
 
 \subsection{Atribut Parameter {\it StreetView API}}
 \label{subs:parameter}
-Untuk menampilkan pemandangan yang sesuai keinginan pengguna, beberapa parameter masukan harus ditentukan. Ada dua jenis parameter masukan, di antaranya parameter wajib dan parameter opsional. Pengaksesan atau pemanggilan {\it StreetView API} yang berhasil akan mengembalikan sebuah gambar pemandangan dari lokasi sesuai parameter masukan. 
+Untuk menampilkan pemandangan yang sesuai keinginan pengguna, beberapa parameter masukan harus ditentukan. Ada dua jenis parameter masukan, di antaranya parameter wajib dan parameter opsional ~\cite{streetview-api}. Pengaksesan atau pemanggilan {\it StreetView API} yang berhasil akan mengembalikan sebuah gambar pemandangan dari lokasi sesuai parameter masukan. 
 
 \subsubsection{Parameter Wajib}
-Parameter wajib adalah parameter yang harus dimasukkan oleh pengguna dan jika tidak dimasukkan akan mengakibatkan pemanggilan yang gagal. 
-Beberapa parameter wajib pada {\it StreetView API} adalah
+Parameter wajib adalah parameter yang harus dimasukkan oleh pengguna dan jika tidak dimasukkan akan mengakibatkan pemanggilan yang gagal ~\cite{streetview-api}. 
+Beberapa parameter wajib pada {\it StreetView API} adalah:
 \begin{itemize}
+	\item \textit{size}
+		
+	Ukuran dari gambar yang dihasilkan, dalam \textit{pixel}. Format parameter adalah:
+	$$ banyak \textit{pixel} secara horisontal \times banyak \textit{pixel} secara vertikal $$
 	\item \textit{key}
 	
-	\textit{API key} yang dijelaskan pada Subbab \ref{subs:api-key}.
+	\textit{API key} yang dijelaskan pada Subbab \ref{subs:api-key} ~\cite{streetview-api}.
 	\item \textit{location} atau \textit{pano} (salah satu)
 	 
-	 Lokasi dari pemandangan yang ingin ditampilkan. \textit{locaction} menerima dua jenis parameter garis lintang dan garis bujur (\textit{longitude} dan \textit{latitude}) atau \textit{String} nama lokasi, sementara \textit{pano} menerima \textit{panorama id} dari lokasi atau panorama. 
+	 Lokasi dari pemandangan yang ingin ditampilkan ~\cite{streetview-api}. \textit{locaction} menerima dua jenis parameter garis lintang dan garis bujur (\textit{longitude} dan \textit{latitude}) atau \textit{String} nama lokasi, sementara \textit{pano} menerima \textit{panorama id} dari lokasi atau panorama ~\cite{streetview-api}. 
 	 
 \end{itemize}   
 
 \subsubsection{Parameter Opsional}
-Selain parameter wajib, ada parameter opsional, yaitu parameter yang tidak perlu diisi agar pengaksesan {\it API} berhasil dan biasanya atribut parameter tersebut sudah memiliki nilai bawaan ({\it default}). Ada beberapa parameter opsional yang dapat digunakan sebagai parameter untuk mengubah pengaturan dari pemandangan yang diambil:
+Selain parameter wajib, ada parameter opsional, yaitu parameter yang tidak perlu diisi agar pengaksesan {\it API} berhasil dan biasanya atribut parameter tersebut sudah memiliki nilai bawaan ({\it default}) ~\cite{streetview-api}. Ada beberapa parameter opsional yang dapat digunakan sebagai parameter untuk mengubah pengaturan dari pemandangan yang diambil:
 \begin{itemize}
-	\item {\it signature}
-	\item {\it heading}
-	\item {\it fov} ({\it field of view})
-	\item {\it pitch}
-	\item {\it radius}
-	\item {\it source}.
+	\item {\it signature
+	\item {\it heading} }
+	\item {\it fov} ({\it field of view}) 
+	\item {\it pitch} 
+	\item {\it radius} 
+	\item {\it source} ~\cite{streetview-api}.
 \end{itemize}
 Tabel \ref{tab:atribut-opsional-streetview-api} menjelaskan semua parameter opsional dari \textit{StreetView API}.
 
@@ -364,17 +440,26 @@ source/String (alfabetik)/"default" atau "outdoor" & menyatakan pemandangan, \te
 \end{tabular}
 \end{table}
 
+\subsubsection{Hasil Pemanggilan \textit{StreetView API}}
+Pemanggilan \textit{StreetView} yang berrhasil akan menghasilkan sebuah gambar dari pemandangan sesuai lokasi ~\cite{streetview-api}. Gambar \ref{fig:success-streetview} memperlihatkan pemanggilan \textit{StreetView API} yang berhasil dengan parameter tertentu.
+
+\begin{figure}[h]
+		\includegraphics[scale=0.8]{Gambar/streetview90.png}
+	\caption{Pemanggilan \textit{StreetView API} yang berhasil, dengan parameter \textit{size}=600x300 dan \textit{location}=-6.8746537,107.6046282 dan \textit{API key} yang sah (\textit{API key} tidak disebutkan)}
+	\label{fig:success-streetview}
+\end{figure}
+
 %DIRECTIONS API
 \section{Google {\it Directions API}}
 \label{sec:directions}
-Google {\it Directions API} adalah layanan berbasis \textit{HTTP}/\textit{HTTPS} dari Google yang membantu mencari dan menghitung arah dari satu tempat ke tempat yang lain (sumber). Ada beberapa \textit{mode} dari arah yang dapat dicari seperti {\it driving}, {\it transit}, {\it walking}, dan {\it cycling}. Pengaksesan \textit{Directions API} sangat mirip dengan {\it StreetView API}, yaitu membutuhkan \textit{API Key}, seperti yang dijelaskan pada Subbab \ref{subs:api-key}, sebagai salah satu atribut wajib, juga memiliki atribut wajib dan opsional yang dapat diatur lewat parameter. 
+Google {\it Directions API} adalah layanan berbasis \textit{HTTP}/\textit{HTTPS} dari Google yang membantu mencari dan menghitung arah dari satu tempat ke tempat yang lain (sumber) ~\cite{directions-api}. Ada beberapa \textit{mode} dari arah yang dapat dicari seperti {\it driving}, {\it transit}, {\it walking}, dan {\it cycling} ~\cite{directions-api}. Pengaksesan \textit{Directions API} sangat mirip dengan {\it StreetView API}, yaitu membutuhkan \textit{API Key}, seperti yang dijelaskan pada Subbab \ref{subs:api-key}, sebagai salah satu atribut wajib, juga memiliki atribut wajib dan opsional yang dapat diatur lewat parameter ~\cite{directions-api}. 
 
 \subsection{Penggunaan {\it Directions API}}
 Sintaks untuk mengaksesnya pun mirip dengan \textit{StreetView API} dengan URL sebagai berikut:
 \begin{quote}
 https://maps.googleapis.com/maps/api/directions/filetype?parameter
-\end{quote}
-Bagian "filetype" pada URL diganti dengan tipe \textit{file} keluaran atau hasil (xml atau json). Bagian "parameter" diganti dengan parameter-parameter dari {\it Directions API}.  {\it Directions API} juga memiliki dua jenis parameter seperti {\it StreetView API}: wajib dan opsional. Tabel \ref{tab:atribut-directions-api} menyebutkan serta menjelaskan mengenai atribut-atribut parameter dari \textit{Directions API}.
+\end{quote} ~\cite{directions-api}
+Bagian "filetype" pada URL diganti dengan tipe \textit{file} keluaran atau hasil (xml atau json). Bagian "parameter" diganti dengan parameter-parameter dari {\it Directions API}.  {\it Directions API} juga memiliki dua jenis parameter seperti {\it StreetView API}: wajib dan opsional ~\cite{directions-api}. Tabel \ref{tab:atribut-directions-api} menyebutkan serta menjelaskan mengenai atribut-atribut parameter dari \textit{Directions API}.
 
 \begin{table}[h]
 	\centering
@@ -405,7 +490,7 @@ Bagian "filetype" pada URL diganti dengan tipe \textit{file} keluaran atau hasil
 
 
 \subsection{Hasil Pemanggilan \textit{Directions API}}
-Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{script} Javascript Notation Object (JSON) yang menyatakan arah  sesuai lokasi asal dan tujuan, serta mode perjalanan yang adalah masukan pengguna. Selain arah, \textit{script} JSON yang dikembalikan juga mengandung informasi mengenai jarak jalan yang ditempuh serta waktu tempuh perjalanan. Listing \ref{list:success_directions} menunjukkan contoh \textit{script} JSON dengan masukan lokasi asal "UNPAR" dan lokasi tujuan "Rumah Sakit Santo Borromeus". Pemanggilan yang gagal akan mengembalikan \textit{script} JSON yang menyatakan jalan di antara dua lokasi masukan tidak dapat ditemukan.
+Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{script} Javascript Notation Object (JSON) yang menyatakan arah sesuai lokasi asal dan tujuan, serta mode perjalanan yang adalah masukan pengguna ~\cite{directions-api}. Selain arah, \textit{script} JSON yang dikembalikan juga mengandung informasi mengenai jarak jalan yang ditempuh serta waktu tempuh perjalanan ~\cite{directions-api}. Listing \ref{list:success_directions} menunjukkan contoh \textit{script} JSON dengan masukan lokasi asal "UNPAR" dan lokasi tujuan "Rumah Sakit Santo Borromeus". Pemanggilan yang gagal akan mengembalikan \textit{script} JSON yang menyatakan jalan di antara dua lokasi masukan tidak dapat ditemukan.
 
 
 \begin{lstlisting}[caption={Hasil Pemanggilan \textit{Directions API} yang Berhasil},label={list:success_directions},language=java]
@@ -487,31 +572,32 @@ Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{scri
 %SENSOR
 \section{\textit{Motion Sensor}}
 \label{subs:motion-sensor}
-\textit{Motion sensor} adalah sensor pada \textit{smartphone} yang mendeteksi pergerakan gawai \textit{smartphone} %(sumber)
-. Pergerakan yang dapat dideteksi termasuk saat gawai dimiringkan, digoyangkan, diayunkan, atau diputar (sumber). Beberapa contoh \textit{motion sensor} pada \textit{smartphone} adalah:
+
+\subsection{Deskripsi \textit{Motion Sensor}}
+\textit{Motion sensor} adalah sensor pada \textit{smartphone} yang mendeteksi pergerakan gawai \textit{smartphone} ~\cite{motion-sensor}. Pergerakan yang dapat dideteksi termasuk saat gawai dimiringkan, digoyangkan, diayunkan, atau diputar (sumber). Beberapa contoh \textit{motion sensor} pada \textit{smartphone} adalah:
 \begin{itemize}
 	\item \textit{accelerometer}
 	
-	Sensor yang mendeteksi gerakan \textit{smartphone} terhadap sumbu $x, y,$ dan $z$, termasuk gaya gravitasi terhadap masing-masing sumbu.
+	Sensor yang mendeteksi gerakan \textit{smartphone} terhadap sumbu $x, y,$ dan $z$, termasuk gaya gravitasi terhadap masing-masing sumbu ~\cite{motion-sensor}.
 	\item \textit{gravity sensor}
 	
-	Sensor yang mendeteksi gaya gravitasi terhadap sumbu $x, y,$ dan $z$
+	Sensor yang mendeteksi gaya gravitasi terhadap sumbu $x, y,$ dan $z$ ~\cite{motion-sensor}.
 	\item \textit{gyroscope}
 	
-	Sensor yang mendeteksi putaran gawai terhadap sumbu $x, y,$ dan $z$.
+	Sensor yang mendeteksi putaran gawai terhadap sumbu $x, y,$ dan $z$ ~\cite{motion-sensor}.
 	\item \textit{linear acceleration sensor}
 	
-	Sensor yang mendeteksi pergerakan linier, terhadap sumbu $x, y,$ dan $z$ tanpa gaya gravitasi pada masing-masing sumbu.
+	Sensor yang mendeteksi pergerakan linier, terhadap sumbu $x, y,$ dan $z$ tanpa gaya gravitasi pada masing-masing sumbu ~\cite{motion-sensor}.
 	\item \textit{rotation vector sensor}
 	
-	Sensor yang mendeteksi vektor putaran pada gawai terhadap sumbu $x, y,$ dan $z$.
-	\item \textit{significant motion sensor}
+	Sensor yang mendeteksi vektor putaran pada gawai terhadap sumbu $x, y,$ dan $z$ ~\cite{motion-sensor}.
+	
 	\item \textit{step counter}
 	
-	Sensor yang menghitung jumlah langkah saat berjalan yang pengguna gawai ambil.
+	Sensor yang menghitung jumlah langkah saat berjalan yang pengguna gawai ambil ~\cite{motion-sensor}.
 	\item \textit{step detector}
 	
-	Sensor yang men-\textit{trigger} sebuah \textit{event} saat pengguna mengambil langkah saat berjalan.
+	Sensor yang men-\textit{trigger} sebuah \textit{event} saat pengguna mengambil langkah saat berjalan ~\cite{motion-sensor}.
 \end{itemize}
 
 Pada penelitian ini, \textit{motion sensor} yang akan digunakan adalah \textit{step detector}. Sintaks untuk menggunakan sensor ini tertera pada Listing \ref{list:step_detector_syntax}.
@@ -524,4 +610,5 @@ sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 \end{lstlisting} 
 
-%Ada tiga jenis \textit{motion sensor} secara garis besar, yaitu \textit{hardware-based}, \textit{software-based} sensor, dan gabungan. 
+\subsection{Deskripsi \textit{Step Detector}}
+\textit{Step detector} adalah sensor yang digunakan untuk mendeteksi langkah kaki pengguna. Sensor ini dapat memicu suatu \textit{event} setiap kali langkah kaki pengguna diambil. Nilai yang dikembalikan adalah 1.0 dan \textit{timestamp} dari saat langkah kaki diambil pengguna (nilai 1.0 menunjukkan bahwa ada langkah yang telah diambil). \textit{Permission} yang dibutuhkan untuk mengaktifkan sensor ini adalah \texttt{android.permission.ACTIVITY\_RECOGNITION}. 
