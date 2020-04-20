@@ -15,36 +15,34 @@ Dari komponen-komponen Google VR SDK, bagian \textit{assets}-lah yang dapat dimo
 Bentuk silinder dipilih sebagai bentuk dari dunia VR karena permukaan samping dapat menampilkan pemandangan seperti di dunia nyata. Permukaan samping berbentuk persegi panjang, dan sifat melingkar dari permukaan dapat membuat menampilkan pemandangan di sekitar.
 
 \section{Menampilkan \textit{StreetView API} pada Dunia VR}
-Android menyediakan kelas untuk menampilkan langsung pada \textit{fragment} yang disebut \textit{StreetViewPanoramaFragment} (sumber). Namun, hal ini tidak dapat dimanfaatkan karena tidak dapat dimanfaatkan karena \textit{fragment} tidak dapat ditampilkan dalam pemandangan dunia VR. Alasan inilah yang membuat \textit{StreetView API} harus diakses melalui HTTP/HTTPS menggunakan URL. 
-
-Dengan menggunakan HTTP/HTTPS URL, gambar yang dihasilkan merupakan gambar persegi panjang saat menghadap satu arah sehingga tidak dapat secara langsung ditampilkan pada dunia VR. Untuk melakukannya, gambar dari empat arah harus digabungkan untuk menghasilkan pemandangan seperti  dunia nyata. Hal yang harus dilakukan untuk mencapai hal tersebut adalah menggabungkan gambar-gambar dari atribut \textit{heading} dari empat arah, dengan satu arah yang berlawanan dengan arah yang lain, lalu dua arah lain yang tegak lurus dengan arah pertama. Dengan kata lain, selisih setiap dua nilai \textit{heading} yang berurutan  bernilai 90 (misalnya \textit{heading} dengan nilai 0, 90, 180 dan 270). Gambar \ref{fig:comp-streetview} memperlihatkan empat gambar \textit{StreetView} dengan berbagai macam \textit{StreetView} dengan syarat tersebut.
+Dengan menggunakan HTTP/HTTPS URL, gambar yang dihasilkan merupakan gambar persegi panjang saat menghadap satu arah sehingga tidak dapat secara langsung ditampilkan pada dunia VR ~\cite{streetview-api}. Untuk melakukannya, gambar dari empat arah harus digabungkan untuk menghasilkan pemandangan seperti  dunia nyata. Hal yang harus dilakukan untuk mencapai hal tersebut adalah menggabungkan gambar-gambar dari atribut \textit{heading} dari empat arah, dengan satu arah yang berlawanan dengan arah yang lain, lalu dua arah lain yang tegak lurus dengan arah pertama. Dengan kata lain, selisih setiap dua nilai \textit{heading} yang berurutan  bernilai 90 (misalnya \textit{heading} dengan nilai 0, 90, 180 dan 270). Gambar \ref{fig:comp-streetview} memperlihatkan empat gambar \textit{StreetView} dengan berbagai macam \textit{StreetView} dengan syarat tersebut.
 
 \begin{figure}[]
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{Gambar/streetview0.png}
-  		\caption{\textit{StreetView} dengan \textit{heading}=0}
+  		\caption{\textit{heading}=0}
   		\label{fig:streetview0}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{Gambar/streetview90.png}
-  		\caption{\textit{StreetView} dengan \textit{heading}=90}
+  		\caption{\textit{heading}=90}
   		\label{fig:streetview90}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{Gambar/streetview180.png}
-  		\caption{\textit{StreetView} dengan \textit{heading}=180}
+  		\caption{\textit{heading}=180}
   		\label{fig:streetview180}
 	\end{subfigure}
 	\begin{subfigure}{.5\textwidth}
   		\centering
   		\includegraphics[width=1\linewidth]{Gambar/streetview270.png}
-  		\caption{\textit{StreetView} dengan \textit{heading}=270}
+  		\caption{\textit{heading}=270}
   		\label{fig:streetview270}
 	\end{subfigure}
-	\caption{Pemanggilan \textit{StreetView API} yang berhasil, dengan parameter \textit{size}=600x300, \textit{location}=-6.8746537,107.6046282, dan \textit{API key} yang sah (\textit{API key} tidak disebutkan), dengan atribut \textit{heading} yang berbeda-beda}
+	\caption{Pemanggilan \textit{StreetView API} yang berhasil, dengan \textit{URL} \url{https://maps.googleapis.com/maps/api/streetview?size=600x300&location=Rumah+Sakit+Santo+Borromeus&key=AIzaSyALPfhhnemi3xC4-FUtHkWidaugsZTwJq4}, dengan parameter \textit{heading} yang berbeda-beda-jelaskan di bab 2 tentang keluaran directions.}
 \label{fig:comp-streetview}
 \end{figure}
 
@@ -60,9 +58,7 @@ Setelah mendapatkan gambar \textit{StreetView} dari semua arah, gambar-gagmbar t
 Setelah mendapatkan gambar \textit{StreetView} yang sudah digabungkan tersebut, gambar tersebut dapat dimanfaatkan sebagai tekstur untuk ruang pada \textit{file} OBJ yang berbentuk silinder sehingga pemandangan \textit{StreetView} dapat ditampilkan pada dunia VR.
 
 \section{Integrasi dengan \textit{Directions API}}
-Untuk mendapatkan rute perjalanan, \textit{Directions API} dapat dimanfaatkan. 
-%Sebelum menggunakan \textit{Directions API} sesuai masalah yang ingin diselesaikan, ada beberapa parameter yang harus ditentukan untuk menjadi masukan. 
-\textit{File} yang diperoleh lewat \textit{Directions API} adalah \textit{file} JSON yang memiliki \textit{key} dan \textit{value}. Ada beberapa atribut (\textit{key}) dengan nilai (\textit{value}) yang ada pada \textit{file} JSON dari hasil pemanggilan \textit{Directions API} yang dapat dimanfaatkan.
+Untuk mendapatkan rute perjalanan, \textit{Directions API} dapat dimanfaatkan ~\cite{directions-api}. \textit{File} yang diperoleh lewat \textit{Directions API} adalah \textit{file} JSON yang memiliki \textit{key} dan \textit{value}. Ada beberapa atribut (\textit{key}) dengan nilai (\textit{value}) yang ada pada \textit{file} JSON dari hasil pemanggilan \textit{Directions API} yang dapat dimanfaatkan.
 
 \subsection{Menentukan Atribut yang Bermanfaat}
 \textit{File} JSON yang dihasilkan memiliki beberapa tingkat \textit{key} dan \textit{value}. Pada tingkat pertama, ada tiga \textit{key}: \textit{geocoded\_waypoints}, \textit{status} dan \textit{routes}. \textit{Key} yang dapat digunakan adalah \textit{routes} yang menunjukkan jalan yang akan ditempuh. Pada tingkat berikutnya, \textit{key routes} memiliki \textit{value} seperti \textit{bounds}, \textit{copyrights}, dan \textit{legs}. Jika melihat bagian \textit{legs} yang menampung atribut-atribut jalan yang ditempuh, ada {\it distance}, {\it duration}, {\it end\_location}, {\it html\_instructions}, {\it maneuver}, {\it polyline}, {\it start\_location}, dan \textit{travel\_mode}. Dari beberapa atribut dari \textit{legs}, yang dapat digunakan adalah \textit{end\_location} dan \textit{start\_location}, yang menunjuk kepada posisi garis lintang dan garis bujur titik ujung dari jalan yang sedang ditempuh. 

@@ -6,10 +6,18 @@ Pada bab ini akan dijelaskan mengenai Google VR, Google StreetView API, Google D
 %GOOGLE VR
 \section{Google VR}
 \label{sec:google-vr} 
-Google VR adalah teknologi yang diciptakan perusahaan Google untuk membuat pemandangan dunia maya yang terlihat nyata dengan menempatkan \textit{smartphone} pada alat yang bernama \textit{viewer} ~\cite{quickstart-google-vr}. \textit{Viewer} adalah alat untuk melihat dunia VR pada aplikasi VR di \textit{smartphone}. Dua \textit{viewer} yang diciptakan Google adalah \textit{Google Daydream} dan \textit{Cardboard} ~\cite{quickstart-google-vr}. Yang digunakan penelitian ini adalah \textit{Google Cardboard}. Google menyediakan sebuah alat bantu bagi pengembang perangkat lunak untuk memudahkan pengembangan aplikasi VR yang disebut Google VR SDK ~\cite{quickstart-google-vr}.
+Google VR adalah teknologi yang diciptakan perusahaan Google untuk membuat pemandangan dunia maya yang terlihat nyata dengan menempatkan \textit{smartphone} pada alat yang bernama \textit{viewer} ~\cite{quickstart-google-vr}. \textit{Viewer} adalah alat untuk melihat dunia VR pada aplikasi VR di \textit{smartphone}. Dua \textit{viewer} yang diciptakan Google adalah \textit{Google Daydream} dan \textit{Cardboard}. Perbedaan dari \textit
+{Google Daydream} dan \textit{Google Cardboard} adalah pada bahan dan alat penerima masukan (\textit{input}). \textit{Google Daydream} memiliki alat penerima masukan pengguna seperti \textit{remote control} dengan beberapa tombol serta berbahan utama plastik, sedangkan \textit{Google Cardboard} memiliki penerima masukan berupa satu tombol (biasanya berupa magnet) yang akan memicu terjadinya suatu \textit{event} dan berbahan dasar kardus. Google menyediakan sebuah alat bantu bagi pengembang perangkat lunak untuk memudahkan pengembangan aplikasi VR yang disebut Google VR SDK.
 
 \subsection{Google VR SDK}
-Google VR SDK adalah alat bantu berlisensi Apache 2.0 yang disediakan Google pada repository Github yang berisi kode program dari aplikasi {\it virtual reality} (VR)  yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS ~\cite{all-google-vr}. Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google ~\cite{quickstart-google-vr}. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama HelloVR dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo HelloVR untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi ~\cite{quickstart-google-vr}. 
+Google VR SDK adalah alat bantu berlisensi Apache 2.0 yang disediakan Google pada repository Github yang berisi kode program dari aplikasi {\it virtual reality} (VR)  yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS ~\cite{all-google-vr}. Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google ~\cite{quickstart-google-vr}. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama HelloVR dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo HelloVR untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi. Gambar \ref{fig:gvr-dir} menunjukkan struktur \textit{folder} dari Google VR SDK untuk Android.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[scale=1.0]{Gambar/gvr_dir.png}
+	\caption{Struktur Direktori Google VR SDK}
+	\label{fig:gvr-dir}
+\end{figure}
 
 Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{package} \texttt{com.google.vr.sdk.base} agar dapat digunakan pengembang perangkat lunak untuk membuat aplikasi VR ~\cite{google-vr-sdk}. Berikut adalah beberapa \textit{class} dan \textit{interface} dari \textit{package} \texttt{com.google.vr.sdk.base}:
 
@@ -60,15 +68,26 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 			\end{itemize}					
 		
 		\item \texttt{AndroidCompat}
-		\textit{Utility class} yang disediakan Android untuk menggunakan fitur-fitur VR.  
 		
+		\textit{Utility class} yang disediakan Android untuk menggunakan fitur-fitur VR.  
 			\begin{itemize}
 				\item \texttt{public static void setSustainedPerformanceMode (Activity activity, boolean enabled)}
 				
-				
+\textit{Method} yang mengatur \texttt{android.view.Window} untuk menopang performanya.
 				\item \texttt{public static boolean setVrModeEnabled (Activity activity, boolean enabled)}
 				
+				\textit{Method} ini menyetel pengaturan \textit{VR} yang seseuai untuk suatu \textit{Activity}. Parameter yang dimiliki \textit{method} ini adalah:
+				\begin{itemize}
+					\item \texttt{Activity activity}
+					
+					\textit{Activity} yang akan disetel dengan mode VR.
+					\item \texttt{boolean enabled}
+					
+					Nilai \textit{boolean} sesuai dengan apakah mode VR akan diaktifkan atau tidak.
+				\end{itemize}
 				\item \texttt{public static boolean trySetVrModeEnabled (Activity activity, boolean enabled)}
+				
+				Sets the appropriate "VR mode" setting for an Activity. Parameter yang dimiliki 
 			\end{itemize}					
 				
 		
@@ -78,37 +97,48 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 			\begin{itemize}
 				\item \texttt{public float[] getEyeView ()}
 				
+				\textit{Method} untuk menghasilkan matriks dari kamera ke \textit{eye}.
 				\item \texttt{public FieldOfView getFov ()}
 				
+				\textit{Method} yang mengembalikan pemandangan untuk satu \textit{eye}.
 				\item \texttt{public float[] getPerspective (float zNear, float zFar)}
 				
-				\item \texttt{public boolean getProjectionChanged ()}
-				
-				\item \texttt{public int getType ()}
-				
-				\item \texttt{public Viewport getViewport ()}
-				
-				\item \texttt{public void setProjectionChanged()}
+				\textit{Method} untuk mengembalikan matriks proyeksi dari sudut pandang untuk \textit{eye} tertentu.
 			\end{itemize}
 		
 		\item \texttt{GvrActivity}
 		\textit{Activity} dasar yang mudah diintegrasikan dengan perangkat Google VR. 
 			\begin{itemize}
-				\item \texttt{public GvrView getGvrView ()}
-				
 				\item \texttt{public void onBackPressed ()}
 				
+				\textit{Method} yang dipanggil ketika tombol kembali ditekan.
 				\item \texttt{public void onCardboardTrigger ()}
 				
+				\textit{Method} yang dipanggil ketika pemicu \textit{Cardboard} ditekan.
 				\item \texttt{public void setGvrView (GvrView gvrView)}
 				
-				\item \texttt{public void setGvrView (GvrView gvrView, boolean enableVrModeFallbacks)}
+				\textit{Method} untuk menentukan \texttt{GvrView} pada \textit{activity}. Parameter yang diterima oleh \textit{method} ini adalah:
+				
+				\begin{itemize}
+					\item \texttt{GvrView gvrView}
+					
+					Objek \texttt{GvrView} yang akan digunakan \textit{activity}.
+				\end{itemize}				
 			\end{itemize}	 
 		
 		\item \texttt{GvrView}
-		\textit{View} yang mendukung \textit{rendering} VR.
 		
+		\textit{Class} dari \textit{view} yang mendukung VR dari Google. \textit{Method}-\textit{method} yang dimiliki \textit{class} ini adalah:
+		
+		\begin{itemize}
+			\item \texttt{public void setEGLConfigChooser (int redSize, int greenSize, int blueSize, int alphaSize, int depthSize, int stencilSize)}
+			
+			
+		\end{itemize}
+		
+		\textit{View} yang mendukung \textit{rendering} VR.		
 		\item \texttt{HeadTransform}
+		
 		\textit{Class} yang mendefinisikan perubahan posisi kepala pengguna terhadap dunia VR.
 		
 		\begin{itemize}
@@ -152,10 +182,7 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 			
 			\item \texttt{public void setViewport (int x, int y, int width, int height)}
 		\end{itemize}
-	 ~\cite{google-vr-sdk}
 	\end{enumerate}
- 
-Bagian dari Google VR SDK yang akan digunakan pada penelitian ini adalah aplikasi HelloVR yang akan dijelaskan pada Subbab \ref{subs:hello-vr}. 
 
 \subsection{Aplikasi HelloVR}
 \label{subs:hello-vr}
@@ -169,14 +196,15 @@ HelloVR, aplikasi yang diperoleh dari Google VR SDK pada direktori \texttt{./sam
 \end{figure}
 
 \subsubsection{Komponen Aplikasi HelloVR}
+Aplikasi HelloVR terdiri dari beberapa \textit{folder} dan komponen-komponen. Gambar \ref{fig:hello-vr-dir} menunjukkan struktur direktori aplikasi HelloVR. 
 Dunia VR pada aplikasi ini dibuat dari {\it file Wavefront Object} (OBJ) dengan tekstur {\it file Portable Network Graphics} (PNG) (Gambar \ref{fig:vr-room}) yang telah dengan sangat tepat dipetakan pada \textit{file} OBJ yang ada sehingga dunia VR terlihat sangat nyata. Bentuk-bentuk yang akan dicari pengguna dibuat dari tiga file OBJ yang merepresentasikan tiga macam bentuk yang akan muncul. Masing-masing file OBJ memiliki dua tekstur yang telah dipetakan pada masing-masing file OBJ dalam file PNG. Satu tekstur (Gambar \ref{fig:blue-shape}) digunakan ketika bentuk sedang tidak ada di tengah-tengah titik pengelihatan pengguna, sedangkan satu tekstur yang lain (Gambar \ref{fig:pink-shape}) digunakan ketika pengguna sedang melihat bentuk tepat di titik tengah pengelihatan pengguna.
 
-%\begin{figure}[h]
-%	\centering
-%		\includegraphics[scale=0.2]{Gambar/room.png}
-%	\caption{Gambar \textit{asset} dari tekstur ruangan}
-%	\label{fig:vr-room}
-%\end{figure}
+\begin{figure}[h]
+	\centering
+		\includegraphics[scale=1.0]{Gambar/hello_vr_dir.png}
+	\caption{Struktur Direktori Aplikasi HelloVR}
+	\label{fig:hello-vr-dir}
+\end{figure}
 
 \begin{figure}[]
 	\begin{subfigure}{.33\textwidth}
@@ -357,7 +385,7 @@ Aplikasi HelloVR memiliki empat kelas pada programnya, di antaranya:
 %STREETVIEW API
 \section{Google \it{StreetView API}}
 \label{sec:streetview}
-Google StreetView API adalah API yang disediakan Google untuk mendapatkan pemandangan sesuai masukan pengguna melalui \textit{HTTP request} ~\cite{streetview-api}. Ada dua jenis {\it StreetView API} yang disediakan Google, yaitu {\it static} dan {\it dynamic} ~\cite{streetview-api}. {\it StreetView API} yang statis akan menampilkan pemandangan yang tetap tanpa pergerakan pada pemandangannya, sedangkan yang dinamis menampilkan pemandangan yang berubah-ubah seperti {\it video}. {\it StreetView API} yang digunakan pada penelitian ini adalah {\it Static StreetView API}.
+Google StreetView API adalah API yang disediakan Google untuk mendapatkan pemandangan sesuai masukan pengguna melalui \textit{HTTP request} ~\cite{streetview-api}. Ada dua jenis {\it StreetView API} yang disediakan Google, yaitu {\it static} dan {\it dynamic}. {\it StreetView API} yang statis akan menampilkan pemandangan yang tetap tanpa pergerakan pada pemandangannya, sedangkan yang dinamis menampilkan pemandangan yang berubah-ubah seperti {\it video}.
 
 \begin{figure}[h]
 	\centering
@@ -383,119 +411,128 @@ Agar dapat menggunakan {\it StreetView API} (dan \textit{Directions API} pada Su
 Secara umum, API diakses menggunakan URL Web sebagai berikut:
 \begin{quote}
 https://maps.googleapis.com/maps/api/streetview?parameters
-\end{quote} ~\cite{streetview-api}
+\end{quote}
 "Parameters" pada URL Web adalah atribut-atribut dengan parameter yang diterima StreetView. Sintaks parameter tersebut adalah: $$ X = Y $$
-X adalah atribut dari StreetView, sedangkan Y adalah nilainya, dan nilai tersebut harus sesuai dengan tipe dan rentang nilai masing-masing atribut ~\cite{streetview-api}. Untuk atribut kedua dan seterusnya yang akan dimasukkan dalam parameter (jika ada), dapat diteruskan dengan tanda "\&", lalu diikuti dengan pola seperti rumus di atas. Saat mengakses {\it StreetView API}, ada dua kemungkinan hasil yang diperoleh, yaitu berhasil dan gagal ~\cite{streetview-api}. Pemanggilan \textit{API} yang berhasil akan menghasilkan gambar pemandangan dari lokasi sesuai masukan pengguna, sementara pemanggilan yang gagal menghasilkan sebuah gambar dengan penjelasan bahwa gambar tidak tersedia. 
+X adalah atribut dari StreetView, sedangkan Y adalah nilainya, dan nilai tersebut harus sesuai dengan tipe dan rentang nilai masing-masing atribut. Untuk atribut kedua dan seterusnya yang akan dimasukkan dalam parameter (jika ada), dapat diteruskan dengan tanda "\&", lalu diikuti dengan pola seperti rumus di atas. Saat mengakses {\it StreetView API}, ada dua kemungkinan hasil yang diperoleh, yaitu berhasil dan gagal. Pemanggilan \textit{API} yang berhasil akan menghasilkan gambar pemandangan dari lokasi sesuai masukan pengguna, sementara pemanggilan yang gagal menghasilkan sebuah gambar dengan penjelasan bahwa gambar tidak tersedia. 
 
 %Gambar \ref{fig:success-streetview} memperlihatkan pemanggilan \textit{StreetView API} yang berhasil.
 
 \subsection{Atribut Parameter {\it StreetView API}}
 \label{subs:parameter}
-Untuk menampilkan pemandangan yang sesuai keinginan pengguna, beberapa parameter masukan harus ditentukan. Ada dua jenis parameter masukan, di antaranya parameter wajib dan parameter opsional ~\cite{streetview-api}. Pengaksesan atau pemanggilan {\it StreetView API} yang berhasil akan mengembalikan sebuah gambar pemandangan dari lokasi sesuai parameter masukan. 
+Untuk menampilkan pemandangan yang sesuai keinginan pengguna, beberapa parameter masukan harus ditentukan. Ada dua jenis parameter masukan, di antaranya parameter wajib dan parameter opsional. Pengaksesan atau pemanggilan {\it StreetView API} yang berhasil akan mengembalikan sebuah gambar pemandangan dari lokasi sesuai parameter masukan. 
 
 \subsubsection{Parameter Wajib}
-Parameter wajib adalah parameter yang harus dimasukkan oleh pengguna dan jika tidak dimasukkan akan mengakibatkan pemanggilan yang gagal ~\cite{streetview-api}. 
+Parameter wajib adalah parameter yang harus dimasukkan oleh pengguna dan jika tidak dimasukkan akan mengakibatkan pemanggilan yang gagal. 
 Beberapa parameter wajib pada {\it StreetView API} adalah:
 \begin{itemize}
 	\item \textit{size}
 		
 	Ukuran dari gambar yang dihasilkan, dalam \textit{pixel}. Format parameter adalah:
-	$$ banyak \textit{pixel} secara horisontal \times banyak \textit{pixel} secara vertikal $$
+	 banyak \textit{pixel} secara horisontal $\times$ banyak \textit{pixel} secara vertikal.
 	\item \textit{key}
 	
-	\textit{API key} yang dijelaskan pada Subbab \ref{subs:api-key} ~\cite{streetview-api}.
+	\textit{API key} yang dijelaskan pada Subbab \ref{subs:api-key}.
 	\item \textit{location} atau \textit{pano} (salah satu)
 	 
-	 Lokasi dari pemandangan yang ingin ditampilkan ~\cite{streetview-api}. \textit{locaction} menerima dua jenis parameter garis lintang dan garis bujur (\textit{longitude} dan \textit{latitude}) atau \textit{String} nama lokasi, sementara \textit{pano} menerima \textit{panorama id} dari lokasi atau panorama ~\cite{streetview-api}. 
+	 Lokasi dari pemandangan yang ingin ditampilkan. \textit{locaction} menerima dua jenis parameter garis lintang dan garis bujur (\textit{longitude} dan \textit{latitude}) atau \textit{String} nama lokasi, sementara \textit{pano} menerima \textit{panorama id} dari lokasi atau panorama. 
 	 
 \end{itemize}   
 
 \subsubsection{Parameter Opsional}
-Selain parameter wajib, ada parameter opsional, yaitu parameter yang tidak perlu diisi agar pengaksesan {\it API} berhasil dan biasanya atribut parameter tersebut sudah memiliki nilai bawaan ({\it default}) ~\cite{streetview-api}. Ada beberapa parameter opsional yang dapat digunakan sebagai parameter untuk mengubah pengaturan dari pemandangan yang diambil:
+Selain parameter wajib, ada parameter opsional, yaitu parameter yang tidak perlu diisi agar pengaksesan {\it API} berhasil dan biasanya atribut parameter tersebut sudah memiliki nilai bawaan ({\it default}). Ada beberapa parameter opsional yang dapat digunakan sebagai parameter untuk mengubah pengaturan dari pemandangan yang diambil:
 \begin{itemize}
-	\item {\it signature
-	\item {\it heading} }
-	\item {\it fov} ({\it field of view}) 
-	\item {\it pitch} 
+	\item {\it signature}
+	
+	Atribut untuk memastikan bahwa \textit{request} dikirim dengan {\it API key} sesuai jenis \textit{signature} yang diatur pemilik {\it API key}. Nilai dari \textit{signature} bertipe alfabetik.
+	\item {\it heading}
+	
+	Atribut yang menyatakan arah pandangan secara horisontal, nilai atribut menyatakan sudut yang dibentuk dari arah utara dengan arah pandang yang diinginkan (sudut yang dibentuk dari arah berlawanan jarum jam), dengan rentang bilangan bulat positif.
+	\item {\it fov} ({\it field of view})
+	
+	Atribut yang menyatakan seberapa perbesaran pemandangan (nilai dalam satuan derajat dengan rentang nilai 10 sammpai 120).
+	\item {\it pitch}
+	
+	Atribut yang menyatakan pandangan pengguna secara vertikal, satuan nilai dalam derajat, dengan rentang nilai bilangan bulat dari -90 sampai 90.
 	\item {\it radius} 
-	\item {\it source} ~\cite{streetview-api}.
+	
+	Atribut yang menyatakan jarak dalam meter, yang adalah titik pengambilan pemandangan, dengan rentang nilai bilangan bulat positif dan nol. 
+	\item {\it source}
+	
+	Atribut yang menyatakan jenis pemandangan, \textit{default} atau \textit{outdoor} (bertipe data alfabetik).
 \end{itemize}
-Tabel \ref{tab:atribut-opsional-streetview-api} menjelaskan semua parameter opsional dari \textit{StreetView API}.
-
-\begin{table}[ht!]
-	\centering
-	\caption{Atribut-Atribut Opsional \textit{StreetView API}}
-	\label{tab:atribut-opsional-streetview-api}
-\begin{tabular}{|p{7cm}|p{7cm}|}
-\hline
-Nama Atribut/Tipe/Rentang Nilai & Penjelasan \\ \hline \hline
-signature/String (alfabetik)/- &  Atribut untuk memastikan bahwa \textit{request} dikirim dengan {\it API key} sesuai jenis \textit{signature} yang diatur pemilik {\it API key}.  \\ \hline
-heading/integer/$ 0 \leq x \leq 360 $ & menyatakan arah pandangan secara horisontal, nilai atribut menyatakan sudut yang dibentuk dari arah utara dengan arah pandang yang diinginkan (sudut yang dibentuk dari arah berlawanan jarum jam) \\ \hline
-fov (\textit{field of view})/integer/$ 10 \leq x \leq 120 $ (yang berdampak) & menyatakan seberapa perbesaran pemandangan (nilai dalam satuan derajat) \\ \hline
-pitch/integer/$ -90 \leq  x \leq 90$ & menyatakan pandangan pengguna secara vertikal, satuan nilai dalam derajat.\\ \hline
-radius/integer/$ x > 0 $ & menyatakan jarak dalam meter, yang adalah titik pengambilan pemandangan\\ \hline
-source/String (alfabetik)/"default" atau "outdoor" & menyatakan pemandangan, \textit{default} atau \textit{outdoor}\\ 
-\hline
-
-\end{tabular}
-\end{table}
+    
 
 \subsubsection{Hasil Pemanggilan \textit{StreetView API}}
-Pemanggilan \textit{StreetView} yang berrhasil akan menghasilkan sebuah gambar dari pemandangan sesuai lokasi ~\cite{streetview-api}. Gambar \ref{fig:success-streetview} memperlihatkan pemanggilan \textit{StreetView API} yang berhasil dengan parameter tertentu.
-
+Pemanggilan \textit{StreetView} yang berrhasil akan menghasilkan sebuah gambar dari pemandangan sesuai lokasi. Gambar \ref{fig:success-streetview} memperlihatkan pemanggilan \textit{StreetView API} yang berhasil dengan \textit{URL} \url{https://maps.googleapis.com/maps/api/streetview?size=600x300\&location=-6.8746537,107.6046282\&key=(disamarkan)}.
 \begin{figure}[h]
 		\includegraphics[scale=0.8]{Gambar/streetview90.png}
-	\caption{Pemanggilan \textit{StreetView API} yang berhasil, dengan parameter \textit{size}=600x300 dan \textit{location}=-6.8746537,107.6046282 dan \textit{API key} yang sah (\textit{API key} tidak disebutkan)}
+	\caption{Pemanggilan \textit{StreetView API} yang berhasil}
 	\label{fig:success-streetview}
 \end{figure}
 
 %DIRECTIONS API
 \section{Google {\it Directions API}}
 \label{sec:directions}
-Google {\it Directions API} adalah layanan berbasis \textit{HTTP}/\textit{HTTPS} dari Google yang membantu mencari dan menghitung arah dari satu tempat ke tempat yang lain (sumber) ~\cite{directions-api}. Ada beberapa \textit{mode} dari arah yang dapat dicari seperti {\it driving}, {\it transit}, {\it walking}, dan {\it cycling} ~\cite{directions-api}. Pengaksesan \textit{Directions API} sangat mirip dengan {\it StreetView API}, yaitu membutuhkan \textit{API Key}, seperti yang dijelaskan pada Subbab \ref{subs:api-key}, sebagai salah satu atribut wajib, juga memiliki atribut wajib dan opsional yang dapat diatur lewat parameter ~\cite{directions-api}. 
+Google {\it Directions API} adalah layanan berbasis \textit{HTTP}/\textit{HTTPS} dari Google yang membantu mencari dan menghitung arah dari satu tempat ke tempat yang lain ~\cite{directions-api}. Ada beberapa \textit{mode} dari arah yang dapat dicari seperti {\it driving}, {\it transit}, {\it walking}, dan {\it cycling}. Pengaksesan \textit{Directions API} sangat mirip dengan {\it StreetView API}, yaitu membutuhkan \textit{API Key}, seperti yang dijelaskan pada Subbab \ref{subs:api-key}, sebagai salah satu atribut wajib, juga memiliki atribut wajib dan opsional yang dapat diatur lewat parameter. 
 
 \subsection{Penggunaan {\it Directions API}}
-Sintaks untuk mengaksesnya pun mirip dengan \textit{StreetView API} dengan URL sebagai berikut:
+Sintaks untuk mengaksesnya pun mirip dengan \textit{StreetView API} dengan \textit{URL} sebagai berikut:
 \begin{quote}
 https://maps.googleapis.com/maps/api/directions/filetype?parameter
-\end{quote} ~\cite{directions-api}
-Bagian "filetype" pada URL diganti dengan tipe \textit{file} keluaran atau hasil (xml atau json). Bagian "parameter" diganti dengan parameter-parameter dari {\it Directions API}.  {\it Directions API} juga memiliki dua jenis parameter seperti {\it StreetView API}: wajib dan opsional ~\cite{directions-api}. Tabel \ref{tab:atribut-directions-api} menyebutkan serta menjelaskan mengenai atribut-atribut parameter dari \textit{Directions API}.
+\end{quote}
+Bagian "filetype" pada \textit{URL} diganti dengan tipe \textit{file} keluaran atau hasil (xml atau json). Bagian "parameter" diganti dengan parameter-parameter dari {\it Directions API}.  {\it Directions API} juga memiliki dua jenis parameter seperti {\it StreetView API}: wajib dan opsional. Parameter-parameter tersebut di antaranya:
 
-\begin{table}[h]
-	\centering
-	\caption{Atribut-Atribut Opsional \textit{Directions API}}
-	\label{tab:atribut-directions-api}
-	\begin{tabular}{|p{5cm}|p{6cm}|p{5cm}|}
-
-	\hline
-	Nama Atribut/Tipe Parameter(Wajib atau Opsional)/Tipe & Penjelasan & Rentang Nilai \textit{Valid} (yang berdampak)\\ \hline \hline
-	origin/Wajib/String (alfabetik) &  Atribut yang menyatakan lokasi asal yang dimasukkan pengguna. & String lokasi yang \textit{sah} \\ \hline
-	destination/Wajib/String & Atribut yang menyatatkan lokasi tujuan yang dimasukkan pengguna & String lokasi yang \textit{valid} \\ \hline
-	key/Wajib/String & \textit{API Key} pengguna yang membuat pengguna dapat mengakses \textit{API} &  String \textit{API key} yang \textit{valid} (Subbab \ref{subs:api-key})  \\ \hline
-	mode/Opsional/String & menyatakan \textit{mode} perjalanan yang akan ditempuh. & "\textit{driving}", "\textit{walking}", "\textit{bicycling}", atau "\textit{transit}"\\ \hline
-	waypoints/Opsional/integer & menyatakan lokasi yang ingin ditempuh dalam perjalanan & String lokasi yang \textit{valid} \\ \hline
-	alternatives/Opsional/\textit{bit} (\textit{boolean}) & menyatakan apakah rute yang disediakan \textit{Directions API} menyediakan beberapa pilihan rute & \textit{true} atau \textit{false} \\ \hline
-	avoid/Opsional/String (alfabetik) & menyatakan jenis-jenis jalan yang harus dihindari, seperti jalan tol, jembatan, dan lain-lain & "\textit{tolls}", "\textit{highways}", "\textit{ferries}, dan/atau "\textit{indoor} (gunakan "|" jika ada beberapa) \\ \hline
-	language/Opsional/String (alfabetik) & bahasa yang digunakan untuk menyajikan rute perjalanan & Bahasa yang didukung Google \\ \hline
-	units/Opsional/String (alfabetik) & jenis satuan yang akan digunakan & "\textit{metrics}" atau "\textit{imperial}"\\ \hline
-%region & Opsional & String (alfabetik) &  & \\ \hline
-%arrival\_time & Opsional & String (alfabetik) & & \\ \hline
-%departure\_time & Opsional & String (alfabetik) & & \\ \hline
-%Nama Atribut & Wajib/Opsional & Tipe & Penjelasan & Rentang Nilai 			\textit{Valid} (yang berdampak)\\ \hline
-	%traffic\_model & Opsional & String (alfabetik) & menyatakan jenis perjalanan yang dijasikan sesuai waktu tempuh, seperti perjalanan dengan waktu paling tepat, yang paling optimis, dan yang paling pesimis & "best_guess" atau "outdoor"\\ \hline
-%	transit\_mode & Opsional & String (alfabetik) & menyatakan pemandangan, \textit{default} atau \textit{outdoor} & "default" atau "outdoor"\\ \hline
-%	 transit\_routing\_preference & Opsional  & String (alfabetik) & menyatakan pemandangan, \textit{default} atau \textit{outdoor} & "default" atau "outdoor"\\ \hline
-	\end{tabular}
-\end{table}
+\begin{itemize}
+	\item \textit{origin}
+	
+	Parameter wajib bertipe alfabetik yang menyatakan lokasi asal yang dimasukkan pengguna. Parameter ini diisi \textit{string} lokasi yang \textit{sah}.
+	\item \textit{destination}
+	
+	Parameter wajib bertipe string alfabetik yang menyatakan lokasi yang valid dari lokasi tujuan yang dimasukkan pengguna.
+	\item \textit{key}
+	
+	Parameter wajib yang bertipe String yang menyatakan \textit{API key} milik pengguna (seperti pada Subbab \ref{subs:api-key}).
+	\item \textit{mode}
+	
+	Parameter opsional yang bertipe String yang menyatakan \textit{mode} perjalanan yang akan ditempuh, seperti "\textit{driving}", "\textit{walking}", "\textit{bicycling}", atau "\textit{transit}"
+	\item \textit{waypoints}
+	
+	Parameter opsional yang menyatakan lokasi yang ingin ditempuh dalam perjalanan. Parameter ini dapat diisi dengan beberapa jenis parameter yang menyatakan lokasi seperti garis lintang dan garis bujur dan \textit{string} alamat lokasi.
+	\item \textit{alternatives}
+	
+	Parameter opsional \textit{bit} (\textit{boolean}) yang menyatakan apakah rute yang disediakan \textit{Directions API} menyediakan beberapa pilihan rute atau tidak. 
+	\item \textit{avoid}
+	
+	Parameter opsional bertipe \textit{String} (alfabetik) yang menyatakan jenis-jenis jalan yang harus dihindari. Nilai-nilai yang sah untuk parameter ini adalah "\textit{tolls}", "\textit{highways}", "\textit{ferries}, dan/atau "\textit{indoor}" (nilai dipisahkan dengan "|" jika ada beberapa).
+	\item \textit{language}
+	
+	Parameter opsional bertipe \textit{string} (alfabetik) yang menyatakan bahasa yang digunakan untuk menyajikan rute perjalanan sesuai bahasa yang disediakan Google. 
+	\item \textit{units}
+	
+	Parameter opsional bertipe \textit{String} (alfabetik) yang menyatakan jenis satuan yang akan digunakan, seperti "\textit{metrics}" atau "\textit{imperial}".
+	\item \textit{region}
+	
+	Parameter opsional terdiri dari dua karaketer yang menyatakan kode daerah.
+	\item \textit{arrival\_time} 
+	
+	Parameter opsional bertipe bilangan bulat yang menandakan waktu yang diinginkan untuk sampai di tujuan.
+	\item \textit{departure\_time} 
+	
+	Parameter opsional bertipe bilangan bulat yang menyatakan waktu keberangkatan yang diinginkan.
+	\item \textit{traffic\_model}
+	
+	Parameter opsional \textit{string} (alfabetik) yang menyatakan jenis perjalanan yang disajikan sesuai waktu tempuh, seperti perjalanan dengan waktu paling tepat ("\textit{best\_guess}"), yang paling optimis ("\textit{optimistic}"), dan yang paling pesimis ("\textit{pessimistic}").
+	
+\end{itemize}
 
 
 \subsection{Hasil Pemanggilan \textit{Directions API}}
-Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{script} Javascript Notation Object (JSON) yang menyatakan arah sesuai lokasi asal dan tujuan, serta mode perjalanan yang adalah masukan pengguna ~\cite{directions-api}. Selain arah, \textit{script} JSON yang dikembalikan juga mengandung informasi mengenai jarak jalan yang ditempuh serta waktu tempuh perjalanan ~\cite{directions-api}. Listing \ref{list:success_directions} menunjukkan contoh \textit{script} JSON dengan masukan lokasi asal "UNPAR" dan lokasi tujuan "Rumah Sakit Santo Borromeus". Pemanggilan yang gagal akan mengembalikan \textit{script} JSON yang menyatakan jalan di antara dua lokasi masukan tidak dapat ditemukan.
+Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{script} Javascript Notation Object (JSON) yang menyatakan arah sesuai lokasi asal dan tujuan, serta mode perjalanan yang adalah masukan pengguna ~\cite{directions-api}. Selain arah, \textit{script} JSON yang dikembalikan juga mengandung informasi mengenai jarak jalan yang ditempuh serta waktu tempuh perjalanan. Listing \ref{list:success_directions} menunjukkan contoh \textit{script} JSON dengan \textit{URL} \url{https://maps.googleapis.com/maps/api/directions/json?origin=unpar&destination=Rumah+Sakit+Santo+Borromeus&mode=walking&key=...} (parameter \textit{key} tidak dicantumkan). Pemanggilan yang gagal akan mengembalikan \textit{script} JSON yang menyatakan jalan di antara dua lokasi masukan tidak dapat ditemukan.
 
 
 \begin{lstlisting}[caption={Hasil Pemanggilan \textit{Directions API} yang Berhasil},label={list:success_directions},language=java]
 {
-"geocoded_waypoints" : [
+   "geocoded_waypoints" : [
       {
          "geocoder_status" : "OK",
          "place_id" : "ChIJbYmcEu7maC4RRijB2oKhHLA",
@@ -504,9 +541,10 @@ Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{scri
       {
          "geocoder_status" : "OK",
          "place_id" : "ChIJU8k7DlHmaC4RQ2mUo1ERm1k",
-         "types" : [ "establishment", "hospital", "point_of_interest" ]
+         "types" : [ "establishment", "health", "hospital", "point_of_interest" ]
       }
-   ],"routes" : [
+   ],
+   "routes" : [
       {
          "bounds" : {
             "northeast" : {
@@ -514,27 +552,27 @@ Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{scri
                "lng" : 107.6137497
             },
             "southwest" : {
-               "lat" : -6.893777099999999,
-               "lng" : 107.6034922
+               "lat" : -6.893148,
+               "lng" : 107.6034915
             }
          },
-         "copyrights" : "Map data 2020",
+         "copyrights" : "Map data c2020",
          "legs" : [
             {
                "distance" : {
                   "text" : "3.0 km",
-                  "value" : 3042
+                  "value" : 2980
                },
                "duration" : {
-                  "text" : "10 mins",
-                  "value" : 614
+                  "text" : "35 mins",
+                  "value" : 2116
                },
                "end_address" : "Jl. Ir. H. Juanda No.100, Lebakgede...",
                "end_location" : {
-                  "lat" : -6.893777099999999,
-                  "lng" : 107.613021
+                  "lat" : -6.893148,
+                  "lng" : 107.6131791
                },
-               "start_address" : "Jl. Ciumbuleuit No.94, Hegarmanah....",
+               "start_address" : "Jl. Ciumbuleuit No.94, Hegarmanah...",
                "start_location" : {
                   "lat" : -6.8746719,
                   "lng" : 107.6046127
@@ -546,28 +584,187 @@ Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{scri
                         "value" : 1008
                      },
                      "duration" : {
-                        "text" : "4 mins",
-                        "value" : 251
+                        "text" : "11 mins",
+                        "value" : 667
                      },
                      "end_location" : {
                         "lat" : -6.8833328,
                         "lng" : 107.6049108
                      },
-                     "html_instructions" : "Head \u003cb\u003esouth\u003c...",
+                     "html_instructions" : "Head \u003cb\u003esouth...",
                      "polyline" : {
-                        "points" : "tuh@yowoSdAP|AL`Cb@dAHHBvC`@l@..."
+                        "points" : "tu}h@yowoSdAP|AL`Cb@dAHHBvC..."
                      },
                      "start_location" : {
                         "lat" : -6.8746719,
                         "lng" : 107.6046127
                      },
-                     "travel_mode" : "DRIVING"
+                     "travel_mode" : "WALKING"
                   },
-                  ...
-                  "status" : "OK"
-               }
+                  {
+                     "distance" : {
+                        "text" : "1.1 km",
+                        "value" : 1078
+                     },
+                     "duration" : {
+                        "text" : "14 mins",
+                        "value" : 834
+                     },
+                     "end_location" : {
+                        "lat" : -6.885218399999999,
+                        "lng" : 107.6137497
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eleft\u003c/b...",
+                     "maneuver" : "turn-left",
+                     "polyline" : {
+                        "points" : "xk_i@uqwoSCEAECKAM?K?E?..."
+                     },
+                     "start_location" : {
+                        "lat" : -6.8833328,
+                        "lng" : 107.6049108
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0.9 km",
+                        "value" : 884
+                     },
+                     "duration" : {
+                        "text" : "10 mins",
+                        "value" : 603
+                     },
+                     "end_location" : {
+                        "lat" : -6.893140799999999,
+                        "lng" : 107.6130843
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eright...",
+                     "maneuver" : "turn-right",
+                     "polyline" : {
+                        "points" : "rw_i@}hyoSzCLlAHz@Bd@@fB@tBDfABR@L..."
+                     },
+                     "start_location" : {
+                        "lat" : -6.885218399999999,
+                        "lng" : 107.6137497
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "10 m",
+                        "value" : 10
+                     },
+                     "duration" : {
+                        "text" : "1 min",
+                        "value" : 12
+                     },
+                     "end_location" : {
+                        "lat" : -6.893148,
+                        "lng" : 107.6131791
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eleft\u003c...",
+                     "maneuver" : "turn-left",
+                     "polyline" : {
+                        "points" : "biai@wdyoS@S"
+                     },
+                     "start_location" : {
+                        "lat" : -6.893140799999999,
+                        "lng" : 107.6130843
+                     },
+                     "travel_mode" : "WALKING"
+                  }
+               ],
+               "traffic_speed_entry" : [],
+               "via_waypoint" : []
+            }
+         ],
+         "overview_polyline" : {
+            "points" : "tu}h@yowoSdAP|AL`Cb@dAH`Dd@~Bd@hG..."
+         },
+         "summary" : "Jl. Ciumbuleuit, Jl. Siliwangi...",
+         "warnings" : [
+            "Walking directions are in beta. Use caution..."
+         ],
+         "waypoint_order" : []
+      }
+   ],
+   "status" : "OK"
+}
 \end{lstlisting}
 
+Penjelasan mengenai atribut-atribut hasil keluaran \textit{Directions API} adalah sebagai berikut:
+
+\begin{itemize}
+	\item \textit{geocoded\_waypoints}
+	
+	Berisi kumpulan rincian lokasi asal, tujuan, dan \textit{waypoint}-\textit{waypoint} yang ditentukan pengguna (rincian termasuk \textit{id} dan jenis tempat). Masing-masing objek dalam atribut ini memiliki atribut-atribut:
+	
+	\begin{itemize}
+		\item \textit{geocoder\_status}
+		
+		Status keabsahan tempat. 
+		\item \textit{place\_id}
+		
+		\textit{String} alfanumerik dari \textit{id} tempat.
+		\item \textit{types}
+		
+		\textit{Array} dari deskripsi tempat, seperti kantor, pusat kesehatan, bangunan, dan sebagainya. 
+	\end{itemize}
+	\item \textit{routes}
+	
+	\textit{Array} dari jalan-jalan yang merupakan rute yang ditempuh dari lokasi asal ke lokasi tujuan. Setiap objek dari atribut ini memiliki atribut-atribut:
+	
+	\begin{itemize}
+		
+		\item \textit{copyrights}
+		
+		\textit{Copyright text} yang ditunjukkan untuk suatu jalan.
+		\item \textit{legs}[]
+		
+		\textit{Array} dari satu \textit{leg}, yang adalah objek yang mengandung informasi mengenai jalan yang ditempuh. Setiap objek \textit{leg} memiliki atribut-atribut:
+		
+		\begin{itemize}
+			\item \textit{distance}
+			
+			Panjang dari jalan yang dilewati.
+			\item \textit{duration}
+			
+			Lama waktu yang dibutuhkan untuk menempuh jalan sesuai \textit{mode}.
+			\item \textit{start\_address}
+			
+			Alamat dari satu titik ujung dari jalan yang ditempuh terlebih dahulu pada perjalanan.
+			\item \textit{start\_location}			
+			
+			Koordinat garis lintang dan garis bujur dari \textit{start\_address}.
+			\item \textit{end\_address}
+			
+			Alamat dari satu titik ujung dari jalan yang ditempuh kemudian atau terakhir pada perjalanan.
+			\item \textit{end\_location}
+			
+			Koordinat garis lintang dan garis bujur dari \textit{end\_address}.
+			
+		\end{itemize}				
+		
+		\item \textit{overview\_polyline}
+		
+		Satu objek \textit{point} yang merupakan representasi rute. 
+		\item \textit{bounds}
+		
+		\textit{Viewport} pembatas dari lokasi.
+		\item \textit{summary}
+		
+		Deskripsi dari jalur seperti arah yang diambil. 
+		\item \textit{warnings}[]
+		
+		\textit{Array} yang berisi peringatan saat rute perjalanan ditampilkan. 
+		\item \textit{waypoint\_order}
+		
+		\textit{Array} dari urutan \textit{waypoint} yang dilewati.
+	\end{itemize}
+	\item \textit{status}
+	
+	Berisi status dari \textit{request} pengaksesan \textit{Directions API}.
+\end{itemize}
 
 %SENSOR
 \section{\textit{Motion Sensor}}
@@ -578,29 +775,29 @@ Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{scri
 \begin{itemize}
 	\item \textit{accelerometer}
 	
-	Sensor yang mendeteksi gerakan \textit{smartphone} terhadap sumbu $x, y,$ dan $z$, termasuk gaya gravitasi terhadap masing-masing sumbu ~\cite{motion-sensor}.
+	Sensor yang mendeteksi gerakan \textit{smartphone} terhadap sumbu $x, y,$ dan $z$, termasuk gaya gravitasi terhadap masing-masing sumbu.
 	\item \textit{gravity sensor}
 	
-	Sensor yang mendeteksi gaya gravitasi terhadap sumbu $x, y,$ dan $z$ ~\cite{motion-sensor}.
+	Sensor yang mendeteksi gaya gravitasi terhadap sumbu $x, y,$ dan $z$.
 	\item \textit{gyroscope}
 	
-	Sensor yang mendeteksi putaran gawai terhadap sumbu $x, y,$ dan $z$ ~\cite{motion-sensor}.
+	Sensor yang mendeteksi putaran gawai terhadap sumbu $x, y,$ dan $z$.
 	\item \textit{linear acceleration sensor}
 	
-	Sensor yang mendeteksi pergerakan linier, terhadap sumbu $x, y,$ dan $z$ tanpa gaya gravitasi pada masing-masing sumbu ~\cite{motion-sensor}.
+	Sensor yang mendeteksi pergerakan linier, terhadap sumbu $x, y,$ dan $z$ tanpa gaya gravitasi pada masing-masing sumbu.
 	\item \textit{rotation vector sensor}
 	
-	Sensor yang mendeteksi vektor putaran pada gawai terhadap sumbu $x, y,$ dan $z$ ~\cite{motion-sensor}.
+	Sensor yang mendeteksi vektor putaran pada gawai terhadap sumbu $x, y,$ dan $z$.
 	
 	\item \textit{step counter}
 	
-	Sensor yang menghitung jumlah langkah saat berjalan yang pengguna gawai ambil ~\cite{motion-sensor}.
+	Sensor yang menghitung jumlah langkah saat berjalan yang pengguna gawai ambil.
 	\item \textit{step detector}
 	
-	Sensor yang men-\textit{trigger} sebuah \textit{event} saat pengguna mengambil langkah saat berjalan ~\cite{motion-sensor}.
+	Sensor yang men-\textit{trigger} sebuah \textit{event} saat pengguna mengambil langkah saat berjalan.
 \end{itemize}
 
-Pada penelitian ini, \textit{motion sensor} yang akan digunakan adalah \textit{step detector}. Sintaks untuk menggunakan sensor ini tertera pada Listing \ref{list:step_detector_syntax}.
+Sintaks untuk menggunakan sensor ini tertera pada Listing \ref{list:step_detector_syntax}.
 
 \begin{lstlisting}[caption={Sintaks menggunakan sensor \textit{step detector}},label={list:step_detector_syntax},language=java]
 private SensorManager sensorManager;
@@ -611,4 +808,4 @@ sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 \end{lstlisting} 
 
 \subsection{Deskripsi \textit{Step Detector}}
-\textit{Step detector} adalah sensor yang digunakan untuk mendeteksi langkah kaki pengguna. Sensor ini dapat memicu suatu \textit{event} setiap kali langkah kaki pengguna diambil. Nilai yang dikembalikan adalah 1.0 dan \textit{timestamp} dari saat langkah kaki diambil pengguna (nilai 1.0 menunjukkan bahwa ada langkah yang telah diambil). \textit{Permission} yang dibutuhkan untuk mengaktifkan sensor ini adalah \texttt{android.permission.ACTIVITY\_RECOGNITION}. 
+\textit{Step detector} adalah sensor yang digunakan untuk mendeteksi langkah kaki pengguna. Sensor ini dapat memicu suatu \textit{event} setiap kali langkah kaki pengguna diambil. Nilai yang dikembalikan adalah 1.0 dan \textit{timestamp} dari saat langkah kaki diambil pengguna (nilai 1.0 menunjukkan bahwa ada langkah yang telah diambil). \textit{Permission} yang dibutuhkan untuk mengaktifkan sensor ini adalah \texttt{android.permission.ACTIVITY\_RECOGNITION}. Latensi dari sensor ini sekitar kurang dari dua detik. 
