@@ -10,7 +10,7 @@ Google VR adalah teknologi yang diciptakan perusahaan Google untuk membuat peman
 {Google Daydream} dan \textit{Google Cardboard} adalah pada bahan dan alat penerima masukan (\textit{input}). \textit{Google Daydream} memiliki alat penerima masukan pengguna seperti \textit{remote control} dengan beberapa tombol serta berbahan utama plastik, sedangkan \textit{Google Cardboard} memiliki penerima masukan berupa satu tombol (biasanya berupa magnet) yang akan memicu terjadinya suatu \textit{event} dan berbahan dasar kardus. Google menyediakan sebuah alat bantu bagi pengembang perangkat lunak untuk memudahkan pengembangan aplikasi VR yang disebut Google VR SDK.
 
 \subsection{Google VR SDK}
-Google VR SDK adalah alat bantu berlisensi Apache 2.0 yang disediakan Google pada repository Github yang berisi kode program dari aplikasi {\it virtual reality} (VR)  yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS ~\cite{all-google-vr}. Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google ~\cite{quickstart-google-vr}. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama HelloVR dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo HelloVR untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi. Gambar \ref{fig:gvr-dir} menunjukkan struktur \textit{folder} dari Google VR SDK untuk Android.
+Google VR SDK adalah alat bantu berlisensi Apache 2.0 yang disediakan Google pada repository Github yang berisi kode program dari aplikasi {\it virtual reality} (VR)  yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS ~\cite{all-google-vr}~\cite{gvr-sdk-repo}. Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google ~\cite{quickstart-google-vr}. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama HelloVR dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo HelloVR untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi. \textit{Folder} yang paling penting di dalam Google VR SDK adalah \textit{samples}, yang merupakan contoh-contoh program yang memanfaatkan teknologi Google VR. Di dalam \textit{folder} tersebut, terkandung beberapa \textit{folder} seperti \texttt{ndk-hellovr}, \texttt{ndk-hellovrbeta}, \texttt{sdk-controllerclient}, \texttt{sdk-hellovr},\texttt{sdk-video360}, dan \texttt{sdk-videoplayer}. \textit{Folder} \texttt{sdk-hellovr} dan \texttt{ndk-hellovr} merupakan aplikasi permainan VR. Perbedaannya adalah \texttt{sdk-hellovr} ditulis murni dalam bahasa Java, sedangkan \texttt{ndk-hellovr} menggunakan bahasa C++ juga.  \textit{Folder} \texttt{sdk-controllerclient} adalah aplikasikan yang menunjukkan bentuk yang berputar sesuai rangsang dari \textit{gyroscope}. \textit{Folder} \texttt{sdk-videoplayer} dan \texttt{sdk-video360} adalah aplikasi pemutar video 360. Gambar \ref{fig:gvr-dir} menunjukkan struktur \textit{folder} dari Google VR SDK untuk Android. 
 
 \begin{figure}[h]
 	\centering
@@ -40,7 +40,8 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 				
 \textit{Method} ini tidak memiliki nilai yang dikembalikan ataupun\textit{exception}.
 				
-				\item \texttt{public abstract void onNewFrame (HeadTransform headTransform)}				
+				\item \texttt{public abstract void onNewFrame (HeadTransform headTransform)}		
+						
 \textit{Method} untuk menggambar perubahan \textit{frame} dari pemandangan. Parameter yang dimiliki \texttt{method} ini adalah:
 
 				\begin{itemize}
@@ -49,9 +50,11 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 				\textit{Method} ini tidak memiliki nilai yang dikembalikan, juga tidak memiliki \textit{exception}. 						
 				
 				\item \texttt{public abstract void onRendererShutdown()}
+				
 \textit{Method} yang dipanggil ketika \textit{thread renderer} dari pemandangan berhenti atau dimatikan, ketika method \texttt{onSurfaceCreated} dipanggil. \textit{Method} ini tidak memiliki parameter, nilai yang dikembalikan, maupun \textit{exception}.
 				
 				\item \texttt{public abstract void onSurfaceChanged (int width, int height)}
+				
 				\textit{Method}	yang terpanggil ketika ada perubahan dimensi pada permukaan dunia VR. Parameter yang dimiliki \textit{method} ini adalah:
 				
 				\begin{itemize}
@@ -61,6 +64,7 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 				\end{itemize}
 				
 				\item \texttt{public abstract void onSurfaceCreated (EGLConfig config)}
+				
 \textit{Method} untuk membuat dunia VR. Parameter yang dimiliki \textit{method} ini adalah:
 				\begin{itemize}
 					\item \texttt{EGLConfig config}: Konfigurasi EGL yang digunakan untuk membuat permukaan dunia VR.
@@ -186,7 +190,7 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 
 \subsection{Aplikasi HelloVR}
 \label{subs:hello-vr}
-HelloVR, aplikasi yang diperoleh dari Google VR SDK pada direktori \texttt{./samples/sdk-hellovr} adalah sebuah aplikasi demo permainan \textit{treasure hunt}, yaitu sejenis permainan mencari bentuk yang mengapung di dunia VR dengan melihat tepat pada bentuk tersebut dan menyalakan pemicu pada Google Cardboard. Setelah kondisi untuk menangkap bentuk yang ada, bentuk tersebut akan menghilang, lalu bentuk yang lain akan muncul di tempat lain. Gambar \ref{fig:treasure-hunt} menunjukkan tampilan \textit{UI} permainan \textit{treasure hunt} HelloVR. 
+HelloVR, aplikasi yang diperoleh dari Google VR SDK pada direktori \texttt{./samples/sdk-hellovr}, adalah sebuah aplikasi demo permainan \textit{treasure hunt}, yaitu sejenis permainan mencari bentuk yang mengapung di dunia VR dengan melihat tepat pada bentuk tersebut dan menyalakan pemicu pada Google Cardboard. Setelah kondisi untuk menangkap bentuk yang ada, bentuk tersebut akan menghilang, lalu bentuk yang lain akan muncul di tempat lain. Gambar \ref{fig:treasure-hunt} menunjukkan tampilan \textit{UI} permainan \textit{treasure hunt} HelloVR. 
 
 \begin{figure}[h]
 	\centering
@@ -196,8 +200,9 @@ HelloVR, aplikasi yang diperoleh dari Google VR SDK pada direktori \texttt{./sam
 \end{figure}
 
 \subsubsection{Komponen Aplikasi HelloVR}
-Aplikasi HelloVR terdiri dari beberapa \textit{folder} dan komponen-komponen. Gambar \ref{fig:hello-vr-dir} menunjukkan struktur direktori aplikasi HelloVR. 
-Dunia VR pada aplikasi ini dibuat dari {\it file Wavefront Object} (OBJ) dengan tekstur {\it file Portable Network Graphics} (PNG) (Gambar \ref{fig:vr-room}) yang telah dengan sangat tepat dipetakan pada \textit{file} OBJ yang ada sehingga dunia VR terlihat sangat nyata. Bentuk-bentuk yang akan dicari pengguna dibuat dari tiga file OBJ yang merepresentasikan tiga macam bentuk yang akan muncul. Masing-masing file OBJ memiliki dua tekstur yang telah dipetakan pada masing-masing file OBJ dalam file PNG. Satu tekstur (Gambar \ref{fig:blue-shape}) digunakan ketika bentuk sedang tidak ada di tengah-tengah titik pengelihatan pengguna, sedangkan satu tekstur yang lain (Gambar \ref{fig:pink-shape}) digunakan ketika pengguna sedang melihat bentuk tepat di titik tengah pengelihatan pengguna.
+Aplikasi HelloVR terdiri dari beberapa \textit{folder} dan komponen-komponen. Gambar \ref{fig:hello-vr-dir} menunjukkan struktur direktori aplikasi HelloVR. Ada beberapa \textit{folder} penting yang terkandung dalam program, yaitu \textit{assets}, \textit{java}, dan \textit{res}. \textit{Folder assets} mengandung \textit{asset-asset} audiovisual yang akan digunakan dalam aplikasi seperti gambar, suara, atau video, \textit{folder java} mengandung \textit{file-file} kode program, sementara \textit{folder res} mengandung komponen-komponen dari antarmuka aplikasi seperti gambar logo aplikasi, gambar latar belakang tampilan aplikasi, sampai nilai-nilai alfabetik seperti nama aplikasi. 
+
+Dunia VR pada aplikasi ini terbentuk dari komponen-komponen yang ada dalam \textit{folder assets}. Bentuk ruangan VR ditentukan oleh {\it file Wavefront Object} (OBJ) dan tampilannya oleh tekstur {\it file Portable Network Graphics} (PNG) (Gambar \ref{fig:vr-room}) yang telah dengan sangat tepat dipetakan pada \textit{file} OBJ yang ada sehingga dunia VR terlihat sangat nyata. Bentuk-bentuk yang akan dicari pengguna dibuat dari tiga file OBJ yang merepresentasikan tiga macam bentuk yang akan muncul. Masing-masing file OBJ memiliki dua tekstur yang telah dipetakan pada masing-masing file OBJ dalam file PNG. Satu tekstur (Gambar \ref{fig:blue-shape}) digunakan ketika bentuk sedang tidak ada di tengah-tengah titik pengelihatan pengguna, sedangkan satu tekstur yang lain (Gambar \ref{fig:pink-shape}) digunakan ketika pengguna sedang melihat bentuk tepat di titik tengah pengelihatan pengguna.
 
 \begin{figure}[h]
 	\centering
@@ -527,7 +532,7 @@ Bagian "filetype" pada \textit{URL} diganti dengan tipe \textit{file} keluaran a
 
 
 \subsection{Hasil Pemanggilan \textit{Directions API}}
-Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{script} Javascript Notation Object (JSON) yang menyatakan arah sesuai lokasi asal dan tujuan, serta mode perjalanan yang adalah masukan pengguna ~\cite{directions-api}. Selain arah, \textit{script} JSON yang dikembalikan juga mengandung informasi mengenai jarak jalan yang ditempuh serta waktu tempuh perjalanan. Listing \ref{list:success_directions} menunjukkan contoh \textit{script} JSON dengan \textit{URL} \url{https://maps.googleapis.com/maps/api/directions/json?origin=unpar&destination=Rumah+Sakit+Santo+Borromeus&mode=walking&key=...} (parameter \textit{key} tidak dicantumkan). Pemanggilan yang gagal akan mengembalikan \textit{script} JSON yang menyatakan jalan di antara dua lokasi masukan tidak dapat ditemukan.
+Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{script} Javascript Notation Object (JSON) yang menyatakan arah sesuai lokasi asal dan tujuan, serta mode perjalanan yang adalah masukan pengguna ~\cite{directions-api}. Selain arah, \textit{script} JSON yang dikembalikan juga mengandung informasi mengenai jarak jalan yang ditempuh serta waktu tempuh perjalanan. Listing \ref{list:success_directions} menunjukkan contoh \textit{script} JSON dengan \textit{URL} \url{https://maps.googleapis.com/maps/api/directions/json?origin=unpar&destination=Rumah+Sakit+Santo+Borromeus&mode=walking&key=(disamarkan)} (parameter \textit{key} tidak dicantumkan). Pemanggilan yang gagal akan mengembalikan \textit{script} JSON yang menyatakan jalan di antara dua lokasi masukan tidak dapat ditemukan.
 
 
 \begin{lstlisting}[caption={Hasil Pemanggilan \textit{Directions API} yang Berhasil},label={list:success_directions},language=java]
