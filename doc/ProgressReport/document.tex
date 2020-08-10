@@ -28,7 +28,7 @@
 %ISILAH DATA BERIKUT INI:
 \newcommand{\nama}{Richard Wijaya}
 \newcommand{\@npm}{2016730014}
-\newcommand{\tanggal}{03/03/2020} %Tanggal pembuatan dokumen
+\newcommand{\tanggal}{05/05/2020} %Tanggal pembuatan dokumen
 \newcommand{\@judultopik}{\textit{Virtual Jogging App} untuk \textit{Google Cardboard}} % Judul/topik anda
 \newcommand{\kodetopik}{PAN4801}
 \newcommand{\jumpemb}{1} % Jumlah pembimbing, 1 atau 2
@@ -65,7 +65,7 @@ Tipe Laporan : {\bf \tipePR} -
 		}
 		
 \section{Latar Belakang}
-Zaman modern adalah zaman saat profesi sudah dan sedang berkembang sehingga ada banyak sekali jumlah bidangnya serta perkembangannya. Mayoritas orang menekuni bidang-bidang profesi yang tak terhitung banyaknya untuk mengembangkan setiap bidang profesi. Hal ini menyebabkan kesulitan pengaturan waktu untuk berolahraga, yang adalah salah satu kebutuhan manusia untuk menjaga kesehatan. Salah satu aktivitas olahraga yang paling mudah dan tidak memerlukan gerakan yang sulit adalah berlari, namun kegiatan ini memerlukan lahan yang cukup besar agar dapat dilakukan dengan leluasa. Selain kebutuhan lahan, aktivitas berlari lebih menyenangkan jika dilakukan di luar rumah. Agar dapat dilakukan di dalam rumah, berlari dapat dilakukan di rumah adalah {\it treadmill}, akan tetapi masalah lingkungan yang monoton dan membosankan di dalam rumah membuat orang enggan untuk melakukan aktivitas berlari. Bila suasana dunia luar dapat dibawa ke dalam rumah, aktivitas ini dapat dilakukan di dalam rumah, tetapi suasana yang dirasakan adalah seperti di luar rumah. 
+Zaman modern adalah zaman saat profesi sedang dan sudah berkembang sehingga ada banyak sekali jumlah bidangnya serta perkembangannya. Mayoritas orang menekuni bidang-bidang profesi yang tak terhitung banyaknya untuk mengembangkan setiap bidang profesi. Hal ini menyebabkan kesulitan pengaturan waktu untuk berolahraga, yang adalah salah satu kebutuhan manusia untuk menjaga kesehatan. Salah satu aktivitas olahraga yang paling mudah dan tidak memerlukan gerakan yang sulit adalah berlari, namun kegiatan ini memerlukan lahan yang cukup besar agar dapat dilakukan dengan leluasa. Selain kebutuhan lahan, aktivitas berlari lebih menyenangkan jika dilakukan di luar rumah. Agar dapat dilakukan di dalam rumah, berlari dapat dilakukan di rumah adalah {\it treadmill}, akan tetapi masalah lingkungan yang monoton dan membosankan di dalam rumah membuat orang enggan untuk melakukan aktivitas berlari. Bila suasana dunia luar dapat dibawa ke dalam rumah, aktivitas ini dapat dilakukan di dalam rumah, tetapi suasana yang dirasakan adalah seperti di luar rumah. 
 
 Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan simulasi aktivitas berlari pada lingkungan yang diinginkan saat berlari di {\it treadmill}. Dengan menggunakan perangkat lunak tersebut, orang yang berlari dapat menikmati pemandangan yang dipilih saat berlari di dalam rumah sehingga merasa seperti berlari di lingkungan yang dipilih tersebut.
 
@@ -79,50 +79,60 @@ Teknologi yang dapat dimanfaatkan untuk membuat aplikasi VR untuk berlari adalah
 \end{itemize}
 
 \section{Rumusan Masalah}
+\begin{itemize}
+	\item Bagaimana memanfaatkan Google VR SDK for Android untuk menampilkan gambar dengan perangkat VR?
+	\item Bagaimana menampilkan hasil dari \textit{Google StreetView API} dalam bentuk VR?
+	\item Bagaimana mengintegrasikan \textit{Google Directions API}, gambar \textit{Google StreetView}  dan Google VR dalam perangkat lunak \textit{virtual jogging}
+\end{itemize}
 
 \section{Detail Perkembangan Pengerjaan Skripsi}
 Detail bagian pekerjaan skripsi sesuai dengan rencana kerja/laporan perkembangan terkahir :
 	\begin{enumerate}
-		\item \textbf{Mempelajari {\it Google StreetView, Cardboard} (Google VR SDK), dan {\it Directions}  API.}\\
+		\item \textbf{Mempelajari {\it Google StreetView, Cardboard} (Google VR SDK), {\it Directions API}.}\\
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil : } .
+		{\bf Hasil : } Untuk \textit{Google StreetView} dan \textit{Directions API}, sudah mempelajari tentang cara kerja penggunaan \textit{API} dengan protokol \textit{HTTPS} dengan parameter wajib dan opsional, beserta nilai kembalian masing-masing \textit{API}. Untuk \textit{Google Cardboard}, sudah mempelajari aplikasi HelloVR, salah satu aplikasi contoh dari Google VR SDK, yang berupa aplikasi permainan berbasis VR, kelas-kelas yang dapat dimanfaatkan untuk pengembangan aplikasi dalam bahasa Java.
 		
 		\item \textbf{Menampilkan {\it StreetView} dalam {\it Google Cardboard}.}\\
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
+		{\bf Hasil :} Dua langkah yang harus dilakukan, yaitu membuat dunia VR dan menampilkan gambar pada dunia VR langsung dari \textit{StreetView API}. Langkah pertama sudah dilakukan dengan membuat OBJ file dengan gambar yang sudah diunduh dari \textit{Google StreetView}, tetapi langkah kedua belum berhasil.
 
 		\item \textbf{Mempelajari pergerakan berlari dan bagaimana mempengaruhi sensor perangkat bergerak.}\\
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
-
+		{\bf Hasil :} Sudah mempelajari mengenai sensor gerak (\textit{motion sensor} pada telepon seluler, lalu mempelajari lebih dalam mengenai sensor \textit{step detector}, yaitu sensor yang mendeteksi adanya pergerakan langkah kaki dari pengguna yang memegang gawai. 
+		
 		\item \textbf{Mengimplementasikan rute dari pelari di aplikasi dengan {\it Google Directions} API.}\\
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
+		{\bf Hasil :} Belum dikerjakan.
 
 		\item \textbf{Mengimplementasikan pergerakkan lingkungan dalam aplikasi dengan memanfaatkan sensor agar terlihat seperti sedang berlari.}\\
 		{\bf Status :} Ada sejak rencana kerja skripsi.\\
-		{\bf Hasil :}
+		{\bf Hasil :} Belum dikerjakan.
 
 		\item \textbf{Membuat antarmuka untuk pengguna.}\\
-		{\bf Status :} dihapuskan/tidak dikerjakan \\
-		{\bf Hasil :} 
+		{\bf Status :} Ada sejak rencana kerja skripsi \\
+		{\bf Hasil :} Sudah mencoba membuat satu \textit{activity} tambahan sebagai antarmuka, tampilan yang ditopang \textit{activity} terdiri dari dua \texttt{EditText} dan satu \texttt{Button}. Meski antarmuka sudah dibuat, antarmuka tersebut belum diintegrasikan dengan \textit{activity} dari activity yang meng-\textit{extend} \texttt{GvrActivity}, yang adalah aplikasi yang menampilkan dunia VR.
+		
+		\item \textbf{Menulis dokumen skripsi.}\\
+		{\bf Status :} Ditambahkan \\
+		{\bf Hasil :} Bab 1 sudah ditulis untuk menjelaskan latar belakang topik skripsi dan hal-hal yang akan dimanfaatkan untuk pengembangannya. Bab 2 sudah ditulis untuk menjelaskan mengenai \textit{Google Cardboard}, \textit{StreetView}, dan \textit{Directions API}, dan sensorr gerak. Bab 3 sudah ditulis mengenai analisis kasar tentang pemanfaatan setiap teknologi dan \textit{API} yang dijelaskan pada Bab 2. Dokumen skipsi dapat dilihat pada https://github.com/richardwijaya/Skripsi/blob/master/doc/DokumenSkripsi/skripsi.pdf
 		
 	\end{enumerate}
+	
 
 \section{Pencapaian Rencana Kerja}
 Langkah-langkah kerja yang berhasil diselesaikan dalam Skripsi 1 ini adalah sebagai berikut:
 \begin{enumerate}
-\item Berhasil menampilkan gambar {\it StreetView} dalam {\it Google Cardboard}. 
-\item Mengetahui bagian sensor yang menerima rangsang saat pergerakan berlari.
+\item Berhasil menampilkan gambar {\it StreetView} dalam {\it Google Cardboard} (belum dapat diakses secara langsung dari \textit{StreetView API}). 
+\item Mengetahui bagian sensor yang menerima rangsang saat pergerakan lari.
 \end{enumerate}
 
 
 
 \section{Kendala yang Dihadapi}
 %TULISKAN BAGIAN INI JIKA DOKUMEN ANDA TIPE A ATAU C
-Kendala - kendala yang dihadapi selama mengerjakan skripsi :
+Kendala yang dihadapi selama mengerjakan skripsi :
 \begin{itemize}
-	\item Fitur \textit{StreetViewPanoramaFragment} yang tersedia tidak dapat dimanfaatkan sehingga harus membuat dunia VR sendiri
+	\item Gambar \textit{StreetView API} tidak dapat langsunng diakses dalam apilkasi contoh karena permasalahan \texttt{AsyncTask} dan \texttt{GvrActivity}.
 \end{itemize}
 
 \vspace{1cm}
