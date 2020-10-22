@@ -1,9 +1,32 @@
 \chapter{Analisis}
 \label{chap:analisis}
-Pada bab ini dijelaskan mengenai cara memanfaatkan Google VR SDK, \textit{Google StreetView API}, \textit{Google Directions API}, dan cara memanfaatkan sensor \textit{step detector}, termasuk cara mengintegrasikan semua komponen tersebut secara bertahap. 
+Pada bab ini dijelaskan mengenai analisis Google VR SDK, \textit{Google StreetView API}, \textit{Google Directions API}, dan  sensor \textit{step detector}, juga cara memanfaatkan   mengintegrasikan semua komponen tersebut secara bertahap untuk membentuk aplikasi \textit{jogging} virtual. 
 
-\section{Membuat Dunia VR}
-Dari komponen-komponen Google VR SDK, bagian \textit{assets}-lah yang dapat dimodifikasi untuk menampilkan pemandangan VR yang ingin ditampilkan. Dunia VR terdiri atas dua \textit{file}, yaitu \textit{file} OBJ sebagai bentuk ruangan dan \textit{file} PNG sebagai tekstur ruangan \textit{file} OBJ. Dunia yang ingin ditampilkan pada dunia VR adalah dunia dengan bentuk silinder agar terlihat seperti dunia nyata, terutama bagian permukaan samping (yang melengkung). Untuk membuat dunia berbentuk silinder, kakas yang digunakan adalah \textit{Blender} versi 2.81. Gambar menunjukkan tampilan \textit{UI} \textit{Blender} versi 2.81.
+
+\section{Analisis Google VR SDK}
+Dari aplikasi HelloVR yang disedikaan di Google VR SDK, ada beberapa kebutuhan yang dapat dipelajari, terutama dari \textit{folder assets}. \textit{Folder assets} berisi bangun ruang tiga dimensi dari ruangan dan objek-objek beserta tekstur masing-masing ruangan dan objek ~\cite{quickstart-google-vr}. Gambar \ref{fig:assets-folder} menunjukkan rincian isi \textit{folder assets} dari aplikasi HelloVR.
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[scale=0.7]{Gambar/assets-folder.png}
+	\caption{Isi \textit{folder assets} aplikasi HelloVR}
+	\label{fig:assets-folder}
+\end{figure}
+
+\textit{Folder assets} berisi \textit{file-file} OBJ seperti CubeRoom.obj, Icosahedron.obj, QuadSphere.obj, dan TriSphere.obj. CubeRoom.obj berfungsi sebagai ruang dalam dunia VR itu, sementara \textit{file-file} OBJ lain adalah objek-objek yang ada di dalam dunia aplikasi HelloVR. Masing-masing \textit{file-file} OBJ dipasangkan dengan \textit{file-file} PNG yang adalah tekstur-tekstur masing-masing \textit{file-file} OBJ. Dari analisis \textit{folder assets} aplikasi HelloVR, dibutuhkan dunia VR yang terdefinisi dengan tampilan seperti di dunia nyata. Dunia VR ini dapat dibentuk lewat dua komponen utama: bangun ruang tiga dimensi dan gambar dari \textit{Google StreetView API}. Bangun ruang tiga dimensi berfungsi sebagai batasan dunia VR tersebut, sementara gambar \textit{Google StreetView API} memberi pemandangan dari tempat dunia nyata. Dengan menciptakan bangun ruang tiga dimensi yang ditambahkan tekstur gambar \textit{Google StreetView API}, pemandangan seperti di dunia nyata dapat direalisasikan pada aplikasi VR. 
+
+Agar dapat membuat pemandangan VR seperti dunia nyata yang bergerak, tekstur dari bangun ruang tiga dimensi yang sudah diciptakan harus berubah-ubah. Perubahan dari tekstur yang diperoleh \textit{Google StreetView API} haruslah sesuai dengan rute perjalanan. \textit{Google Directions API}lah yang dapat digunakan untuk menentukan rute perjalanan dari asal dan tujuan yang dapat digunakan untuk perubahan gambar tekstur untuk bangun ruang tiga dimensi. 
+
+Komponen terakhir dari aplikasi \textit{jogging} virtual yang harus dimanfaatkan adalah sensor \textit{step detector}. Sensor \textit{step detector} ini digunakan untuk menentukan ritme perubahan dari tekstur bangun ruang tiga dimensi. Saat langkah kaki dari pengguna terdeteksi, barulah gambar tekstur dari bangun ruang tiga dimensi diubah seturut rute perjalanan dari \textit{Google Directions API}.
+
+\section{Analisis Pembuatan Bangun Ruang Tiga Dimensi}
+
+Bangun ruang tiga dimensi yang tepat untuk dibuat adalah silinder atau tabung. Alasan dipilihnya bentuk silinder ini adalah bentuk silinder cukup merepresentasikan pandangan lateral atau samping dari manusia di dunia nyata. Permukaan samping inilah yang nantinya akan diisi tekstur dari gambar \textit{Google StreetView API}. 
+
+Untuk membuat dunia berbentuk silinder, kakas yang digunakan adalah \textit{Blender} versi 2.81. Gambar menunjukkan tampilan \textit{UI} \textit{Blender} versi 2.81. Setelah bangun ruang silinder dibentuk dari kakas \textit{Blender}, bangun ruang itu disimpan dalam sebuah \textit{file} OBJ. 
+
+
+%Dari komponen-komponen Google VR SDK, bagian \textit{assets}-lah yang dapat dimodifikasi untuk menampilkan pemandangan VR yang ingin ditampilkan. Dunia VR terdiri atas dua \textit{file}, yaitu \textit{file} OBJ sebagai bentuk ruangan dan \textit{file} PNG sebagai tekstur ruangan \textit{file} OBJ. Dunia yang ingin ditampilkan pada dunia VR adalah dunia dengan bentuk silinder agar terlihat seperti dunia nyata, terutama bagian permukaan samping (yang melengkung). 
 
 \begin{figure}[h]
 	\centering
@@ -12,10 +35,15 @@ Dari komponen-komponen Google VR SDK, bagian \textit{assets}-lah yang dapat dimo
 	\label{fig:blender-ui}
 \end{figure}
 
-Bentuk silinder dipilih sebagai bentuk dari dunia VR karena permukaan samping dapat menampilkan pemandangan seperti di dunia nyata. Permukaan samping berbentuk persegi panjang, dan sifat melingkar dari permukaan dapat membuat menampilkan pemandangan di sekitar.
+%Bentuk silinder dipilih sebagai bentuk dari dunia VR karena permukaan samping dapat menampilkan pemandangan seperti di dunia nyata. Permukaan samping berbentuk persegi panjang, dan sifat melingkar dari permukaan dapat membuat menampilkan pemandangan di sekitar.
 
-\section{Menampilkan \textit{StreetView API} pada Dunia VR}
-Dengan menggunakan HTTP/HTTPS URL, gambar yang dihasilkan merupakan gambar persegi panjang saat menghadap satu arah sehingga tidak dapat secara langsung ditampilkan pada dunia VR ~\cite{streetview-api}. Untuk melakukannya, gambar dari empat arah harus digabungkan untuk menghasilkan pemandangan seperti  dunia nyata. Hal yang harus dilakukan untuk mencapai hal tersebut adalah menggabungkan gambar-gambar dari atribut \textit{heading} dari empat arah, dengan satu arah yang berlawanan dengan arah yang lain, lalu dua arah lain yang tegak lurus dengan arah pertama. Dengan kata lain, selisih setiap dua nilai \textit{heading} yang berurutan  bernilai 90 (misalnya \textit{heading} dengan nilai 0, 90, 180 dan 270). Gambar \ref{fig:comp-streetview} memperlihatkan empat gambar \textit{StreetView} dengan berbagai macam \textit{StreetView} dengan syarat tersebut.
+\section{Menampilkan \textit{StreetView API} pada Bangun Ruang Silinder}
+Untuk membuat tampilan dunia VR yang sempurna, bagian kedua yang harus dipenuhi adalah pemandangan yang dihasilkan lewat gambar \textit{Google StreetView API} di permukaan samping silinder. 
+
+\subsection{Membentuk Gambar StreetView untuk Tekstur Ruang Tiga Dimensi}
+\label{subs:streetview-integration}
+
+\textit{Google StreetView API} menghasilkan gambar pemandangan dari satu arah pandang, maka haruslah dikumpulkan gambar-gambar dari arah-arah yang lain untuk membentuk pemandangan sekeliling yang sempurna dan terlihat seperti dunia nyata ~\cite{streetview-api}. Sebagai contoh, gambar dari empat arah (utara, selatan, timur, dan barat) harus digabungkan untuk menghasilkan pemandangan seperti  dunia nyata. Hal yang harus dilakukan untuk mencapai hal tersebut adalah menggabungkan gambar-gambar dari atribut \textit{heading} dari empat arah, dengan satu arah yang berlawanan dengan arah yang lain, lalu dua arah lain yang tegak lurus dengan arah pertama. Dengan kata lain, selisih setiap dua nilai \textit{heading} yang berurutan  bernilai 90 (misalnya \textit{heading} dengan nilai 0, 90, 180 dan 270). Gambar \ref{fig:comp-streetview} memperlihatkan empat gambar \textit{StreetView} dengan berbagai macam \textit{StreetView} dengan syarat tersebut.
 
 \begin{figure}[]
 	\begin{subfigure}{.5\textwidth}
@@ -57,10 +85,11 @@ Setelah mendapatkan gambar \textit{StreetView} dari semua arah, gambar-gagmbar t
 
 Setelah mendapatkan gambar \textit{StreetView} yang sudah digabungkan tersebut, gambar tersebut dapat dimanfaatkan sebagai tekstur untuk ruang pada \textit{file} OBJ yang berbentuk silinder sehingga pemandangan \textit{StreetView} dapat ditampilkan pada dunia VR.
 
-\section{Integrasi dengan \textit{Directions API}}
+\section{Analisis \textit{Google Directions API}}
+
 Untuk mendapatkan rute perjalanan, \textit{Directions API} dapat dimanfaatkan ~\cite{directions-api}. \textit{File} yang diperoleh lewat \textit{Directions API} adalah \textit{file} JSON yang memiliki \textit{key} dan \textit{value}. Ada beberapa atribut (\textit{key}) dengan nilai (\textit{value}) yang ada pada \textit{file} JSON dari hasil pemanggilan \textit{Directions API} yang dapat dimanfaatkan.
 
-\subsection{Menentukan Atribut yang Bermanfaat}
+\subsection{Menentukan Atribut yang akan Digunakan}
 \textit{File} JSON yang dihasilkan memiliki beberapa tingkat \textit{key} dan \textit{value}. Pada tingkat pertama, ada tiga \textit{key}: \textit{geocoded\_waypoints}, \textit{status} dan \textit{routes}. \textit{Key} yang dapat digunakan adalah \textit{routes} yang menunjukkan jalan yang akan ditempuh. Pada tingkat berikutnya, \textit{key routes} memiliki \textit{value} seperti \textit{bounds}, \textit{copyrights}, dan \textit{legs}. Jika melihat bagian \textit{legs} yang menampung atribut-atribut jalan yang ditempuh, ada {\it distance}, {\it duration}, {\it end\_location}, {\it html\_instructions}, {\it maneuver}, {\it polyline}, {\it start\_location}, dan \textit{travel\_mode}. Dari beberapa atribut dari \textit{legs}, yang dapat digunakan adalah \textit{end\_location} dan \textit{start\_location}, yang menunjuk kepada posisi garis lintang dan garis bujur titik ujung dari jalan yang sedang ditempuh. 
 
 \subsection{Cara Memanfaatkan Atribut}
@@ -73,4 +102,4 @@ Setelah memperoleh nilai \textit{end\_location} dan \textit{start\_location}, ja
 %https://www.geeksforgeeks.org/haversine-formula-to-find-distance-between-two-points-on-a-sphere/
 
 \section{Cara Memanfaatkan \textit{Step Detector} Sensor}
-Untuk membuat animasi atau perubahan pemandangan sesuai rute tempuh yang sudah diperoleh, harus ada perubahan gambar sesuai langkah kaki yang diambil pengguna. Jadi, setiap kali sensor mendapat rangsang, \textit{event} yang dipicu agar terjadi adalah gambar berubah seperti yang dijelaskan pada Subbab \ref{subs:directions-attr-use}, tetapi perubahan gambar \textit{StreetView} yang sesuai \textit{Directions API} harus berubah dengan tahap yang benar agar animasi pemandangan terlihat mulus.
+Untuk membuat animasi atau perubahan pemandangan sesuai rute tempuh yang sudah diperoleh, harus ada perubahan gambar sesuai langkah kaki yang diambil pengguna. Jadi, setiap kali sensor mendapat rangsang, \textit{event} yang dipicu agar terjadi adalah gambar berubah seperti yang dijelaskan pada Subbab \ref{subs:directions-attr-use}, tetapi perubahan gambar \textit{StreetView} yang sesuai \textit{Directions API} harus berubah dengan tahap yang benar agar animasi pemandangan terlihat baik sesuai dengan rute.

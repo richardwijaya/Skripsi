@@ -1,0 +1,39 @@
+\chapter{Rancangan}
+\label{chap:rancangan}
+Bab ini menjelaskan perancangan aplikasi, termasuk algoritma-algoritma untuk mengolah \textit{Google StreetView API}, \textit{Google Directions API}, serta modifikasi yang dilakukan pada aplikasi HelloVR untuk membangun aplikasi \textit{jogging} virtual. 
+
+
+\section{Mengolah \textit{Google StreetView API}} 
+
+Sebelum mengolah gambar \textit{StreetView API}, empat gambar dari empat pandangan haruslah diunduh terlebih dahulu menggunakan HTTP/HTTPS. Setelah semua gambar itu terunduh, semua gambar itu disatukan, menjadi satu gambar untuk menjadi tekstur bangun ruang silinder. Algoritma yang digunakan untuk menyatukan gambar-gambar \textit{StreetView} tersebut adalah:
+
+Gambar yang sudah disatukan itu akan disimpan dalam \textit{cache} perangkat. 
+
+\section{Mengolah \textit{Google Directions API}}
+
+Setelah \textit{file} JSON dari \textit{Directions API}, file itu diunduh ke \textit{cache} perangkat.  
+
+
+
+
+
+\section{Modifikasi Aplikasi HelloVR}
+
+Ada beberapa bagian aplikasi HelloVR yang dapat dimodifikasi untuk membuat aplikasi
+
+\subsection{Mengubah Isi \textit{Folder Assets}}
+Menghapus semua \textit{file-file} OBJ dari objek-objek dari aplikasi HelloVR beserta tekstur-teksturnya. 
+
+Mengganti \textit{file} CubeRoom.obj dengan file OBJ dari bangun ruang silinder dengan nama Room.obj.
+
+Menghapus \textit{file} tekstur {CubeRoom\_BakedDiffuse.png}, menggantinya dengan gambar \textit{StreetView} yang sudah disatukan.
+
+\subsection{Menambahkan Kelas \textit{StreetViewLoader} dan \textit{DirectionsViewLoader}}
+Kelas \textit{StreetViewLoader} adalah kelas digunakan untuk mengunduh dan mengolah gambar-gambar \textit{StreetView} untuk menghasilkan gambar yang akan dijadikan tekstur bangun ruang silinder. 
+
+Kelas \textit{DirectionsViewLoader} adalah kelas yang digunakan untuk mengunduh file JSON yang berisi rute perjalanan sesuai masukan pengguna. 
+
+\subsection{Rancangan Kelas setelah Modifikasi}
+
+Setelah modifikasi yang dilakukan, rancangan kelas dari aplikasi \textit{jogging} virtual adalah:
+
