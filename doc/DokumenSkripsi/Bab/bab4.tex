@@ -3,37 +3,44 @@
 Bab ini menjelaskan perancangan aplikasi, termasuk algoritma-algoritma untuk mengolah \textit{Google StreetView API}, \textit{Google Directions API}, serta modifikasi yang dilakukan pada aplikasi HelloVR untuk membangun aplikasi \textit{jogging} virtual. 
 
 
-\section{Mengolah \textit{Google StreetView API}} 
+\section{Rancangan Antarmuka}
+Aplikasi terdiri atas dua halaman utama, yaitu halaman utama dan halaman VR.
 
+\subsection{Halaman Utama}
+Halaman utama adalah halaman yang dapat menerima masukan pengguna, yaitu lokasi asal dan lokasi tujuan saat berlari. Lalu, ada satu tombol untuk memicu munculnya halaman kedua. 
+
+\subsection{Halaman VR}
+Halaman VR adalah halaman yang muncul ketika pengguna sedang berlari. Tampilan \textit{Google Cardboard} VR muncul untuk menampilkan pemandangan di luar. 
+
+
+
+\section{Rancangan Program}
+Subbab ini akan menjelaskan rancangan  program, mulai dari rancangan kelas dan algoritma-algoritma yang digunakan pada \textit{method-method} yang penting. 
+
+\subsection{Rancangan Kelas}
+Rancangan kelas dari aplikasi akan menggunakan seluruh bagian pada Aplikasi HelloVR dan beberapa tambahan kelas. 
+
+
+\subsection{Algoritma-Algoritma yang digunakan}
+Ada beberapa algoritma yang digunakan   untuk melakukan beberapa proses seperti mengolah \textit{Google StreetView API},\textit{Google Directions API}, dan menampilkan .
+
+\subsubsection{Mengolah \textit{Google StreetView API}} 
 Sebelum mengolah gambar \textit{StreetView API}, empat gambar dari empat pandangan haruslah diunduh terlebih dahulu menggunakan HTTP/HTTPS. Setelah semua gambar itu terunduh, semua gambar itu disatukan, menjadi satu gambar untuk menjadi tekstur bangun ruang silinder. Algoritma yang digunakan untuk menyatukan gambar-gambar \textit{StreetView} tersebut adalah:
 
 Gambar yang sudah disatukan itu akan disimpan dalam \textit{cache} perangkat. 
 
-\section{Mengolah \textit{Google Directions API}}
+\subsubsection{Mengolah \textit{Google Directions API}}
+Setelah \textit{file} JSON dari \textit{Directions API}, file itu diunduh ke \textit{cache} perangkat.
 
-Setelah \textit{file} JSON dari \textit{Directions API}, file itu diunduh ke \textit{cache} perangkat.  
-
-
-
-
-
-\section{Modifikasi Aplikasi HelloVR}
-
-Ada beberapa bagian aplikasi HelloVR yang dapat dimodifikasi untuk membuat aplikasi
-
-\subsection{Mengubah Isi \textit{Folder Assets}}
-Menghapus semua \textit{file-file} OBJ dari objek-objek dari aplikasi HelloVR beserta tekstur-teksturnya. 
-
-Mengganti \textit{file} CubeRoom.obj dengan file OBJ dari bangun ruang silinder dengan nama Room.obj.
-
-Menghapus \textit{file} tekstur {CubeRoom\_BakedDiffuse.png}, menggantinya dengan gambar \textit{StreetView} yang sudah disatukan.
-
-\subsection{Menambahkan Kelas \textit{StreetViewLoader} dan \textit{DirectionsViewLoader}}
 Kelas \textit{StreetViewLoader} adalah kelas digunakan untuk mengunduh dan mengolah gambar-gambar \textit{StreetView} untuk menghasilkan gambar yang akan dijadikan tekstur bangun ruang silinder. 
 
-Kelas \textit{DirectionsViewLoader} adalah kelas yang digunakan untuk mengunduh file JSON yang berisi rute perjalanan sesuai masukan pengguna. 
+Kelas \textit{DirectionsViewLoader} adalah kelas yang digunakan untuk mengunduh file JSON yang berisi rute perjalanan sesuai masukan pengguna.
 
-\subsection{Rancangan Kelas setelah Modifikasi}
+\section{\textit{Folder Assets}}
+Menghapus \textit{file-file} dari aplikasi HelloVR. 
 
-Setelah modifikasi yang dilakukan, rancangan kelas dari aplikasi \textit{jogging} virtual adalah:
+Mengganti CubeRoom.obj dengan file OBJ dengan bangun ruang silinder.
+
+Mengganti file CubeRoom_BakedDiffuse.png, menggantinya dengan gambar \textit{StreetView} yang sudah disatukan. 
+
 

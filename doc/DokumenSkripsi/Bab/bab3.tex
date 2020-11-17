@@ -92,6 +92,146 @@ Untuk mendapatkan rute perjalanan, \textit{Directions API} dapat dimanfaatkan ~\
 \subsection{Menentukan Atribut yang akan Digunakan}
 \textit{File} JSON yang dihasilkan memiliki beberapa tingkat \textit{key} dan \textit{value}. Pada tingkat pertama, ada tiga \textit{key}: \textit{geocoded\_waypoints}, \textit{status} dan \textit{routes}. \textit{Key} yang dapat digunakan adalah \textit{routes} yang menunjukkan jalan yang akan ditempuh. Pada tingkat berikutnya, \textit{key routes} memiliki \textit{value} seperti \textit{bounds}, \textit{copyrights}, dan \textit{legs}. Jika melihat bagian \textit{legs} yang menampung atribut-atribut jalan yang ditempuh, ada {\it distance}, {\it duration}, {\it end\_location}, {\it html\_instructions}, {\it maneuver}, {\it polyline}, {\it start\_location}, dan \textit{travel\_mode}. Dari beberapa atribut dari \textit{legs}, yang dapat digunakan adalah \textit{end\_location} dan \textit{start\_location}, yang menunjuk kepada posisi garis lintang dan garis bujur titik ujung dari jalan yang sedang ditempuh. 
 
+\begin{lstlisting}[caption={Atribut \textit{legs} dari \textit{Directions API}},label={list:directions_legs},language=java]
+         "legs" : [
+            {
+               "distance" : {
+                  "text" : "3.0 km",
+                  "value" : 2980
+               },
+               "duration" : {
+                  "text" : "35 mins",
+                  "value" : 2116
+               },
+               "end_address" : "Jl. Ir. H. Juanda No.100, Lebakgede...",
+               "end_location" : {
+                  "lat" : -6.893148,
+                  "lng" : 107.6131791
+               },
+               "start_address" : "Jl. Ciumbuleuit No.94, Hegarmanah...",
+               "start_location" : {
+                  "lat" : -6.8746719,
+                  "lng" : 107.6046127
+               },
+               "steps" : [
+                  {
+                     "distance" : {
+                        "text" : "1.0 km",
+                        "value" : 1008
+                     },
+                     "duration" : {
+                        "text" : "11 mins",
+                        "value" : 667
+                     },
+                     "end_location" : {
+                        "lat" : -6.8833328,
+                        "lng" : 107.6049108
+                     },
+                     "html_instructions" : "Head \u003cb\u003esouth...",
+                     "polyline" : {
+                        "points" : "tu}h@yowoSdAP|AL`Cb@dAHHBvC..."
+                     },
+                     "start_location" : {
+                        "lat" : -6.8746719,
+                        "lng" : 107.6046127
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "1.1 km",
+                        "value" : 1078
+                     },
+                     "duration" : {
+                        "text" : "14 mins",
+                        "value" : 834
+                     },
+                     "end_location" : {
+                        "lat" : -6.885218399999999,
+                        "lng" : 107.6137497
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eleft\u003c/b...",
+                     "maneuver" : "turn-left",
+                     "polyline" : {
+                        "points" : "xk_i@uqwoSCEAECKAM?K?E?..."
+                     },
+                     "start_location" : {
+                        "lat" : -6.8833328,
+                        "lng" : 107.6049108
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "0.9 km",
+                        "value" : 884
+                     },
+                     "duration" : {
+                        "text" : "10 mins",
+                        "value" : 603
+                     },
+                     "end_location" : {
+                        "lat" : -6.893140799999999,
+                        "lng" : 107.6130843
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eright...",
+                     "maneuver" : "turn-right",
+                     "polyline" : {
+                        "points" : "rw_i@}hyoSzCLlAHz@Bd@@fB@tBDfABR@L..."
+                     },
+                     "start_location" : {
+                        "lat" : -6.885218399999999,
+                        "lng" : 107.6137497
+                     },
+                     "travel_mode" : "WALKING"
+                  },
+                  {
+                     "distance" : {
+                        "text" : "10 m",
+                        "value" : 10
+                     },
+                     "duration" : {
+                        "text" : "1 min",
+                        "value" : 12
+                     },
+                     "end_location" : {
+                        "lat" : -6.893148,
+                        "lng" : 107.6131791
+                     },
+                     "html_instructions" : "Turn \u003cb\u003eleft\u003c...",
+                     "maneuver" : "turn-left",
+                     "polyline" : {
+                        "points" : "biai@wdyoS@S"
+                     },
+                     "start_location" : {
+                        "lat" : -6.893140799999999,
+                        "lng" : 107.6130843
+                     },
+                     "travel_mode" : "WALKING"
+                  }
+               ],
+               "traffic_speed_entry" : [],
+               "via_waypoint" : []
+            }
+         ],
+         "overview_polyline" : {
+            "points" : "tu}h@yowoSdAP|AL`Cb@dAH`Dd@~Bd@hG..."
+         },
+         "summary" : "Jl. Ciumbuleuit, Jl. Siliwangi...",
+         "warnings" : [
+            "Walking directions are in beta. Use caution..."
+         ],
+         "waypoint_order" : []
+      }
+   ],
+   "status" : "OK"
+}
+\end{lstlisting}
+
+Listing \ref{list:directions_legs} menunjukkan atribut \textit{legs} dari hasil JSON \textit{Directions}.
+
+
+
 \subsection{Cara Memanfaatkan Atribut}
 \label{subs:directions-attr-use}
 Setelah memperoleh nilai \textit{end\_location} dan \textit{start\_location}, jalur tempuh pada jalan yang sedang ditempuh dapat ditentukan lewat posisi garis lintang dan garis bujur kedua titik ujung jalan. Cara untuk membentuk jalan secara matematis adalah menggunakan selisih antara garis lintang dan garis bujur satu titik ujung jalan ke titik ujung jalan lain. 
@@ -102,4 +242,4 @@ Setelah memperoleh nilai \textit{end\_location} dan \textit{start\_location}, ja
 %https://www.geeksforgeeks.org/haversine-formula-to-find-distance-between-two-points-on-a-sphere/
 
 \section{Cara Memanfaatkan \textit{Step Detector} Sensor}
-Untuk membuat animasi atau perubahan pemandangan sesuai rute tempuh yang sudah diperoleh, harus ada perubahan gambar sesuai langkah kaki yang diambil pengguna. Jadi, setiap kali sensor mendapat rangsang, \textit{event} yang dipicu agar terjadi adalah gambar berubah seperti yang dijelaskan pada Subbab \ref{subs:directions-attr-use}, tetapi perubahan gambar \textit{StreetView} yang sesuai \textit{Directions API} harus berubah dengan tahap yang benar agar animasi pemandangan terlihat baik sesuai dengan rute.
+Untuk membuat animasi atau perubahan pemandangan sesuai rute tempuh yang sudah diperoleh, harus ada perubahan gambar sesuai langkah kaki yang diambil pengguna. Jadi, setiap kali sensor mendapat rangsang, \textit{event} yang dipicu agar terjadi adalah gambar berubah seperti yang dijelaskan pada Subbab \ref{subs:directions-attr-use}, tetapi perubahan gambar \textit{StreetView} yang sesuai \textit{Directions API} harus berubah dengan tahap yang benar agar animasi pemandangan terlihat baik sesuai dengan rute. 
