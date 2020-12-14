@@ -1,0 +1,57 @@
+\chapter{Implementasi dan Pengujian}
+
+Pada bab ini akan dijelaskan mengenai implementasi, pengujian, dan masalah yang dihadapi. 
+
+\section{Implementasi}
+Aplikasi dikembangkan dengan Android Studio, dengan sebuah \textit{laptop} . Aplikasi dijalankan pada x buah ponsel Android.
+
+\subsection{Lingkunan Implementasi}
+Berikut adalah spesifikasi \textit{laptop} dan kakas yang digunakan untuk implementasi:
+
+\begin{enumerate}
+	\item \textit{Processor} : Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz.
+	
+	\item RAM : 16.0 GB (15.9 GB usable).
+	
+	\item Versi Android Studio : 4.1.1
+	
+	\item Google VR for Android : 1.190
+\end{enumerate}
+
+Berikut adalah spesifikasi ponsel Android yang digunakan untuk implementasi:
+
+\begin{enumerate}
+	\item Processor : Qualcomm Snapdragon 835
+	
+	\item Sistem Operasi : Android 9.0 (Pie)
+	
+	\item Sensor yang dimiliki : Accelerometer, gyroscope, magnetometer, step detector.  
+\end{enumerate}
+
+\subsection{Hasil Implementasi}
+Yang dihasilkan dari implementasi ini adalah aplikasi VR untuk berlari. Aplikasi dapat diperoleh di Google Play Store dan dapat di-\textit{install} pada gawai dengan sistem operasi Android. 
+
+\subsubsection{Tampilan Awal Aplikasi ketika Dibuka}
+Saat aplikasi dibuka pertama kali, aplikasi akan menampilkan dua buah \textit{textbox} dan sebuah tombol yang bertuliskan "\textit{Start Running}". 
+
+\subsubsection{Tampilan Ketika Tombol Ditekan dengan \textit{Textbox} dalam Keadaan Kosong}
+Ketika pengguna menekan tombol "\textit{Start Running}" dan keadaan salah satu \textit{textbox} kosong, akan ada \textit{Toast} yang memberikan pesan bahwa \textit{textbox} tidak boleh ada dalam keadaan kosong.
+
+\subsubsection{Aplikasi saat Pengguna Berlari}
+Setelah memasukkan masukan lokasi asal dan tujuan yang benar lewat dua \textit{textbox}, aplikasi akan menampilkan dunia VR dengan pemandangan sesuai dengan lokasi asal, dan pemandangan akan berubah sesuai langkah kaki pengguna. 
+
+
+
+\section{Pengujian}
+
+
+
+\section{Masalah yang Dihadapi}
+Adapun masalah-masalah yang dihadapi dalam proses pengembangan aplikasi adalah sebagai berikut:
+
+\begin{enumerate}
+	\item Munculnya galat pada saat mencoba menggambar ulang bangun ruang silinder dengan tekstur baru. Galat tersebut adalah pemanggilan \textit{OpenGL renderer} pada \textit{thread} yang tidak memiliki \textit{context}. 
+	
+	\item Galat saat meng-\textit{update} Gradle yang membuat kemajuan pengembangan aplikasi terhambat. 
+\end{enumerate}
+
