@@ -8,7 +8,7 @@ Aplikasi yang akan dibangun terdiri atas dua halaman utama, yaitu halaman utama 
 
 \subsection{Halaman Utama}
 \label{subs:main-page}
-Halaman utama adalah halaman yang ditampilkan pertama kali saat pengguna membuka aplikasi dengan \textit{portrait layout}. Fungsi halaman ini adalah menerima masukan pengguna, yaitu lokasi asal dan lokasi tujuan saat berlari, serta memicu halaman kedua, yaitu halaman VR. Ada tiga komponen utama dari halaman ini, yaitu dua buah \textit{textbox} dan sebuah tombol. Gambar \ref{fig:main-page} menggambarkan tampilan halaman utama.  
+Halaman utama adalah halaman yang ditampilkan pertama kali saat pengguna membuka aplikasi dengan \textit{portrait layout}. Fungsi halaman ini adalah menerima masukan pengguna, yaitu lokasi asal dan lokasi tujuan saat berlari, serta memicu halaman kedua, yaitu halaman VR. Ada tiga komponen utama dari halaman ini, yaitu dua buah \textit{textbox} dan sebuah tombol. Satu \textit{textbox} adalah \textit{textbox} "\textit{origin}", dan \textit{textbox} yang lain adalah \textit{textbox} "\textit{destination}". Gambar \ref{fig:main-page} menggambarkan tampilan halaman utama.  
 
 \begin{figure}[!hp]
   \centering
@@ -25,9 +25,11 @@ Halaman utama adalah halaman yang ditampilkan pertama kali saat pengguna membuka
 \end{figure}
 
 
+\subsubsection{\textit{Textbox Origin}} 
+\textit{Textbox} adalah komponen pada antarmuka yang menerima masukan pengguna yang berupa tulisan atau \textit{string}. \textit{Textbox} "\textit{origin}" akan menerima masukan pengguna yang merupakan lokasi asal dari rute lari.
 
-\subsubsection{\textit{Textbox}} 
-\textit{Textbox} adalah komponen pada antarmuka yang menerima masukan pengguna yang berupa tulisan atau \textit{string}. Ada dua buah \textit{textbox} pada halaman utama ini. \textit{Textbox} pertama akan menerima masukan pengguna yang merupakan lokasi asal dari rute lari, dan \textit{textbox} kedua akan menerima masukan berupa lokasi tujuan dari rute lari yang diinginkan pengguna.   
+\subsubsection{\textit{Textbox Destination}}
+\textit{Textbox Destination} adalah \textit{textbox} kedua dan berada di bawah \textit{textbox origin}  akan menerima masukan berupa lokasi tujuan dari rute lari yang dimasukkan pengguna.   
 
 \subsubsection{Tombol ``\textit{Start Running}''}
 Tombol "\textit{Start Running}" adalah tombol yang akan memicu halaman VR yang sesuai dengan informasi dari dua \textit{textbox} di atas ketika ditekan. Tombol ini berada di bawah \textit{destination textbox}.
@@ -250,9 +252,42 @@ Gambar \ref{fig:streetview-flowchart} menggambarkan proses-proses pemanggilan St
 \subsubsection{Algoritma Memanfaatkan \textit{Google Directions API}}
 \textit{Directions API} adalah \textit{API} yang menggunakan protokol HTTP/HTTPS dan menghasilkan keluaran dalam bentuk JSON. Untuk memuat JSON berisi rute perjalanan dari asal sampai tujuan, pemanggilan \textit{Directions API} harus dilakukan melalui HTTP/HTTPS. Setelah  JSON dari rute lari diperoleh dari \textit{Directions API}, JSON rute disimpan di \textit{cache} perangkat pengguna.
 
-Setelah JSON disimpan dalam \textit{file}, JSON rute lari dapat digunakan dengan membaca atribut dan nilai-nilainya sesuai kebutuhan. Beberapa nilai atribut dalam JSON ini  berupa JSON \textit{object}, ada yang berupa JSON \textit{array}. Karena hal ini,  \textit{parsing} dari JSON ini harus dilakukan sesuai dengan ketentuan tersebut. 
+\begin{algorithm}
+	\caption{Algoritma Pemrosesan JSON dari \textit{Directions API}}
+	\label{alg:algoritma-directions}
+	\begin{algorithmic}[1]
+	\Function{processJSONDirections}{$originLoc$,$destLoc$}
+		\State $dirText \gets getJSONFromDirAPI(originLoc,destLoc)$ 
+		
+		\State $dirJSON \gets toJSON(dirText)$	
+		
+		\State $jsonRoute \gets dirJSON.getJSONObject("routes")$
+		
+		\State $jsonArrLegs \gets jsonRoute.getJSONArray("legs")$
 
-Karena 
+		\State $processedJSONObj \gets {}$		
+		
+		\For $ elements in jsonArrLegs$
+		\State $jsonLegs \gets element.getJSONObject("legs") $
+
+		\State $jsonArrSteps \gets jsonLegs.getJSONArray("steps")$		
+		
+		\State Insert all elements from $jsonArrSteps$ to $processedJSONObject$ 
+			
+		
+		\EndFor
+%		\State $lastT \gets currT$
+%		
+%		\If {hill and valley time values has been set \textbf{AND} all condition have been met}
+%			\Return $true$
+%		\Else {
+%			\Return $false$}
+%		\EndIf
+	\EndFunction  
+	\end{algorithmic}
+\end{algorithm}
+
+Setelah JSON disimpan dalam \textit{file}, JSON rute lari dapat digunakan dengan membaca atribut dan nilai-nilainya sesuai kebutuhan. Beberapa nilai atribut dalam JSON ini  berupa JSON \textit{object}, ada yang berupa JSON \textit{array}. Karena hal ini,  \textit{parsing} dari JSON ini harus dilakukan sesuai dengan ketentuan tersebut. 
 
 
 %\section{\textit{Folder Assets}}
