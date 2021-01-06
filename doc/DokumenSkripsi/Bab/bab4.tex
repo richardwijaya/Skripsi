@@ -12,16 +12,8 @@ Halaman utama adalah halaman yang ditampilkan pertama kali saat pengguna membuka
 
 \begin{figure}[!hp]
   \centering
-  \begin{subfigure}[b]{0.3\textwidth}
-    \includegraphics[width=\textwidth]{Gambar/main-page.png}
-    \caption{\textit{Activity} utama aplikasi}\label{fig:main-page}
-  \end{subfigure}
-  \hfill
-  \begin{subfigure}[b]{0.3\textwidth}
-    \includegraphics[width=\textwidth]{Gambar/cardboard-page.png}
-    \caption{Tampilan \textit{Google Cardboard} sebelum gawai diputar}
-    \label{fig:cardboard-page}
-  \end{subfigure}
+    \includegraphics[scale=0.7]{Gambar/mockup-main-activity.png}
+    \caption{Rancangan \textit{Activity} utama aplikasi}\label{fig:main-page}
 \end{figure}
 
 
@@ -41,8 +33,8 @@ Halaman ini dimunculkan ketika mengakses \textit{Google Cardboard}. Untuk menuju
 
 \begin{figure}[h]
 	\centering
-		\includegraphics[scale=0.4]{Gambar/vr-page.png}
-	\caption{Halaman VR dari aplikasi}
+		\includegraphics[scale=0.7]{Gambar/mockup-vr-page.png}
+	\caption{Rancangan Halaman VR}
 	\label{fig:vr-page}
 \end{figure}
 
@@ -249,12 +241,12 @@ Ada beberapa algoritma yang digunakan   untuk melakukan beberapa proses seperti 
 Gambar \ref{fig:streetview-flowchart} menggambarkan proses-proses pemanggilan StreetView API. Peubah \textit{x} pada \textit{flowchart} menunjuk pada nilai \textit{heading} dari gambar yang akan diperoleh, sedangkan peubah \textit{y} merupakan selisih derajat dari satu gambar ke gambar yang lain. Nilai 360 menunjuk pada 360 derajat dalam satu putaran. Untuk mendapatkan pemandangan yang sekeliling yang penuh, gambar dari setiap derajat ke-\textit{x} selama nilai \textit{x} masih bernilai lebih kecil dari 360. Setelah gambar-gambar  itu sudah diperoleh dari \textit{StreetView API}, gambar-gambar tersebut harus disatukan, barulah gambar itu bisa digunakan sesuai kebutuhan.
 
 
-\subsubsection{Algoritma Memanfaatkan \textit{Google Directions API}}
-\textit{Directions API} adalah \textit{API} yang menggunakan protokol HTTP/HTTPS dan menghasilkan keluaran dalam bentuk JSON. Untuk memuat JSON berisi rute perjalanan dari asal sampai tujuan, pemanggilan \textit{Directions API} harus dilakukan melalui HTTP/HTTPS. Setelah  JSON dari rute lari diperoleh dari \textit{Directions API}, JSON rute disimpan di \textit{cache} perangkat pengguna.
+\subsubsection{Pemanfaatan \textit{Google Directions API}}
+\textit{Directions API} adalah \textit{API} yang menggunakan protokol HTTP/HTTPS dan menghasilkan keluaran dalam bentuk JSON. Untuk memuat JSON berisi rute perjalanan dari asal sampai tujuan, pemanggilan \textit{Directions API} harus dilakukan melalui HTTP/HTTPS.
 
 \begin{algorithm}
-	\caption{Algoritma Pemrosesan JSON dari \textit{Directions API}}
-	\label{alg:algoritma-directions}
+	\caption{Algoritma Mengunduh JSON dari \textit{Directions API} dan \textit{Parsing}}
+	\label{alg:algoritma-directions-parsing}
 	\begin{algorithmic}[1]
 	\Function{processJSONDirections}{$originLoc$,$destLoc$}
 		\State $dirText \gets getJSONFromDirAPI(originLoc,destLoc)$ 
@@ -265,7 +257,7 @@ Gambar \ref{fig:streetview-flowchart} menggambarkan proses-proses pemanggilan St
 		
 		\State $jsonArrLegs \gets jsonRoute.getJSONArray("legs")$
 
-		\State $processedJSONObj \gets {}$		
+		\State Declare Array$processedJSONObj$		
 		
 		\For $ elements in jsonArrLegs$
 		\State $jsonLegs \gets element.getJSONObject("legs") $
@@ -287,8 +279,14 @@ Gambar \ref{fig:streetview-flowchart} menggambarkan proses-proses pemanggilan St
 	\end{algorithmic}
 \end{algorithm}
 
-Setelah JSON disimpan dalam \textit{file}, JSON rute lari dapat digunakan dengan membaca atribut dan nilai-nilainya sesuai kebutuhan. Beberapa nilai atribut dalam JSON ini  berupa JSON \textit{object}, ada yang berupa JSON \textit{array}. Karena hal ini,  \textit{parsing} dari JSON ini harus dilakukan sesuai dengan ketentuan tersebut. 
+Setelah JSON rute diperoleh, JSON rute lari dapat digunakan dengan membaca atribut dan nilai-nilainya sesuai kebutuhan. Beberapa nilai atribut dalam JSON ini  berupa JSON \textit{object}, ada yang berupa JSON \textit{array}. Karena hal ini,  \textit{parsing} dari JSON ini harus dilakukan sesuai dengan ketentuan tersebut. Algoritma \textit{parsing} dari JSON \textit{Directions} dipaparkan pada \ref{alg:algoritma-directions-parsing}. 
 
+Setelah JSON dari \textit{Directions API} diunduh, \textit{parsing} adalah langkah selanjutnya untuk mengambil informasi yang dibutuhkan. Karena bagian \textit{steps} yang harus diambil, 
+
+\subsubsection{Pemanfaatan Sensor \textit{Step Detector}}
+Sensor \textit{step detector} digunakan untuk mendeteksi langkah kaki pengguna. Untuk membentuk skenario yang tepat untuk memungkinkan perubahan pemandangan yang sudah ditangani oleh \textit{StreetView} dan \textit{Directions API}, waktu perubahan dari pemandangan itulah yang harus ditangani. Sensor \textit{step detectorlah} yang akan menangani bagian waktu perubahan pemandangan. 
+
+Sebuah peubah bertipe numerik (\textit{integer}) yang menandakan \textit{progress} perjalanan pelari, lalu harus ada sebuah konstan yang menyatakan jarak dari satu langkah. Saat sensor \textit{step detector} mendeteksi adalah sebuah langkah kaki, peubah dari \textit{progress} akan ditambahkan dengan nilai konstan jarak satu langkah kaki. Jika nilai peubah \textit{progress} sudah sampai  jarak tertentu, pemandangan akan berubah, sesuai dengan \textit{Directions API}. 
 
 %\section{\textit{Folder Assets}}
 %
