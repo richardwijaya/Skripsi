@@ -19,7 +19,7 @@ Google VR SDK adalah alat bantu berlisensi Apache 2.0 yang disediakan Google pad
 	\label{fig:gvr-dir}
 \end{figure}
 
-Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{package} \texttt{com.google.vr.sdk.base} agar dapat digunakan pengembang perangkat lunak untuk membuat aplikasi VR ~\cite{google-vr-sdk}. Berikut adalah beberapa \textit{class} dan \textit{interface} dari \textit{package} \texttt{com.google.vr.sdk.base}:
+Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{package} \texttt{com.google.vr.sdk.base} agar dapat digunakan pengembang perangkat lunak untuk membuat aplikasi VR ~\cite{google-vr-sdk}. \textit{Library} ini juga memanfaatkan \textit{OpenGl}, yaitu \textit{API} untuk mengolah grafika komputer. Berikut adalah beberapa \textit{class} dan \textit{interface} dari \textit{package} \texttt{com.google.vr.sdk.base}:
 
 	\begin{enumerate}
 		\item \texttt{GvrView.StereoRenderer}
@@ -70,7 +70,6 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 					\item \texttt{EGLConfig config}: Konfigurasi EGL yang digunakan untuk membuat permukaan dunia VR.
 				\end{itemize}
 			\end{itemize}					
-		
 		\item \texttt{AndroidCompat}
 		
 		\textit{Utility class} yang disediakan Android untuk menggunakan fitur-fitur VR.  
@@ -92,17 +91,16 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 				\item \texttt{public static boolean trySetVrModeEnabled (Activity activity, boolean enabled)}
 				
 				Sets the appropriate "VR mode" setting for an Activity. Parameter yang dimiliki 
-			\end{itemize}					
-				
+			\end{itemize}				
 		
 		\item \texttt{Eye}
 		
 		\textit{Class} yang mendefinisikan rincian \textit{rendering} stereo dari satu \textit{eye}. 
 			\begin{itemize}
-				\item \texttt{public float[] getEyeView ()}
+				\item \texttt{public float[] getEyeView()}
 				
 				\textit{Method} untuk menghasilkan matriks dari kamera ke \textit{eye}.
-				\item \texttt{public FieldOfView getFov ()}
+				\item \texttt{public FieldOfView getFov()}
 				
 				\textit{Method} yang mengembalikan pemandangan untuk satu \textit{eye}.
 				\item \texttt{public float[] getPerspective (float zNear, float zFar)}
@@ -111,15 +109,16 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 			\end{itemize}
 		
 		\item \texttt{GvrActivity}
+		
 		\textit{Activity} dasar yang mudah diintegrasikan dengan perangkat Google VR. 
 			\begin{itemize}
-				\item \texttt{public void onBackPressed ()}
+				\item \texttt{public void onBackPressed()}
 				
 				\textit{Method} yang dipanggil ketika tombol kembali ditekan.
-				\item \texttt{public void onCardboardTrigger ()}
+				\item \texttt{public void onCardboardTrigger()}
 				
 				\textit{Method} yang dipanggil ketika pemicu \textit{Cardboard} ditekan.
-				\item \texttt{public void setGvrView (GvrView gvrView)}
+				\item \texttt{public void setGvrView(GvrView gvrView)}
 				
 				\textit{Method} untuk menentukan \texttt{GvrView} pada \textit{activity}. Parameter yang diterima oleh \textit{method} ini adalah:
 				
@@ -127,40 +126,67 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 					\item \texttt{GvrView gvrView}
 					
 					Objek \texttt{GvrView} yang akan digunakan \textit{activity}.
-				\end{itemize}				
+				\end{itemize}			
 			\end{itemize}	 
 		
 		\item \texttt{GvrView}
 		
-		\textit{Class} dari \textit{view} yang mendukung VR dari Google. \textit{Method}-\textit{method} yang dimiliki \textit{class} ini adalah:
+		\textit{Class} dari \textit{view} yang mendukung VR \textit{rendering} dari Google. \textit{Method}-\textit{method} yang dimiliki \textit{class} ini adalah:
 		
-		\begin{itemize}
-			\item \texttt{public void setEGLConfigChooser (int redSize, int greenSize, int blueSize, int alphaSize, int depthSize, int stencilSize)}
+		\begin{itemize}			
+			\item \texttt{public void  setTransitionViewEnabled(boolean enabled)}
 			
+			\textit{Method} yang menentukan apakah \textit{view} transisi yang menginformasikan pengguna untuk memasukkan gawai ke dalam VR \textit{viewer} dimunculkan atau tidak. Paramter yang dimiliki \textit{method} ini adalah:
+			
+			\begin{itemize}
+				\item \texttt{boolean enabled}
+				
+				Nilai \textit{boolean} yang menyatakan apakah \textit{view} transisi dimunculkan atau tidak. 
+			\end{itemize}
+			
+			\item \texttt{public void setRenderer(GvrView.StereoRenderer renderer)}
+			
+			\textit{Method} yang menyatakan \textit{StereoRenderer} dari objek \texttt{GvrView}.
+			
+			\item \texttt{public void enableCardboardTriggerEmulation()}
+			
+			\textit{Method} yang membuat \textit{Daydream headset} menjadi mampu memberikan masukan \textit{Cardboard trigger}.
 			
 		\end{itemize}
-		
-		\textit{View} yang mendukung \textit{rendering} VR.		
+			
 		\item \texttt{HeadTransform}
 		
-		\textit{Class} yang mendefinisikan perubahan posisi kepala pengguna terhadap dunia VR.
+		\textit{Class} yang mendefinisikan perubahan posisi kepala pengguna terhadap lingkungan VR.
 		
 		\begin{itemize}
-			\item \texttt{public void getEulerAngles (float[] eulerAngles, int offset)}
-			
-			\item \texttt{public void getForwardVector (float[] forward, int offset)}
-
 			\item \texttt{public void getHeadView (float[] headView, int offset)}
+			\textit{Method} yang mengacu pada matriks transformasi dari \textit{camera} ke kepala. Parameter yang dimiliki \textit{method} ini adalah:			
 			
-			\item \texttt{public void getQuaternion (float[] quaternion, int offset)}
-			\item \texttt{public void getRightVector (float[] right, int offset)}
+			\begin{itemize}
+				\item \texttt{float[] headView}
+				Matriks $4\times4$ yang menyatakan matriks transformasi dari \textit{camera} menuju kepala. 
+				
+				\item \texttt{int offset}	
+				
+				\textit{Offset} dari \textit{array} tempat data disimpan.		
+			\end{itemize}	
 			
-			\item \texttt{public void getTranslation (float[] translation, int offset)}
+			\item \texttt{public void getQuaternion (float[] quaternion, int offset)}. 
 			
-			\item \texttt{public void getUpVector (float[] up, int offset)}
-		\end{itemize}			
+			\textit{Method} yang mengacu pada matriks \textit{quaternion} yang merepresentasikan transformasi dari putaran kepala. Parameter yang dimiliki \textit{method} ini adalah:
+			
+			\begin{itemize}
+				\item \texttt{float[] quaternion}
+				
+				Matriks quartenion yang menyatakan transformasi.
+				
+				\item \texttt{int offset}				
+				\textit{Offset} dari \textit{array} tempat data disimpan.
+			\end{itemize}
+		\end{itemize}
 		
 		\item \texttt{Viewport}
+		
 		\textit{Class} yang mendefinisikan \textit{viewport} berbentuk persegi panjang. 
 		
 		Atribut-atribut yang dimiliki kelas ini adalah sebagai berikut:
@@ -168,23 +194,28 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 		\begin{itemize}
 			\item \texttt{public int height}
 			
+			Tinggi dari \textit{viewport}.
+			
 			\item \texttt{public int width}
+			Lebar dari \textit{viewport}.			
 			
 			\item \texttt{public int x}
 			
+			Koordinat sumbu x titik pada \textit{viewport}, dengan koordinat (0,0) berada pada sudut kiri bawah.
+			
 			\item \texttt{public int y}
+			
+			Koordinat sumbu y titik pada \textit{viewport}, dengan koordinat (0,0) berada pada sudut kiri bawah.
 		\end{itemize}
 			
 		\textit{Method-method} yang dimiliki kelas ini adalah sebagai berikut:
 		
-		\begin{itemize}
-			\item \texttt{public void getAsArray (int[] array, int offset)}
+		\begin{itemize}			
+			\item \texttt{public void setGLViewport()}
 			
-			\item \texttt{public void setGLScissor ()}
+			\textit{Method} untuk menentukan \textit{viewport} dari OpenGl.
 			
-			\item \texttt{public void setGLViewport ()}
-			
-			\item \texttt{public void setViewport (int x, int y, int width, int height)}
+			\item \texttt{public void setViewport(int x, int y, int width, int height)}
 		\end{itemize}
 	\end{enumerate}
 
@@ -327,7 +358,7 @@ Aplikasi HelloVR memiliki empat kelas pada programnya, di antaranya:
 	\begin{itemize}
   		\item \texttt{private float[] camera}
   		
-  		Atribut \textit{camera} yang direpresentasikan kumpulan bilangan \textit{float}.
+  		Atribut \textit{camera} yang direpresentasikan dengan kumpulan bilangan \textit{float}.
   		\item \texttt{private int objectProgram}
   		
   		Atribut dari \textit{id} program \textit{shader}.

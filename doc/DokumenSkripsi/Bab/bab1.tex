@@ -5,62 +5,56 @@
 \section{Latar Belakang}
 \label{sec:label}
 
-Zaman modern adalah zaman saat profesi sudah dan sedang berkembang sehingga ada banyak sekali jumlah bidangnya serta perkembangannya. Mayoritas orang menekuni bidang-bidang profesi yang tak terhitung banyaknya untuk mengembangkan setiap bidang profesi. Hal ini menyebabkan kesulitan pengaturan waktu untuk berolahraga, yang adalah salah satu kebutuhan manusia untuk menjaga kesehatan. Salah satu aktivitas olahraga yang paling mudah dan tidak memerlukan gerakan yang sulit adalah berlari. Dahulu, kegiatan ini memerlukan lahan yang cukup besar agar dapat dilakukan dengan optimal. Sekarang, berlari dapat dilakukan di dalam rumah atau gedung sejak ditemukannya {\it treadmill}, tetapi hal ini memunculkan masalah baru, yaitu masalah lingkungan yang monoton dan membosankan di dalam rumah atau gedung yang membuat orang enggan untuk melakukan aktivitas berlari ini. Bila suasana dunia luar dapat dibawa ke dalam rumah, aktivitas ini dapat dilakukan di dalam rumah, tetapi suasana yang dirasakan adalah seperti di luar rumah. 
+Zaman modern adalah zaman saat profesi sudah dan sedang berkembang sehingga ada banyak sekali jumlah bidangnya serta perkembangannya. Mayoritas orang menekuni bidang-bidang profesi yang tak terhitung banyaknya untuk mengembangkan setiap bidang profesi. Hal ini menyebabkan kesulitan pengaturan waktu untuk berolahraga, yang merupakan salah satu kebutuhan manusia untuk menjaga kesehatan. Salah satu aktivitas olahraga yang paling mudah dan tidak memerlukan gerakan yang sulit adalah berlari. Metode dilakukannya olahraga ini berkembang, mulai dari dilakukan di luar ruangan hingga dilakukan di rumah sejak ditemukannya {\it treadmill}. Dua metode ini memiliki kelebihan dan kekurangannya masing-masing. Berlari di luar ruangan memberikan suasana dinamis dan tidak membosankan saat melakuannya, tetapi pelaku kegiatan ini harus berada di tempat dengan lingkungan eksternal yang aman seperti ketidakhadiran kendaraan yang bergerak dan udara yang rendah polusi. Di sisi yang lain, berlari menggunakan \textit{treadmill} bisa dilakukan di dalam ruangan sehingga masalah terganggu oleh kendaraan dan polusi udara, tetapi lingkungan sekitar saat berlari monoton sehingga membuat pelaku kegiatan berlari bosan dan jenuh. Bila suasana dunia luar dapat dibawa ke dalam rumah saat menggunakan \textit{treadmill}, aktivitas berlari menggunakan \textit{treadmill} dapat terasa menyenangkan. 
 
-Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan simulasi aktivitas berlari pada lingkungan yang diinginkan saat berlari di {\it treadmill}. Dengan menggunakan perangkat lunak tersebut, orang yang berlari dapat menikmati pemandangan yang dipilih saat berlari di dalam rumah sehingga merasa seperti berlari di lingkungan yang dipilih tersebut.
+Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan pemandangan saat berlari pada lingkungan yang diinginkan saat berlari di {\it treadmill}. Dengan menggunakan perangkat lunak tersebut, orang yang berlari dapat menikmati pemandangan yang dipilih saat berlari di dalam rumah sehingga merasa seperti berlari di lingkungan yang dipilih tersebut.
 
-Teknologi yang dapat dimanfaatkan untuk membuat aplikasi VR untuk berlari adalah \textit{Google Cardboard} dan sensor perangkat bergerak, dan untuk {\it Application Programming Interface} (\textit{API}) yang digunakan adalah {\it Google Streetview API}  dan \textit{Google Directions API} ~\cite{quickstart-google-vr}~\cite{streetview-api}~\cite{directions-api}. 
+Untuk memungkinkan menampilkan pemandangan tepat di depan mata pelari, teknologi \textit{virtual reality} (VR), teknologi yang membuat pengguna merasa berada dalam lingkungan maya tertentu yang biasanya ada pada perangkat bergerak, dapat digunakan ~\cite{quickstart-google-vr}. Google VR adalah teknologi VR yang sudah umum digunakan dengan \textit{cost} yang cukup bersahabat, terutama dalam hal \textit{viewer}, alat yang digunakan untuk melihat pemandangan VR, yang menggunakan kardus. \textit{Viewer} itu adalah \textit{Google Cardboard}, \textit{VR viewer} yang dirancang Google untuk melihat pemandangan VR.
 
+Untuk menampilkan gambar dan rute perjalanan, diperlukan \textit{application programming interface} (API), yang merupakan antarmuka yang menghubungkan dua atau lebih perangkat lunak. API yang dapat dimanfaatkan untuk membentuk aplikasi  ini adalah \textit{Google StreetView API} yang berfungsi untuk menampilkan  gambar dari suatu lokasi tertentu, dan \textit{Google Directions API} yang digunakan untuk menentukan rute perjalanan antara dua lokasi ~\cite{streetview-api}~\cite{directions-api}. Agar pemandangan yang ditampilkan dapat berubah sesuai dengan langkah kaki saat berlari, sensor gerak pada perangkat bergerak dapat dimanfaatkan ~\cite{motion-sensor}. 
+  
 \section{Rumusan Masalah}
 \label{sec:rumusan}
 Rumusan masalah yang ada pada skripsi ini adalah:
 \begin{itemize}
 	\item Bagaimana memanfaatkan Google VR SDK for Android untuk menampilkan gambar dengan perangkat VR?
 	\item Bagaimana menampilkan hasil dari \textit{Google StreetView API} dalam bentuk VR?
-	\item Bagaimana mengintegrasikan \textit{Google Directions API}, gambar \textit{Google StreetView}  dan Google VR dalam perangkat lunak \textit{virtual jogging}
+	\item Bagaimana mengintegrasikan \textit{Google Directions API}, gambar \textit{Google StreetView}  dan Google VR dalam perangkat lunak \textit{virtual jogging}?
 \end{itemize}
-
-%\dtext{6}
 
 \section{Tujuan}
 \label{sec:tujuan}
-Pada skripsi ini, hal-hal yang coba untuk dicapai adalah :
+Pada skripsi ini, hal-hal yang coba untuk dicapai adalah:
 \begin{itemize}
 	\item Menggunakan Google VR SDK for Android untuk menampilkan gambar dengan {\it Google Cardboard}.
 	\item Menampilkan hasil gambar dari \textit{Google StreetView API} pada {\it Google Cardboard}.
 	\item Mengintegrasikan \textit{Google Directions API}, gambar dari \textit{Google StreetView} dan Google VR (\textit{Cardboard}) dalam perangkat lunak {\it virtual jogging}.
 \end{itemize}
-%Akan dipaparkan secara lebih terperinci dan tersturkur apa yang menjadi tujuan pembuatan template skripsi ini
-
-%\dtext{7}
 
 \section{Batasan Masalah}
 \label{sec:batasan}
 Karena ada banyak tempat atau pemandangan di dunia ini, hanya beberapa lokasi saja yang dapat dipilih dari yang telah disediakan.
-%Untuk mempermudah pembuatan template ini, tentu ada hal-hal yang harus dibatasi, misalnya saja bahwa template ini bukan berupa style \LaTeX{} pada umumnya (dengan alasannya karena belum mampu jika diminta membuat seperti itu)
-
-%\dtext{8}
 
 \section{Metodologi Penelitian}
 \label{sec:metlit}
 Metodologi penelitian yang akan digunakan adalah sebagai berikut:
 \begin{itemize}
 	\item Melakukan studi literatur dari situs-situs web tentang Google VR SDK, \textit{StreetView API}, \textit{Directions}, sensor tentang langkah, baik melalui media tulisan maupun video.
-	\item Menampilkan pemandangan {\it StreetView} pada {\it Google Cardboard}s.
+	\item Menampilkan pemandangan {\it StreetView} pada {\it Google Cardboard}.
 	\item Mengintegrasikan {\it Google Directions API} dengan pemandangan {\it StreetView} yang telah ditampilkan pada {\it Google Cardboard}.
 	\item Menganalisis sensor langkah dan menyinkornisasikannya dengan perubahan pemandangan \textit{StreetView}.
 \end{itemize}
-Untuk membuat skripsi ini, peneliti . Setelah mempelajari semua komponen dari aplikasi yang akan dibuat, peneliti akan melakukan implementasi. 
+
+Setelah mempelajari semua komponen dari aplikasi yang akan dibuat, peneliti akan melakukan implementasi. 
 
 \section{Sistematika Pembahasan}
 \label{sec:sispem}
 Dokumen dibagi ke dalam beberapa bab dengan sistematika pembahasan sebagai berikut:
 \begin{enumerate}
-	\item Bab 1: Pendahuluan, yang menjelaskan gambaran umum penelitian. Mengandung latar belakang, rumusan masalah, tujuan,, batasan masalah, metodologi penelitian, serta sistematika pembahasan.
+	\item Bab 1: Pendahuluan, yang menjelaskan gambaran umum penelitian. Mengandung latar belakang, rumusan masalah, tujuan, batasan masalah, metodologi penelitian, serta sistematika pembahasan.
 	\item Bab 2: Dasar Teori, berisi landasan dari teori-teori yang berhubungan serta mendukung penelitian. Mengandung Google VR, Google {\it StreetView API}, Google {\it Directions API}, dan sensor.
 	\item Bab 3: Analisis, menjelaskan mengenai proses analisis masalah untuk menemukan solusi untuk menyelesaikan masalah. Mengandung cara membuat dunia VR, cara memanfaatkan \textit{Google StreetView}, cara memanfaatkan \textit{Google Directions API}, dan cara memanfaatkan sensor \textit{step-detector}. 
-	%Berisi tentang ...
+	\item Bab 4: Rancangan, menjelaskan tentang rancangan antarmuka dan rancangan program dari aplikasi.
+	\item Bab 5: Implementasi dan Pengujian, menjelaskan tentang hasil implementasi, hasil pengujian aplikasi, serta masalah-masalah yang dihadapi saat implementasi.
+	\item Bab 6: Kesimpulan dan Saran, menjelaskan kesimpulan yang diperoleh dari penelitian serta saran  untuk penelitian selanjutnya.
 \end{enumerate}
-%Rencananya Bab 2 akan berisi petunjuk penggunaan template dan dasar-dasar \LaTeX.
-%Mungkin bab 3,4,5 dapt diisi oleh ketiga jurusan, misalnya peraturan dasar skripsi atau pedoman penulisan, tentu jika berkenan.
-%Bab 6 akan diisi dengan kesimpulan, bahwa membuat template ini ternyata sungguh menghabiskan banyak waktu.
