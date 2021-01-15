@@ -2,13 +2,12 @@
 \label{chap:rancangan}
 Bab ini menjelaskan perancangan aplikasi, termasuk algoritma-algoritma untuk mengolah \textit{Google StreetView API}, \textit{Google Directions API}, serta modifikasi yang dilakukan pada aplikasi HelloVR untuk membangun aplikasi \textit{jogging} virtual. 
 
-
 \section{Rancangan Antarmuka}
-Aplikasi yang akan dibangun terdiri atas dua halaman utama, yaitu halaman utama dan halaman VR.
+Aplikasi yang akan dibangun terdiri atas dua \textit{activity}, yaitu \textit{activity} utama dan \textit{activity} VR.
 
-\subsection{Halaman Utama}
+\subsection{\textit{Activity} Utama}
 \label{subs:main-page}
-Halaman utama adalah halaman yang ditampilkan pertama kali saat pengguna membuka aplikasi dengan \textit{portrait layout}. Fungsi halaman ini adalah menerima masukan pengguna, yaitu lokasi asal dan lokasi tujuan saat berlari, serta memicu halaman kedua, yaitu halaman VR. Ada tiga komponen utama dari halaman ini, yaitu dua buah \textit{textbox} dan sebuah tombol. Satu \textit{textbox} adalah \textit{textbox} "\textit{origin}", dan \textit{textbox} yang lain adalah \textit{textbox} "\textit{destination}". Gambar \ref{fig:main-page} menggambarkan tampilan halaman utama.  
+\textit{Activity} utama adalah \textit{activity} yang ditampilkan pertama kali saat pengguna membuka aplikasi dengan \textit{portrait layout}. Fungsi \textit{activity} ini adalah menerima masukan pengguna, yaitu lokasi asal dan lokasi tujuan saat berlari, serta memicu \textit{activity} kedua, yaitu \textit{activity} VR. Ada tiga komponen utama dari \textit{activity} ini, yaitu dua buah \textit{textbox} dan sebuah tombol. Satu \textit{textbox} adalah \textit{textbox} "\textit{origin}", dan \textit{textbox} yang lain adalah \textit{textbox} "\textit{destination}". Gambar \ref{fig:main-page} menggambarkan tampilan \textit{activity} utama.  
 
 \begin{figure}[!hp]
   \centering
@@ -24,21 +23,21 @@ Halaman utama adalah halaman yang ditampilkan pertama kali saat pengguna membuka
 \textit{Textbox Destination} adalah \textit{textbox} kedua dan berada di bawah \textit{textbox origin}  akan menerima masukan berupa lokasi tujuan dari rute lari yang dimasukkan pengguna.   
 
 \subsubsection{Tombol ``\textit{Start Running}''}
-Tombol "\textit{Start Running}" adalah tombol yang akan memicu halaman VR yang sesuai dengan informasi dari dua \textit{textbox} di atas ketika ditekan. Tombol ini berada di bawah \textit{destination textbox}.
+Tombol "\textit{Start Running}" adalah tombol yang akan memicu \textit{activity} VR yang sesuai dengan informasi dari dua \textit{textbox} di atas ketika ditekan. Tombol ini berada di bawah \textit{destination textbox}.
 
-\subsection{Halaman VR}
-Halaman VR adalah halaman yang menampilkan pemandangan VR secara VR ketika berlari. Untuk memunculkan halaman ini, pengguna harus menekan tombol dari halaman utama (dijelaskan pada Subbab \ref{subs:main-page}) terlebih dahulu. Karena posisi gawai masih dalam keadaan \textit{portrait}, ada satu halaman terlebih dahulu yang muncul seperti di Gambar \ref{fig:cardboard-page}. 
+\subsection{\textit{Activity} VR}
+\textit{Activity} VR adalah \textit{activity} yang menampilkan pemandangan VR secara VR ketika berlari. Untuk memunculkan \textit{activity} ini, pengguna harus menekan tombol dari \textit{activity} utama (dijelaskan pada Subbab \ref{subs:main-page}) terlebih dahulu. Karena posisi gawai masih dalam keadaan \textit{portrait}, ada satu \textit{activity} terlebih dahulu yang muncul seperti di Gambar \ref{fig:cardboard-page}. 
 
-Halaman ini dimunculkan ketika mengakses \textit{Google Cardboard}. Untuk menuju ke halaman VR, pengguna harus memutar gawai sehingga gawai berada dalam posisi \textit{landscape}. Setelah gawai berada dalam posisi \textit{landscape}, halaman VR akan dimunculkan seperti yang ditunjukkan pada Gambar \ref{fig:vr-page}.
+\textit{Activity} ini dimunculkan ketika mengakses \textit{Google Cardboard}. Untuk menuju ke \textit{activity} VR, pengguna harus memutar gawai sehingga gawai berada dalam posisi \textit{landscape}. Setelah gawai berada dalam posisi \textit{landscape}, \textit{activity} VR akan dimunculkan seperti yang ditunjukkan pada Gambar \ref{fig:vr-page}.
 
 \begin{figure}[h]
 	\centering
 		\includegraphics[scale=0.7]{Gambar/mockup-vr-page.png}
-	\caption{Rancangan Halaman VR}
+	\caption{Rancangan \textit{Activity} VR}
 	\label{fig:vr-page}
 \end{figure}
 
-Pada tampilan VR tersebut, gambar akan berubah-ubah sesuai dengan langkah kaki pengguna. Perubahan tersebut akan terjadi ketika mencapai pengguna mencapai jarak 100 meter. Jika pengguna sudah mencapai tujuan sesuai dengan jarak yang ditempuh, halaman VR akan berhenti mengubah gambar.     
+Pada tampilan VR tersebut, gambar akan berubah-ubah sesuai dengan langkah kaki pengguna. Perubahan tersebut akan terjadi ketika mencapai pengguna mencapai jarak 100 meter. Jika pengguna sudah mencapai tujuan sesuai dengan jarak yang ditempuh, \textit{activity} VR akan berhenti mengubah gambar.     
 
 \section{Rancangan Program}
 Subbab ini akan menjelaskan rancangan  program, mulai dari rancangan kelas dan algoritma-algoritma yang digunakan pada \textit{method-method} yang penting. 
@@ -59,7 +58,7 @@ Beberapa kelas di Gambar \ref{fig:class-diagram} tidak memiliki deskripsi lebih 
 \begin{enumerate}
 	\item \texttt{MainActivity}
 	
-	Kelas yang mengelola halaman utama. Atribut yang dimiliki kelas ini:
+	Kelas yang mengelola \textit{activity} utama. Atribut yang dimiliki kelas ini:
 	
 	\begin{itemize}
 		\item \texttt{protected EditText originET}
@@ -70,10 +69,7 @@ Beberapa kelas di Gambar \ref{fig:class-diagram} tidak memiliki deskripsi lebih 
 		Bagian antarmuka yang dapat menerima masukan lokasi tujuan dari rute lari.
 		\item \texttt{protected Button startButton}
 		
-		Tombol yang digunakan untuk memicu halaman VR.
-		\item \texttt{protected StreetViewLoader streetViewLoader}
-		
-		Atribut dari \textit{loader} gambar \textit{StreetView} untuk menginisialisasi di halaman VR.
+		Tombol yang digunakan untuk memuat rute perjalanan dan gambar pemandangan, serta memicu \textit{activity} VR.
 	\end{itemize}
 	
 	\textit{Method-method} yang dimiliki kelas ini adalah:
@@ -82,22 +78,11 @@ Beberapa kelas di Gambar \ref{fig:class-diagram} tidak memiliki deskripsi lebih 
 		\item \texttt{protected void onClick(View view)}
 		
 		\textit{Method} yang dijalankan ketika komponen yang sudah dipasangkan \texttt{onClickListener} ditekan. 
-		\item \texttt{public String[] generateStreetView(int svUrlLength)}
-		
-		\textit{Method} ini akan men-\textit{generate} gambar \textit{StreetView} dari sekeliling pemandangan. 
-		
-		Parameter:
-		
-		\begin{itemize}
-			\item \texttt{int svUrlLength}
-			
-			Parameter ini menyatakan berapa banyak \textit{string} URL untuk mendapatkan gambar-gambar StreetView.
-		\end{itemize}
 		
 	\end{itemize}
-	\item \texttt{HelloVRActivity}
+	\item \texttt{VRActivity}
 	
-	\textit{Class} yang mengelola halaman VR. Atribut-atribut yang dimiliki \textit{class} ini adalah:
+	\textit{Class} yang mengelola activity VR. Atribut-atribut yang dimiliki \textit{class} ini adalah:
 	
 	\begin{itemize}
 		\item \texttt{private SensorManager sensorManager}
@@ -105,13 +90,20 @@ Beberapa kelas di Gambar \ref{fig:class-diagram} tidak memiliki deskripsi lebih 
 		Atribut yang mengatur sensor dari gawai Android.
 		\item \texttt{private Sensor stepDetector}
 		
-		Sensor pendeteksi langkah kaki. 
-		\item \texttt{private StreetViewLoader sVLoader}
+		Sensor pendeteksi langkah kaki.
+		\item \texttt{protected TexturedMesh room}
 		
-		Pemuat gambar StreetView.
-		\item \texttt{private ArrayList arrSteps}
+		Bangun ruang VR yang sudah dipasangkan dengan objek \textit{Texture}.
+		\item \texttt{protected ArrayList<Texture> roomTex}
 		
-		\textit{ArrayList} dari semua \textit{step-step} dari rute lari.
+		\textit{ArrayList} dari gambar-gambar \textit{StreetView} yang merupakan tekstur dari bangun ruang VR.
+		\item \texttt{protected Texture finishedTexture}
+		
+		Gambar dari tekstur bangun ruang VR yang menandakan perjalanan pengguna sudah selesai.
+
+		\item \texttt{private int[] stepDistances}		
+		
+		\textit{Array} dari jarak setiap \textit{steps} dari rute lari.	
 		\item \texttt{private int distanceElapsed}
 		
 		Atribut ini menyimpan jarak yang sudah ditempuh pengguna.
@@ -120,7 +112,7 @@ Beberapa kelas di Gambar \ref{fig:class-diagram} tidak memiliki deskripsi lebih 
 		Atribut yang menyimpan \textit{index} dari \textit{step} yang sedang ditempuh saat ini.
 		\item \texttt{private int curStepDistance}
 
-		Atribut yang menyimpan jarak dari \textit{step} saat ini.		
+		Atribut yang menyimpan penjumlahan jarak dari \textit{step} saat ini dan jarak dari setiap \textit{steps} yang sudah ditempuh.		
 	\end{itemize}
 	
 	\textit{Method-method} yang dimiliki \textit{class} ini adalah:
@@ -129,7 +121,7 @@ Beberapa kelas di Gambar \ref{fig:class-diagram} tidak memiliki deskripsi lebih 
 			\item \texttt{public void drawRoom()}
 			
 			\textit{Method} untuk menggambar ruangan tiga dimensi.
-			\item \texttt{public void onSurfaceCreated(EFLConfig eflConfig)}
+			\item \texttt{public void onSurfaceCreated(EGLConfig eglConfig)}
 			
 			\textit{Method} yang dipanggil ketika permukaan VR diciptakan. Parameter yang dimiliki \textit{method} ini adalah:
 			
@@ -138,10 +130,11 @@ Beberapa kelas di Gambar \ref{fig:class-diagram} tidak memiliki deskripsi lebih 
 				
 			Konfigurasi dari  \textit{OpenGL renderer}. 				
 			\end{itemize}
-			
-		\item \texttt{public void loadJSONDir()}
-				
-				\textit{Method} untuk  memuat \textit{file} JSON dari \textit{Google Directions}.
+		
+		\textit{Method} ini tidak memiliki nilai kembali.
+		\item \texttt{public void onSensorChanged(SensorEvent sensorEvent)}
+		
+		\textit{Method} yang dipanggil ketika sensor \textit{step detector} mendeteksi \textit{event}.	
 		\end{itemize}
 	
 	\item \texttt{StreetViewLoader}
@@ -149,53 +142,72 @@ Beberapa kelas di Gambar \ref{fig:class-diagram} tidak memiliki deskripsi lebih 
 	\textit{Class} yang berfungsi untuk memuat gambar \textit{StreetView} dan menyatukan semua gambar itu, membentuk gambar pemandangan yang utuh. Atribut-atribut yang dimiliki \textit{class} ini adalah:
 	
 	\begin{itemize}
-		\item \texttt{protected MainActivity mainActivity}
-		\textit{Activity} yang dihubungkan dengan \textit{class} ini  sehingga komunikasi antara objek dua kelas ini dapat terjadi. 		
+		\item \texttt{protected Bitmap streetViewBitmap}
 		
-		\item \texttt{protected String filepath}
+		Atribut yang menampung \textit{Bitmap} dari \textit{StreetView} yang telah diunduh dari \textit{StreetView API}.	
+		\item \texttt{protected Activity activity}
 		
-		Atribut yang menyimpan \textit{filepath} untuk menyimpan \textit{file} dari gambar \textit{StreetView} yang sudah selesai diolah.
+		\textit{Activity} yang dihubungkan dengan \textit{class} ini  sehingga komunikasi antara objek dua kelas ini dapat terjadi.
+		
 		\item \texttt{protected Bitmap streetViewBitmap}
 		
 		Atribut untuk menyimpan \textit{bitmap} dari gambar \textit{StreetView}.
 		\item \texttt{protected Activity activity}
 		
-		Atribut dari \textit{activity} yang memanggil \textit{method} dari \textit{class} ini sehingga data dan nilai yang sudah diperoleh dari \textit{class} ini dapat diserahkan pada \textit{activity} ini.
+		Atribut dari \textit{activity} yang memanggil \textit{method} dari \textit{class} ini sehingga data dan nilai yang sudah diperoleh dari \textit{class} ini dapat diserahkan pada \textit{activity} ini. \textit{Method} ini tidak memiliki nilai kembali.
 		\item \texttt{protected Intent intent}  
 		
-		\textit{Intent} dari \textit{activity} yang memicu \textit{class} ini untuk bekerja.
+		\textit{Intent} dari \textit{activity} yang memicu \textit{activity} untuk dijalankan.
+		\item \texttt{protected int imgCount}
+		
+		Atribut yang menyimpan angka perhitungan setiap kali gambar dimuat dari \textit{StreetView API}.
+		\item \texttt{protected ArrayList<JSONObject> arrSteps}
+		
+		\textit{Arraylist} dari \textit{JSON Object} dengan \textit{key} "\textit{steps}" dari JSON yang diperoleh dari \textit{Directions API}.
 	\end{itemize}
 	
 	\textit{Method-method} yang dimiliki \textit{class} ini adalah:
 	
 	\begin{itemize}
-		\item \texttt{protected doInBackground(Strings... strings}
+		\item \texttt{protected doInBackground(Void... aVoid}
 		
-		\textit{Method} yang memuat dan menyatukan gambar-gambar \textit{StreetView API}, yang dijalankan pada \texttt{AsyncTask} berbeda. Parameter yang dimiliki \textit{method} ini adalah:
-		
-		\begin{itemize}
-			\item \texttt{Strings.. strings}
-			
-			Kumpulan \textit{string} dari URL-URL untuk memanggil \textit{StreetView API} dari \textit{heading} yang berbeda-beda.
-		\end{itemize}				
-		 
+		\textit{Method} yang memuat dan menyatukan gambar-gambar \textit{StreetView API}, yang dijalankan pada \texttt{AsyncTask} berbeda. 				
 		\item \texttt{protected Void onPostExecute(Void aVoid)}
 		
-		\textit{Method} yang dipanggil setelah \texttt{doInBackground()} selesai dijalankan.
-		\item \texttt{private void cleanUpMainActivity()}
+		\textit{Method} yang dipanggil setelah \texttt{doInBackground()} selesai dijalankan, untuk memicu \textit{VrActivity}.
+		\item \texttt{public String[] generateStreetViewURL(int svUrlLength, boolean isStart)}
 		
-		\textit{Method} yang dijalankan di \textit{method} \texttt{onPostExecute()} ketika \textit{class} ini dipicu dari \textit{activity} yang merupakan \textit{instance} dari \texttt{MainActivity}.
-		\item \texttt{private void cleanUpVrActivity()}
+		\textit{Method} ini akan men-\textit{generate} URL untuk mengakses  \textit{StreetView API}. 
 		
-		\textit{Method} yang dijalankan di \textit{method} \texttt{onPostExecute()} ketika \textit{class} ini dipicu dari \textit{activity} yang merupakan \textit{instance} dari \texttt{HelloVrActivity}.
+		Parameter:
 		
-		\textit{Method} yang dijalankan ketika 
-	\end{itemize}
+		\begin{itemize}
+			\item \texttt{int svUrlLength}
+			
+			Parameter ini menyatakan berapa banyak \textit{string} URL untuk mendapatkan gambar-gambar StreetView.
+			\item \texttt{boolean isStart}
+			
+			Nilai \textit{boolean} yang menandakan apakah \textit{key} dari \textit{JSONObject} \textit{start\_location} atau \textit{end\_location}.
+		\end{itemize}
+		
+		Nilai Kembalian:
+	
+		\begin{itemize}
+			\item \texttt{String[] urlArr}
+		
+			\textit{Array} dari URL \textit{StreetView API} yang sudah di-\textit{generate}.		
+		\end{itemize}
+	\end{itemize}		
 	
 	\item \texttt{DirectionsLoader}
 	
 	\textit{Class} yang memuat JSON dari rute lari. Atribut-atribut yang dimiliki kelas ini adalah:
 	\begin{itemize}
+	
+		\item \texttt{protected Activity activity}
+		
+		\textit{Activity} yang diacu agar dapat berhubungan dengan objek dari \textit{class} ini.
+	
 		\item \texttt{protected String jsonText}
 		
 		Atribut yang menyimpan \textit{text} yang diperoleh dari \textit{Directions API}.
@@ -204,42 +216,38 @@ Beberapa kelas di Gambar \ref{fig:class-diagram} tidak memiliki deskripsi lebih 
 	\textit{Method-method} yang dimiliki \textit{class} ini adalah:
 	
 	\begin{itemize}
-		\item \texttt{public DirectionsLoader()}
-		
-		\textit{Constructor} dari \textit{DirectionsLoader()}	
 		\item \texttt{protected Void doInBackground(Strings... strings)}
 		
 		\textit{Method} yang dijalankan di \texttt{AsyncTask} berbeda, yaitu untuk memuat \textit{file} JSON \textit{Directions API}.
 		\item \texttt{protected Void onPostExecute(Void aVoid)}
 		
-		\textit{Method} yang dijalankan setelah \textit{method} \texttt{doInBackgroud()} selesai dijalankan, untuk memproses \textit{text} dari \textit{Directions API}. 
+		\textit{Method} yang dijalankan setelah \textit{method} \texttt{doInBackgroud()} selesai dijalankan, untuk mem-\textit{parse} JSON lewat objek dari \textit{class} \texttt{DirectionsExtractor} \textit{Directions API}, lalu memanggil menginstansiasi objek dari \textit{class} \texttt{StreetViewLoader}. 
 	\end{itemize} 
+	
+	\item \texttt{DirectionsExtractor}
+	
+	\textit{Class} yang berfungsi sebagai \textit{parser} JSON yang diperoleh dari \textit{Directions API}. Atribut yang ada pada \textit{class} ini adalah:
+	
+	\begin{itemize}
+		\item \texttt{protected ArrayList<JSONObject> arrSteps}
+		
+		\textit{ArrayList} dari objek-objek \textit{steps} yang diperoleh dari \textit{Directions API}.
+		\item \texttt{protected String jsonText}
+		
+		\textit{Text} JSON yang diperoleh dari \textit{Directions API}. 
+	\end{itemize}
+	
+	\textit{Method} yang ada pada \textit{class} ini adalah:
+	
+	\begin{itemize}
+		\item \texttt{protected void extractJSONDir()} 
+		
+		\textit{Method} yang akan mengambil bagian \textit{steps} dari JSON \textit{Directions API}.	
+	\end{itemize}
 \end{enumerate} 
 
-
-\subsection{Algoritma-Algoritma yang digunakan}
-Ada beberapa algoritma yang digunakan   untuk melakukan beberapa proses seperti mengolah \textit{Google StreetView API},\textit{Google Directions API}, dan menampilkan .
-
-\subsubsection{Algoritma Memperoleh dan Mengolah \textit{Google StreetView API}} 
-\textit{StreetView API} berfungsi untuk memuat gambar pemandangan dan menggunakan menggunakan HTTP/HTTPS. Karena sekali pemanggilan hanya menghasilkan gambar dari satu arah pemandangan, empat gambar dari empat pandangan haruslah diunduh terlebih dahulu. Setelah semua gambar itu terunduh, semua gambar itu disatukan, menjadi satu gambar untuk menjadi tekstur bangun ruang silinder. Algoritma yang digunakan untuk menyatukan gambar-gambar tersebut. Setelah gambar-gambar itu sudah disatukan, gambar tersebut harus disimpan di dalam \textit{file} pada \textit{StreetView} tersebut adalah: Langkah-langkah untuk memuat dan mengolah gambar-gambar untuk menyajikan gambar pemandangan yang utaha adalah:
-
-	\begin{enumerate}
-		\item Memuat gambar \textit{StreetView} dari semua arah lewat HTTP/HTTPS. 
-		
-		\item Menggabungkan gambar  \textit{StreetView} dari semua arah yang sudah dimuat.
-		
-		\item Menyimpan gambar dalam \textit{cache}.
-	\end{enumerate}	
-	
-\begin{figure}[h]
-	\centering
-		\includegraphics[scale=0.6]{Gambar/streetview-flowchart.png}
-	\caption{\textit{Flowchart} dari Proses Memperoleh dan Menyatukan Gambar dari \textit{StreetView API}}
-	\label{fig:streetview-flowchart}
-\end{figure}
-
-Gambar \ref{fig:streetview-flowchart} menggambarkan proses-proses pemanggilan StreetView API. Peubah \textit{x} pada \textit{flowchart} menunjuk pada nilai \textit{heading} dari gambar yang akan diperoleh, sedangkan peubah \textit{y} merupakan selisih derajat dari satu gambar ke gambar yang lain. Nilai 360 menunjuk pada 360 derajat dalam satu putaran. Untuk mendapatkan pemandangan yang sekeliling yang penuh, gambar dari setiap derajat ke-\textit{x} selama nilai \textit{x} masih bernilai lebih kecil dari 360. Setelah gambar-gambar  itu sudah diperoleh dari \textit{StreetView API}, gambar-gambar tersebut harus disatukan, barulah gambar itu bisa digunakan sesuai kebutuhan.
-
+\subsection{Algoritma-Algoritma yang Digunakan}
+Ada beberapa algoritma yang digunakan   untuk melakukan beberapa proses seperti mengolah \textit{Google StreetView API},\textit{Google Directions API}, dan pemanfaatan sensor \textit{step detector}.
 
 \subsubsection{Pemanfaatan \textit{Google Directions API}}
 \textit{Directions API} adalah \textit{API} yang menggunakan protokol HTTP/HTTPS dan menghasilkan keluaran dalam bentuk JSON. Untuk memuat JSON berisi rute perjalanan dari asal sampai tujuan, pemanggilan \textit{Directions API} harus dilakukan melalui HTTP/HTTPS.
@@ -257,42 +265,65 @@ Gambar \ref{fig:streetview-flowchart} menggambarkan proses-proses pemanggilan St
 		
 		\State $jsonArrLegs \gets jsonRoute.getJSONArray("legs")$
 
-		\State Declare Array$processedJSONObj$		
+		\State Declare Array $processedJSONObj$		
 		
-		\For $ elements in jsonArrLegs$
+		\For {$elements in jsonArrLegs$}
 		\State $jsonLegs \gets element.getJSONObject("legs") $
 
 		\State $jsonArrSteps \gets jsonLegs.getJSONArray("steps")$		
 		
 		\State Insert all elements from $jsonArrSteps$ to $processedJSONObject$ 
-			
-		
 		\EndFor
-%		\State $lastT \gets currT$
-%		
-%		\If {hill and valley time values has been set \textbf{AND} all condition have been met}
-%			\Return $true$
-%		\Else {
-%			\Return $false$}
-%		\EndIf
 	\EndFunction  
 	\end{algorithmic}
 \end{algorithm}
 
 Setelah JSON rute diperoleh, JSON rute lari dapat digunakan dengan membaca atribut dan nilai-nilainya sesuai kebutuhan. Beberapa nilai atribut dalam JSON ini  berupa JSON \textit{object}, ada yang berupa JSON \textit{array}. Karena hal ini,  \textit{parsing} dari JSON ini harus dilakukan sesuai dengan ketentuan tersebut. Algoritma \textit{parsing} dari JSON \textit{Directions} dipaparkan pada \ref{alg:algoritma-directions-parsing}. 
 
-Setelah JSON dari \textit{Directions API} diunduh, \textit{parsing} adalah langkah selanjutnya untuk mengambil informasi yang dibutuhkan. Karena bagian \textit{steps} yang harus diambil, 
+Setelah JSON dari \textit{Directions API} diunduh, \textit{parsing} adalah langkah selanjutnya untuk mengambil informasi yang dibutuhkan. Karena bagian \textit{steps} yang harus diambil, haruslah \textit{value} dari \textit{key legs} harus diperoleh terlebih dahulu. Selanjutnya, \textit{JSON Array} yang merupakan \textit{value} dari \textit{key} \textit{"legs"}, dan objek-objek dari \textit{JSON Array} \textit{steps} itu dapat dimasukkan ke dalam sebuah struktur data seperti \textit{array} agar dapat digunakan.  
+
+\subsubsection{Algoritma Memperoleh dan Mengolah \textit{Google StreetView API}} 
+\textit{StreetView API} berfungsi untuk memuat gambar pemandangan dan menggunakan menggunakan HTTP/HTTPS. Karena satu kali pemanggilan hanya menghasilkan gambar dari satu \textit{heading} atau arah, beberapa gambar dari beberapa arah pandangan haruslah diunduh terlebih dahulu. Setelah semua gambar itu terunduh, semua gambar itu disatukan, menjadi satu gambar untuk menjadi tekstur bangun ruang silinder. Setelah gambar-gambar itu sudah disatukan, gambar tersebut harus disimpan di dalam \textit{file}.
+
+Karena pemandang yang harus diunduh adalah gambar dari lokasi asal dan tujuan dari pengguna untuk membentuk perjalanan lari dari pengguna, gambar-gambar dari lokasi asal dan setiap \textit{steps} sampai lokasi tujuan harus diperoleh. Gambar \ref{fig:streetview-flowchart} menunjukkan langkah-langkah yang dilakukan untuk memuat semua gambar lokasi dari setiap \textit{steps} rute lari pengguna.
+	
+\begin{figure}[h]
+	\centering
+		\includegraphics[scale=0.5]{Gambar/streetview-flowchart.png}
+	\caption{\textit{Flowchart} dari Proses Memperoleh dan Menyatukan Gambar dari \textit{StreetView API}}
+	\label{fig:streetview-flowchart}
+\end{figure}
+
+Peubah \textit{i} pada \textit{flowchart} digunakan untuk iterasi semua elemen \textit{array} arrSteps. Untuk setiap iterasi, URL untuk mengakses \textit{StreetView API} dibuat sebanyak jumlah gambar yang ingin dihasilkan. Arah atau \textit{heading} dari gambar-gambar yang dihasilkan ditentukan dengan peubah \textit{x} pada \textit{flowchart}. Peubah \textit{y} merupakan selisih \textit{heading} dari satu iterasi ke iterasi yang berikutnya. Nilai 360 menunjuk pada 360 derajat dalam satu putaran. Untuk mendapatkan pemandangan yang sekeliling yang penuh, gambar dari setiap derajat ke-\textit{x} selama nilai \textit{x} masih bernilai lebih kecil dari 360. Setelah gambar-gambar  itu sudah diperoleh dari \textit{StreetView API}, gambar-gambar tersebut harus disatukan, lalu gambar itu dapat disimpan dalam \textit{file}, lalu gambar dalam \textit{file} itu dapat digunakan.
+
 
 \subsubsection{Pemanfaatan Sensor \textit{Step Detector}}
-Sensor \textit{step detector} digunakan untuk mendeteksi langkah kaki pengguna. Untuk membentuk skenario yang tepat untuk memungkinkan perubahan pemandangan yang sudah ditangani oleh \textit{StreetView} dan \textit{Directions API}, waktu perubahan dari pemandangan itulah yang harus ditangani. Sensor \textit{step detectorlah} yang akan menangani bagian waktu perubahan pemandangan. 
+Sensor \textit{step detector} digunakan untuk mendeteksi langkah kaki pengguna. Untuk membentuk skenario yang tepat untuk memungkinkan perubahan pemandangan yang sudah ditangani oleh \textit{StreetView} dan \textit{Directions API}, waktu perubahan dari pemandangan itulah yang harus ditangani. Sensor \textit{step detector}lah yang akan menangani bagian waktu perubahan pemandangan. 
 
-Sebuah peubah bertipe numerik (\textit{integer}) yang menandakan \textit{progress} perjalanan pelari, lalu harus ada sebuah konstan yang menyatakan jarak dari satu langkah. Saat sensor \textit{step detector} mendeteksi adalah sebuah langkah kaki, peubah dari \textit{progress} akan ditambahkan dengan nilai konstan jarak satu langkah kaki. Jika nilai peubah \textit{progress} sudah sampai  jarak tertentu, pemandangan akan berubah, sesuai dengan \textit{Directions API}. 
+Dari \textit{JSON Object} dengan\textit{key "steps"}, dapat diperoleh \textit{JSON Object} dengan \textit{key "distance"} yang memiliki  nilai \textit{"value"}. \textit{"Value"} dari \textit{"distance"} menunjuk pada jarak dari \textit{"step"} yang diacu. Untuk berlari sesuai dengan jarak itu, harus ada sebuah peubah bertipe numerik (\textit{integer}) yang menandakan \textit{progress} perjalanan pelari, lalu harus ada sebuah konstan yang menyatakan jarak dari satu langkah. Peubah yang mencatat \textit{progress} akan bertambah setiap kali sensor mendeteksi langkah kaki. Jika \textit{progress} sudah mencapai nilai jarak dari \textit{step} saat ini, pemandangan VR berulah dapat diubah dengan gambar pemandangan dari \textit{step} berikutnya. Algoritma \ref{alg:algoritma-step-detector} menunjukkan hal-hal yang terjadi saat  sensor \textit{step detector} menerima rangsang. 
 
-%\section{\textit{Folder Assets}}
-%
-%\textit{Folder assets} mengandung \textit{asset-asset} multimedia seperti gambar dan \textit{audio}. 
-%Menghapus \textit{file-file} dari aplikasi HelloVR. 
-%
-%Mengganti CubeRoom.obj dengan file OBJ dengan bangun ruang silinder.
-%
-%Mengganti file CubeRoom\_BakedDiffuse.png, menggantinya dengan gambar \textit{StreetView} yang sudah disatukan. 
+\begin{algorithm}
+	\caption{Algoritma Saat \textit{Step Detector} Menerima Rangsang}
+	\label{alg:algoritma-step-detector}
+	\begin{algorithmic}[1]
+	\Function{onStepDetectorChanged}{$stepsDist$}
+		\State $distanceElapsed \gets 0$ 
+		\State $currentStepDist \gets first$ $element$ $of$ $stepsDist.value$ 
+		\If{sensor detects footstep}
+    		\State $distanceElapsed \gets distanceElapsed + DISTANCE\_PER\_STEP$
+    		\If{$distanceElapsed < currentStepDist.value$}
+													\If{$currentStepDist.Next IS NOT NULL$}
+    			\State $currentStepDist \gets currentStepDist.value + currentStepDist.next$
+    		\EndIf
+    	\EndIf
+    	\EndIf
+	\EndFunction  
+	\end{algorithmic}
+\end{algorithm}
+
+\textit{StepsDist} merupakan \textit{array} dari \textit{steps distance}. \textit{DistanceElapsed} merupakan peubah yang mencatat \textit{progress} langkah dari pengguna, sementara \textit{currentStepDist} merupakan peubah yang mencatat jarak yang harus ditempuh untuk mencapai \textit{steps distance} berikutnya.
+Peubhan \textit{distanceElapsed} akan ditambah dengan konstanta \textit{DISTANCE\_PER\_STEP} setiap kali ada langkah kaki yang terdeteksi.
+Jika \textit{distanceElapsed} sudah mecapai \textit{curStepDistance}, \textit{curStepDistances} akan ditambah dengan nilai \textit{step distance} selanjutnya. 
+
+
+

@@ -36,7 +36,7 @@ Ketika pengguna menekan tombol "\textit{Start Running}" dan keadaan salah satu \
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.2]{Gambar/main-page.png}
+\includegraphics[scale=0.15]{Gambar/main-page.png}
     \caption{\textit{Activity} utama aplikasi}\label{fig:main-page}
 \end{figure}
 
@@ -45,24 +45,59 @@ Saat masukan yang sah dimasukkan pengguna, pengguna akan langsung diarahkan ke h
 
 \begin{figure}
 \centering
-\includegraphics[scale=0.3]{Gambar/cardboard-page.png}
+\includegraphics[scale=0.2]{Gambar/cardboard-page.png}
     \caption{Tampilan \textit{Google Cardboard} sebelum gawai diputar}
     \label{fig:cardboard-page}
 \end{figure}
 
 \subsubsection{Aplikasi saat Pengguna Berlari}
-Setelah memasukkan masukan lokasi asal dan tujuan yang benar lewat dua \textit{textbox}, siap dengan \textit{Cardboard viewer} dan gawai berada dalam posisi \textit{landscape},  aplikasi akan menampilkan dunia VR dengan pemandangan sesuai dengan lokasi asal, dan pemandangan akan berubah sesuai langkah kaki pengguna. \textit{Activity} VR saat pengguna berlari digambarkan pada Gambar \ref{fig:vr-page}.
+Setelah memasukkan masukan lokasi asal dan tujuan yang benar lewat dua \textit{textbox}, siap dengan \textit{Cardboard viewer} dan gawai berada dalam posisi \textit{landscape},  aplikasi akan menampilkan dunia VR dengan pemandangan sesuai dengan lokasi asal, dan pemandangan akan berubah sesuai jarak yang pengguna telah tempuh. \textit{Activity} VR saat pengguna berlari digambarkan pada Gambar \ref{fig:vr-page}.
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{Gambar/vr-page.png}
+\includegraphics[scale=0.3]{Gambar/vr-page.png}
     \caption{Tampilan VR saat Pengguna Berlari}
     \label{fig:vr-page}
+\end{figure}
+
+\subsection{Aplikasi Setelah Pengguna Menyelesaikan Perjalanannya}
+Ketika pengguna sudah berlari sampai tujuan, tampilan dengan tulisan "\textit{Congratulations! You finished your run}". Gambar \ref{fig:finished-page} menunjukkan halaman ini.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.15]{Gambar/finished-page.png}
+    \caption{Tampilan VR saat Pengguna Mencapai Tujuan}
+    \label{fig:finished-page}
 \end{figure}
 
 
 \section{Pengujian}
 
+Pengujian yang dilakukan adalah pengujian fungsional, yaitu menguji perangkat lunak pada tiga perangkat. 
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|p{1cm}||p{4cm}|p{4cm}|p{3cm}|}
+    \hline\\
+    \hline
+       No  & Processor & Sistem Operasi & RAM \\
+    \hline
+        1 &  Qualcomm Snapdragon 835 2.45 GHz & Android OS v9.0 (Pie) & 6GB\\
+    \hline
+        2 &  Quad-Core 2.3 GHz & Android v9.0 (Pie) & 4GB \\
+    \hline
+        3 &  1.6GHz octa-core & Android OS v8.1.0 (Oreo) & 2GB\\
+    \hline
+    \end{tabular}
+    \caption{Tabel Perangkat yang digunakan}
+    \label{tab:pengujian-perangkat}
+\end{table} 
+
+Perangkat 1 dapat membuka aplikasi, namun saat digunakan untuk berlari, tampilan VR mengalami \textit{freeze}.
+
+Perangkat 2 dapat membuka aplikasi dan menjalani aplikasi dengan baik. 
+
+Perangkat 3 dapat membuka aplikasi dan menjalani aplikasi dengan baik. 
 
 
 \section{Masalah yang Dihadapi}
