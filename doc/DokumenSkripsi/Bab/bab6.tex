@@ -5,18 +5,22 @@
 Dari penelitian yang telah dilakukan, kesimpulan-kesimpulan yang dapat ditarik adalah sebagai berikut:
 
 \begin{enumerate}
-	\item Bagian Aplikasi HelloVR dari Google VR SDK dapat dimanfaatkan dengan mengubah bangun ruang dan tekstur gambar yang diinginkan.
+	\item Bagian Aplikasi HelloVR dari Google VR SDK dapat dimanfaatkan dengan mengubah bangun ruang dan tekstur gambar yang diinginkan. Cara memanfaatkan Aplikasi HelloVR adalah dengan mengubah bangun ruang pada file OBJ berbentuk silinder yang di-\textit{bind} dengan tekstur gambar StreetView sekeliling. 
 	
-	\item Untuk menampilkan \textit{Google StreetView API} pada \textit{Google Cardboard}, beberapa gambar \textit{StreetView} dari sekeliling harus disatukan, lalu ditampilkan pada bangun ruang pada Google VR SDK.
+	\item Untuk menampilkan \textit{Google StreetView API} pada \textit{Google Cardboard}, beberapa gambar \textit{StreetView} dari sekeliling (beberapa arah atau \textit{heading}) harus disatukan, lalu ditampilkan pada bangun ruang yang terdapat pada Google VR SDK. Bab 4 menjelaskan langkah demi langkah mengenai pemanggilan \textit{StreetView API} untuk mendapatkan gambar sekeliling dari lokasi tertentu. Setelah gambar itu selesai dibentuk, gambar sekeliling dari lokasi tertentu tersebut barulah di=\textit{bind} dengan bangun ruang silinder yang dibuat. 
 	
-	\item Integrasi \textit{Google Directions API, StreetView API, Google Cardboard}, dan sensor dapat dilakukan dengan memuat JSON \textit{Directions API}, mem-\textit{parse}nya, lalu menampilkan gambar \textit{StreetView} dari sekeliling yang sudah digabungkan. Perubahan gambar \textit{StreetView} pada Google VR bergantug pada sensor \textit{step detector}.  
+	\item Integrasi \textit{Google Directions API, StreetView API, Google Cardboard}, dan sensor dapat dilakukan dengan memuat JSON \textit{Directions API}, mem-\textit{parse}nya, lalu menampilkan gambar \textit{StreetView} dari sekeliling yang sudah digabungkan. Perubahan gambar \textit{StreetView} pada Google VR bergantug pada rangsang yang diterima sensor \textit{step detector}.  
 \end{enumerate}
 
 \section{Saran}
 Beberapa saran yang dapat diberikan untuk pengembangan:
 
 \begin{enumerate}
-	\item Memanfaatkan fitur StreetView VR yang sudah diimplementasikan Google. 
+	\item Membedakan \textit{StreetView VR} dengan metode yang sudah dipakai. 
+	
+	\item Mengimplementasi aplikasi dengan menggunakan \textit{library} Google VR SDK yang tidak \textit{obsolete}. 
+	
+	\item Mengimplementasi aplikasi tanpa harus memuat dan menyimpan gambar-gambar \textit{StreetView} terlebih dahulu.
 	
 	
 \end{enumerate}

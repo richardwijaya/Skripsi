@@ -5,13 +5,13 @@
 \section{Latar Belakang}
 \label{sec:label}
 
-Zaman modern adalah zaman saat profesi sudah dan sedang berkembang sehingga ada banyak sekali jumlah bidangnya serta perkembangannya. Mayoritas orang menekuni bidang-bidang profesi yang tak terhitung banyaknya untuk mengembangkan setiap bidang profesi. Hal ini menyebabkan kesulitan pengaturan waktu untuk berolahraga, yang merupakan salah satu kebutuhan manusia untuk menjaga kesehatan. Salah satu aktivitas olahraga yang paling mudah dan tidak memerlukan gerakan yang sulit adalah berlari. Metode dilakukannya olahraga ini berkembang, mulai dari dilakukan di luar ruangan hingga dilakukan di rumah sejak ditemukannya {\it treadmill}. Dua metode ini memiliki kelebihan dan kekurangannya masing-masing. Berlari di luar ruangan memberikan suasana dinamis dan tidak membosankan saat melakuannya, tetapi pelaku kegiatan ini harus berada di tempat dengan lingkungan eksternal yang aman seperti ketidakhadiran kendaraan yang bergerak dan udara yang rendah polusi. Di sisi yang lain, berlari menggunakan \textit{treadmill} bisa dilakukan di dalam ruangan sehingga masalah terganggu oleh kendaraan dan polusi udara, tetapi lingkungan sekitar saat berlari monoton sehingga membuat pelaku kegiatan berlari bosan dan jenuh. Bila suasana dunia luar dapat dibawa ke dalam rumah saat menggunakan \textit{treadmill}, aktivitas berlari menggunakan \textit{treadmill} dapat terasa menyenangkan. 
-
-Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan pemandangan saat berlari pada lingkungan yang diinginkan saat berlari di {\it treadmill}. Dengan menggunakan perangkat lunak tersebut, orang yang berlari dapat menikmati pemandangan yang dipilih saat berlari di dalam rumah sehingga merasa seperti berlari di lingkungan yang dipilih tersebut.
+Di zaman modern, ada banyak bidang profesi yang ditekuni masyarakat di berbagai negara di dunia. Mayoritas orang menekuni bidang-bidang profesi yang tak terhitung banyaknya sehingga menyebabkan kesulitan pengaturan waktu untuk berolahraga, yang merupakan salah satu kebutuhan manusia untuk menjaga kesehatan. Salah satu aktivitas olahraga yang paling mudah dan tidak memerlukan gerakan yang sulit adalah berlari. Metode dilakukannya olahraga ini berkembang, mulai dari dilakukan di luar ruangan hingga dilakukan di rumah sejak ditemukannya {\it treadmill}. Dua metode ini memiliki kelebihan dan kekurangannya masing-masing. Berlari di luar ruangan memberikan suasana dinamis dan tidak membosankan saat melakuannya, tetapi pelaku kegiatan ini harus berada di tempat dengan lingkungan eksternal yang aman seperti ketidakhadiran kendaraan yang bergerak dan udara yang rendah polusi. Di sisi yang lain, berlari menggunakan \textit{treadmill} bisa dilakukan di dalam ruangan sehingga masalah terganggu oleh kendaraan dan polusi udara, tetapi lingkungan sekitar saat berlari monoton sehingga membuat pelaku kegiatan berlari bosan dan jenuh. Bila suasana dunia luar dapat dibawa ke dalam rumah saat menggunakan \textit{treadmill}, aktivitas berlari menggunakan \textit{treadmill} dapat terasa menyenangkan. 
 
 Untuk memungkinkan menampilkan pemandangan tepat di depan mata pelari, teknologi \textit{virtual reality} (VR), teknologi yang membuat pengguna merasa berada dalam lingkungan maya tertentu yang biasanya ada pada perangkat bergerak, dapat digunakan ~\cite{quickstart-google-vr}. Google VR adalah teknologi VR yang sudah umum digunakan dengan \textit{cost} yang cukup bersahabat, terutama dalam hal \textit{viewer}, alat yang digunakan untuk melihat pemandangan VR, yang menggunakan kardus. \textit{Viewer} itu adalah \textit{Google Cardboard}, \textit{VR viewer} yang dirancang Google untuk melihat pemandangan VR.
 
-Untuk menampilkan gambar dan rute perjalanan, diperlukan \textit{application programming interface} (API), yang merupakan antarmuka yang menghubungkan dua atau lebih perangkat lunak. API yang dapat dimanfaatkan untuk membentuk aplikasi  ini adalah \textit{Google StreetView API} yang berfungsi untuk menampilkan  gambar dari suatu lokasi tertentu, dan \textit{Google Directions API} yang digunakan untuk menentukan rute perjalanan antara dua lokasi ~\cite{streetview-api}~\cite{directions-api}. Agar pemandangan yang ditampilkan dapat berubah sesuai dengan langkah kaki saat berlari, sensor gerak pada perangkat bergerak dapat dimanfaatkan ~\cite{motion-sensor}. 
+Untuk menampilkan gambar dan rute perjalanan, diperlukan \textit{application programming interface} (API), yang merupakan antarmuka yang menghubungkan dua atau lebih perangkat lunak. API yang dapat dimanfaatkan untuk membentuk aplikasi  ini adalah \textit{Google StreetView API} yang berfungsi untuk menampilkan  gambar dari suatu lokasi tertentu dari satu arah pandang dan \textit{Google Directions API} yang digunakan untuk mendapatkan rute perjalanan antara dua lokasi ~\cite{streetview-api}~\cite{directions-api}. Agar pemandangan yang ditampilkan dapat berubah sesuai dengan langkah kaki saat berlari, sensor gerak pada perangkat bergerak dapat dimanfaatkan ~\cite{motion-sensor}. 
+
+Pada skripsi ini, akan dibuat sebuah perangkat lunak yang dapat menampilkan pemandangan saat berlari pada lingkungan yang diinginkan saat berlari di {\it treadmill}, memanfaatkan beberapa hal seperti \textit{Google VR}, \textit{Google StreetView API}, \textit{Google Directions API}, dan sensor gerak. Dengan menggunakan perangkat lunak tersebut, orang yang berlari dapat menikmati pemandangan yang dipilih saat berlari di dalam rumah sehingga merasa seperti berlari di lingkungan yang dipilih tersebut.
   
 \section{Rumusan Masalah}
 \label{sec:rumusan}
@@ -19,7 +19,8 @@ Rumusan masalah yang ada pada skripsi ini adalah:
 \begin{itemize}
 	\item Bagaimana memanfaatkan Google VR SDK for Android untuk menampilkan gambar dengan perangkat VR?
 	\item Bagaimana menampilkan hasil dari \textit{Google StreetView API} dalam bentuk VR?
-	\item Bagaimana mengintegrasikan \textit{Google Directions API}, gambar \textit{Google StreetView}  sensor gerak, dan Google VR dalam perangkat lunak \textit{virtual jogging}?
+	
+	\item Bagaimana mengintegrasikan \textit{Google Directions API}, gambar \textit{Google StreetView},  sensor gerak, dan Google VR dalam perangkat lunak \textit{virtual jogging}?
 \end{itemize}
 
 \section{Tujuan}
@@ -28,12 +29,19 @@ Pada skripsi ini, hal-hal yang coba untuk dicapai adalah:
 \begin{itemize}
 	\item Menggunakan Google VR SDK for Android untuk menampilkan gambar dengan {\it Google Cardboard}.
 	\item Menampilkan hasil gambar dari \textit{Google StreetView API} pada {\it Google Cardboard}.
-	\item Mengintegrasikan \textit{Google Directions API}, gambar dari \textit{Google StreetView} dan Google VR (\textit{Cardboard}) dalam perangkat lunak {\it virtual jogging}.
+	\item Mengintegrasikan \textit{Google Directions API}, gambar dari \textit{Google StreetView}, sensor gerak, dan Google VR (\textit{Cardboard}) dalam perangkat lunak {\it virtual jogging}.
 \end{itemize}
 
 \section{Batasan Masalah}
 \label{sec:batasan}
-Karena ada banyak tempat atau pemandangan di dunia ini, hanya beberapa lokasi saja yang dapat dipilih dari yang telah disediakan.
+
+\begin{enumerate}
+	\item Aplikasi dapat menampilkan lingkungan dari lokasi asal dan tujuan yang dapat memiliki jalur darat. 
+	
+	\item Aplikasi dapat berfungsi pada perangkat dengan \textit{random access memory} (RAM) minimal 4 GB.
+
+\end{enumerate}
+
 
 \section{Metodologi Penelitian}
 \label{sec:metlit}

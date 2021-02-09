@@ -3,14 +3,14 @@
 \label{chap:teori}
 Pada bab ini akan dijelaskan mengenai Google VR, Google StreetView API, Google Directions API, dan \textit{motion sensor}.
 
-%GOOGLE VR
 \section{Google VR}
 \label{sec:google-vr} 
-Google VR adalah teknologi yang diciptakan perusahaan Google untuk membuat pemandangan dunia maya yang terlihat nyata dengan menempatkan \textit{smartphone} pada alat yang bernama \textit{viewer} ~\cite{quickstart-google-vr}. \textit{Viewer} adalah alat untuk melihat dunia VR pada aplikasi VR di \textit{smartphone}. Dua \textit{viewer} yang diciptakan Google adalah \textit{Google Daydream} dan \textit{Cardboard}. Perbedaan dari \textit
-{Google Daydream} dan \textit{Google Cardboard} adalah pada bahan dan alat penerima masukan (\textit{input}). \textit{Google Daydream} memiliki alat penerima masukan pengguna seperti \textit{remote control} dengan beberapa tombol serta berbahan utama plastik, sedangkan \textit{Google Cardboard} memiliki penerima masukan berupa satu tombol (biasanya berupa magnet) yang akan memicu terjadinya suatu \textit{event} dan berbahan dasar kardus. Google menyediakan sebuah alat bantu bagi pengembang perangkat lunak untuk memudahkan pengembangan aplikasi VR yang disebut Google VR SDK.
+\textit{Virtual reality} (VR) adalah teknologi yang menyajikan tampilan sebuah dunia maya yang diciptakan yang membuat pengguna merasa ada di dalam dunia tersebut menggunakan \textit{smartphone} dan alat yang bernama \textit{viewer}. \textit{Viewer} adalah alat untuk melihat dunia VR pada aplikasi VR di \textit{smartphone}. Pengguna harus memasukkan \textit{smartphone} ke dalam \textit{viewer} untuk dapat merasakan sensasi berada dalam dunia maya tersebut.
+
+Teknologi VR ini telah diimplementasikan oleh Google yang disebut dengan Google VR. Google menciptakan dua jenis VR \textit{viewer}: \textit{Google Daydream} dan \textit{Cardboard}~\cite{quickstart-google-vr}. Perbedaan dari \textit{Google Daydream} dan \textit{Google Cardboard} adalah pada bahan dan alat penerima masukan (\textit{input}). \textit{Google Daydream} memiliki alat penerima masukan pengguna seperti \textit{remote control} dengan beberapa tombol serta berbahan utama plastik, sedangkan \textit{Google Cardboard} memiliki penerima masukan berupa satu tombol (biasanya berupa magnet) yang akan memicu terjadinya suatu \textit{event} dan berbahan dasar kardus. Google menyediakan sebuah alat bantu bagi pengembang perangkat lunak untuk memudahkan pengembangan aplikasi VR yang disebut Google VR SDK.
 
 \subsection{Google VR SDK}
-Google VR SDK adalah alat bantu berlisensi Apache 2.0 yang disediakan Google pada repository Github yang berisi kode program dari aplikasi {\it virtual reality} (VR)  yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS ~\cite{gvr-sdk-repo}. Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google ~\cite{quickstart-google-vr}. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama HelloVR dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo HelloVR untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi. \textit{Folder} yang paling penting di dalam Google VR SDK adalah \textit{samples}, yang merupakan contoh-contoh program yang memanfaatkan teknologi Google VR. Di dalam \textit{folder} tersebut, terkandung beberapa \textit{folder} seperti \texttt{ndk-hellovr}, \texttt{ndk-hellovrbeta}, \texttt{sdk-controllerclient}, \texttt{sdk-hellovr},\texttt{sdk-video360}, dan \texttt{sdk-videoplayer}. \textit{Folder} \texttt{sdk-hellovr} dan \texttt{ndk-hellovr} merupakan aplikasi permainan VR. Perbedaannya adalah \texttt{sdk-hellovr} ditulis murni dalam bahasa Java, sedangkan \texttt{ndk-hellovr} menggunakan bahasa C++ juga.  \textit{Folder} \texttt{sdk-controllerclient} adalah aplikasikan yang menunjukkan bentuk yang berputar sesuai rangsang dari \textit{gyroscope}. \textit{Folder} \texttt{sdk-videoplayer} dan \texttt{sdk-video360} adalah aplikasi pemutar video 360. Gambar \ref{fig:gvr-dir} menunjukkan struktur \textit{folder} dari Google VR SDK untuk Android. 
+Google VR SDK adalah alat bantu berlisensi Apache 2.0 yang disediakan Google pada \textit{Github repository} yang berisi kode program dari aplikasi {\it virtual reality} (VR)  yang tersedia untuk Android (Java), Android NDK, Unity, dan iOS~\cite{gvr-sdk-repo}. Secara umum, SDK ini dibuat agar pengembang perangkat lunak dapat mempelajari serta memanfaatkan teknologi VR yang disediakan Google~\cite{quickstart-google-vr}. Ada beberapa aplikasi yang tersedia pada SDK tersebut seperti aplikasi demo bernama HelloVR dan pemutar video dalam VR, tetapi penulis akan memanfaatkan bagian aplikasi demo HelloVR untuk Android Java pada Google VR SDK. Untuk menggunakan SDK ini, dibutuhkan perangkat lunk Android Studio 2.3.3 dan lebih tinggi, dengan Android SDK versi 7.1.1 (API Level 25) atau lebih tinggi. \textit{Folder} yang paling penting di dalam Google VR SDK adalah \textit{samples}, yang merupakan contoh-contoh program yang memanfaatkan teknologi Google VR. Di dalam \textit{folder} tersebut, terkandung beberapa \textit{folder} seperti \texttt{ndk-hellovr}, \texttt{ndk-hellovrbeta}, \texttt{sdk-controllerclient}, \texttt{sdk-hellovr},\texttt{sdk-video360}, dan \texttt{sdk-videoplayer}. \textit{Folder} \texttt{sdk-hellovr} dan \texttt{ndk-hellovr} merupakan aplikasi permainan VR. Perbedaannya adalah \texttt{sdk-hellovr} ditulis murni dalam bahasa Java, sedangkan \texttt{ndk-hellovr} menggunakan bahasa C++ juga.  \textit{Folder} \texttt{sdk-controllerclient} adalah aplikasikan yang menunjukkan bentuk yang berputar sesuai rangsang dari \textit{gyroscope}. \textit{Folder} \texttt{sdk-videoplayer} dan \texttt{sdk-video360} adalah aplikasi pemutar video 360. Gambar \ref{fig:gvr-dir} menunjukkan struktur \textit{folder} dari Google VR SDK untuk Android. 
 
 \begin{figure}[h]
 	\centering
@@ -19,7 +19,7 @@ Google VR SDK adalah alat bantu berlisensi Apache 2.0 yang disediakan Google pad
 	\label{fig:gvr-dir}
 \end{figure}
 
-Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{package} \texttt{com.google.vr.sdk.base} agar dapat digunakan pengembang perangkat lunak untuk membuat aplikasi VR ~\cite{google-vr-sdk}. \textit{Library} ini juga memanfaatkan \textit{OpenGl}, yaitu \textit{API} untuk mengolah grafika komputer. Berikut adalah beberapa \textit{class} dan \textit{interface} dari \textit{package} \texttt{com.google.vr.sdk.base}:
+Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{package} \texttt{com.google.vr.sdk.base} agar dapat digunakan pengembang perangkat lunak untuk membuat aplikasi VR~\cite{google-vr-sdk}. \textit{Library} ini juga memanfaatkan \textit{OpenGl}, yaitu \textit{API} untuk mengolah grafika komputer. Berikut adalah beberapa \textit{class} dan \textit{interface} dari \textit{package} \texttt{com.google.vr.sdk.base}:
 
 	\begin{enumerate}
 		\item \texttt{GvrView.StereoRenderer}
@@ -76,7 +76,7 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 			\begin{itemize}
 				\item \texttt{public static void setSustainedPerformanceMode (Activity activity, boolean enabled)}
 				
-\textit{Method} yang mengatur \texttt{android.view.Window} untuk menopang performanya.
+\textit{Method} yang mengatur \texttt{android.view.Window} untuk menjaga performanya agar tetap stabil.
 				\item \texttt{public static boolean setVrModeEnabled (Activity activity, boolean enabled)}
 				
 				\textit{Method} ini menyetel pengaturan \textit{VR} yang seseuai untuk suatu \textit{Activity}. Parameter yang dimiliki \textit{method} ini adalah:
@@ -88,14 +88,12 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 					
 					Nilai \textit{boolean} sesuai dengan apakah mode VR akan diaktifkan atau tidak.
 				\end{itemize}
-				\item \texttt{public static boolean trySetVrModeEnabled (Activity activity, boolean enabled)}
-				
-				Sets the appropriate "VR mode" setting for an Activity. Parameter yang dimiliki 
+			
 			\end{itemize}				
 		
 		\item \texttt{Eye}
 		
-		\textit{Class} yang mendefinisikan rincian \textit{rendering} stereo dari satu \textit{eye}. 
+		\textit{Class} yang mendefinisikan rincian \textit{rendering} stereo dari satu \textit{eye}, yang merupakan tampilan dunia VR dalam satu mata. 
 			\begin{itemize}
 				\item \texttt{public float[] getEyeView()}
 				
@@ -187,7 +185,7 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 		
 		\item \texttt{Viewport}
 		
-		\textit{Class} yang mendefinisikan \textit{viewport} berbentuk persegi panjang. 
+		\textit{Class} yang mendefinisikan \textit{viewport} berbentuk persegi panjang. \textit{Viewport} merupakan area untuk menampilkan objek grafis.  
 		
 		Atribut-atribut yang dimiliki kelas ini adalah sebagai berikut:
 		
@@ -216,6 +214,25 @@ Google menyediakan \textit{library} untuk bahasa pemrograman Java pada \textit{p
 			\textit{Method} untuk menentukan \textit{viewport} dari OpenGl.
 			
 			\item \texttt{public void setViewport(int x, int y, int width, int height)}
+			
+			\textit{Setter} dari objek \textit{viewport} sesuai parameter posisi dan dimensinya. Parameter yang dimiliki \textit{method} ini:
+			
+			\begin{itemize}
+				\item \texttt{int x}
+				
+				Koordinat \textit{viewport} dari sumbu x.
+				\item \texttt{int y}
+				
+				Koordinat \textit{viewport} dari sumbu y. 
+				
+				\item \texttt{int width}
+				
+				Tinggi dari \textit{viewport}
+				\item \texttt{int height}
+				
+				Lebar dari \textit{viewport.}				
+				
+			\end{itemize}						
 		\end{itemize}
 	\end{enumerate}
 
@@ -231,7 +248,14 @@ HelloVR, aplikasi yang diperoleh dari Google VR SDK pada direktori \texttt{./sam
 \end{figure}
 
 \subsubsection{Komponen Aplikasi HelloVR}
-Aplikasi HelloVR terdiri dari beberapa \textit{folder} dan komponen-komponen. Gambar \ref{fig:hello-vr-dir} menunjukkan struktur direktori aplikasi HelloVR. Ada beberapa \textit{folder} penting yang terkandung dalam program, yaitu \textit{assets}, \textit{java}, dan \textit{res}. \textit{Folder assets} mengandung \textit{asset-asset} audiovisual yang akan digunakan dalam aplikasi seperti gambar, suara, atau video, \textit{folder java} mengandung \textit{file-file} kode program, sementara \textit{folder res} mengandung komponen-komponen dari antarmuka aplikasi seperti gambar logo aplikasi, gambar latar belakang tampilan aplikasi, sampai nilai-nilai alfabetik seperti nama aplikasi. 
+Aplikasi HelloVR terdiri dari beberapa \textit{folder} dan komponen-komponen. Gambar \ref{fig:hello-vr-dir} menunjukkan struktur direktori aplikasi HelloVR. Ada beberapa \textit{folder} penting yang terkandung dalam program, yaitu \textit{assets}, \textit{java}, dan \textit{res}. \textit{Folder assets} mengandung \textit{asset-asset} audiovisual yang akan digunakan dalam aplikasi seperti gambar, suara, atau video, \textit{folder java} mengandung \textit{file-file} kode program, sementara \textit{folder res} mengandung komponen-komponen dari antarmuka aplikasi seperti gambar logo aplikasi, gambar latar belakang tampilan aplikasi, sampai nilai-nilai alfabetik seperti nama aplikasi. Gambar \ref{fig:assets-folder} menunjukkan rincian isi \textit{folder assets} dari aplikasi HelloVR. 
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[scale=0.7]{Gambar/assets-folder.png}
+	\caption{Isi \textit{folder assets} aplikasi HelloVR}
+	\label{fig:assets-folder}
+\end{figure}
 
 Dunia VR pada aplikasi ini terbentuk dari komponen-komponen yang ada dalam \textit{folder assets}. Bentuk ruangan VR ditentukan oleh {\it file Wavefront Object} (OBJ) dan tampilannya oleh tekstur {\it file Portable Network Graphics} (PNG) (Gambar \ref{fig:vr-room}) yang telah dengan sangat tepat dipetakan pada \textit{file} OBJ yang ada sehingga dunia VR terlihat sangat nyata. Bentuk-bentuk yang akan dicari pengguna dibuat dari tiga file OBJ yang merepresentasikan tiga macam bentuk yang akan muncul. Masing-masing file OBJ memiliki dua tekstur yang telah dipetakan pada masing-masing file OBJ dalam file PNG. Satu tekstur (Gambar \ref{fig:blue-shape}) digunakan ketika bentuk sedang tidak ada di tengah-tengah titik pengelihatan pengguna, sedangkan satu tekstur yang lain (Gambar \ref{fig:pink-shape}) digunakan ketika pengguna sedang melihat bentuk tepat di titik tengah pengelihatan pengguna.
 
@@ -421,7 +445,7 @@ Aplikasi HelloVR memiliki empat kelas pada programnya, di antaranya:
 %STREETVIEW API
 \section{Google \it{StreetView API}}
 \label{sec:streetview}
-Google StreetView API adalah API yang disediakan Google untuk mendapatkan pemandangan sesuai masukan pengguna melalui \textit{HTTP request} ~\cite{streetview-api}. Ada dua jenis {\it StreetView API} yang disediakan Google, yaitu {\it static} dan {\it dynamic}. {\it StreetView API} yang statis akan menampilkan pemandangan yang tetap tanpa pergerakan pada pemandangannya, sedangkan yang dinamis menampilkan pemandangan yang berubah-ubah seperti {\it video}.
+Google StreetView API adalah API yang disediakan Google untuk mendapatkan gambar dari suatu lokasi sesuai masukan pengguna melalui \textit{HTTP request}~\cite{streetview-api}. Gambar yang dihasilkan dari pemanggilan \textit{StreetView API} ini berbentuk persegi panjang yang merupakan gambar dari satu arah pandang. Ada dua jenis {\it StreetView API} yang disediakan Google, yaitu {\it static} dan {\it dynamic}. {\it StreetView API} yang statis akan menampilkan pemandangan yang tetap tanpa pergerakan pada pemandangannya, sedangkan yang dinamis menampilkan pemandangan yang berubah-ubah seperti {\it video}.
 
 \begin{figure}[h]
 	\centering
@@ -432,7 +456,7 @@ Google StreetView API adalah API yang disediakan Google untuk mendapatkan pemand
 
 \subsection{{\it API Key}}
 \label{subs:api-key}
-Agar dapat menggunakan {\it StreetView API} (dan \textit{Directions API} pada Subbab \ref{sec:directions}), ada {\it API key} yang harus diperoleh pada Google Cloud Platform Console dengan memasukkan nomor kartu kredit. Gambar \ref{fig:googlecloud} menunjukkan tampilan \textit{Google Cloud} setelah mendapatkan API key ~\cite{api-key}. API {\it key} yang diberikan terdiri atas dua puluh dan delapan belas karakter alfanumerik (bisa huruf kapital dan huruf kecil) yang dihubungkan dengan tanda "-". API {\it key} yang telah diperoleh akan digunakan sebagai salah satu parameter masukan agar Google API dapat diakses.
+Agar dapat menggunakan {\it StreetView API} (dan \textit{Directions API} pada Subbab \ref{sec:directions}), ada {\it API key} yang harus diperoleh pada Google Cloud Platform Console dengan memasukkan nomor kartu kredit. Gambar \ref{fig:googlecloud} menunjukkan tampilan \textit{Google Cloud} setelah mendapatkan API key~\cite{api-key}. API {\it key} yang diberikan terdiri atas dua puluh dan delapan belas karakter alfanumerik (bisa huruf kapital dan huruf kecil) yang dihubungkan dengan tanda "-". API {\it key} yang telah diperoleh akan digunakan sebagai salah satu parameter masukan agar Google API dapat diakses.
 
 %\subsection{Atribut \textit{location}}
 %\label{subs:location-attr}
@@ -499,17 +523,26 @@ Selain parameter wajib, ada parameter opsional, yaitu parameter yang tidak perlu
     
 
 \subsubsection{Hasil Pemanggilan \textit{StreetView API}}
-Pemanggilan \textit{StreetView} yang berrhasil akan menghasilkan sebuah gambar dari pemandangan sesuai lokasi. Gambar \ref{fig:success-streetview} memperlihatkan pemanggilan \textit{StreetView API} yang berhasil dengan \textit{URL} \url{https://maps.googleapis.com/maps/api/streetview?size=600x300\&location=-6.8746537,107.6046282\&key=(disamarkan)}.
+Pemanggilan \textit{StreetView} yang berrhasil akan menghasilkan sebuah gambar dari pemandangan sesuai lokasi. Gambar \ref{fig:success-streetview} memperlihatkan pemanggilan \textit{StreetView API} yang berhasil dengan \textit{URL} \url{https://maps.googleapis.com/maps/api/streetview?size=600x300\&location=-6.8746537,
+107.6046282\&key=(disamarkan)}.
 \begin{figure}[h]
 		\includegraphics[scale=0.8]{Gambar/streetview90.png}
 	\caption{Pemanggilan \textit{StreetView API} yang berhasil}
 	\label{fig:success-streetview}
 \end{figure}
 
+Gambar yang dihasilkan merupakan gambar dari satu arah pandang dengan ukuran sesuai ukuran yang dimasukkan pengguna (jika parameter opsional tidak diisi, akan diisi dengan nilai \textit{default}). Parameter yang digunakan untuk memperoleh Gambar \ref{fig:success-streetview} dari \textit{StreetView API} adalah:
+	\begin{itemize}
+		\item $size = 600\times300$
+		\item $location = -6.8746537,
+107.6046282$
+		\item \textit{key} disamarkan.
+	\end{itemize}
+
 %DIRECTIONS API
 \section{Google {\it Directions API}}
 \label{sec:directions}
-Google {\it Directions API} adalah layanan berbasis \textit{HTTP}/\textit{HTTPS} dari Google yang membantu mencari dan menghitung arah dari satu tempat ke tempat yang lain ~\cite{directions-api}. Ada beberapa \textit{mode} dari arah yang dapat dicari seperti {\it driving}, {\it transit}, {\it walking}, dan {\it cycling}. Pengaksesan \textit{Directions API} sangat mirip dengan {\it StreetView API}, yaitu membutuhkan \textit{API Key}, seperti yang dijelaskan pada Subbab \ref{subs:api-key}, sebagai salah satu atribut wajib, juga memiliki atribut wajib dan opsional yang dapat diatur lewat parameter. 
+Google {\it Directions API} adalah layanan berbasis \textit{HTTP}/\textit{HTTPS} dari Google yang membantu mencari jalur terdekat yang harus dilewati untuk pergi dari lokasi asal ke lokasi tujuan sesuai parameter pengguna~\cite{directions-api}. Ada beberapa \textit{mode} dari arah yang dapat dicari seperti {\it driving}, {\it transit}, {\it walking}, dan {\it cycling}. Pengaksesan \textit{Directions API} sangat mirip dengan {\it StreetView API}, yaitu membutuhkan \textit{API Key}, seperti yang dijelaskan pada Subbab \ref{subs:api-key}, sebagai salah satu atribut wajib, juga memiliki atribut wajib dan opsional yang dapat diatur lewat parameter. 
 
 \subsection{Penggunaan {\it Directions API}}
 Sintaks untuk mengaksesnya pun mirip dengan \textit{StreetView API} dengan \textit{URL} sebagai berikut:
@@ -563,7 +596,7 @@ Bagian "filetype" pada \textit{URL} diganti dengan tipe \textit{file} keluaran a
 
 
 \subsection{Hasil Pemanggilan \textit{Directions API}}
-Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{script} Javascript Notation Object (JSON) yang menyatakan arah sesuai lokasi asal dan tujuan, serta mode perjalanan yang adalah masukan pengguna ~\cite{directions-api}. Selain arah, \textit{script} JSON yang dikembalikan juga mengandung informasi mengenai jarak jalan yang ditempuh serta waktu tempuh perjalanan. Listing \ref{list:success_directions} menunjukkan contoh \textit{script} JSON dengan \textit{URL} \url{https://maps.googleapis.com/maps/api/directions/json?origin=unpar&destination=Rumah+Sakit+Santo+Borromeus&mode=walking&key=(disamarkan)} (parameter \textit{key} tidak dicantumkan). Pemanggilan yang gagal akan mengembalikan \textit{script} JSON yang menyatakan jalan di antara dua lokasi masukan tidak dapat ditemukan.
+Hal yang dihasilkan oleh pemanggilan \textit{Directions API} adalah \textit{script} Javascript Notation Object (JSON) yang menyatakan arah sesuai lokasi asal dan tujuan, serta mode perjalanan yang adalah masukan pengguna~\cite{directions-api}. Selain arah, \textit{script} JSON yang dikembalikan juga mengandung informasi mengenai jarak jalan yang ditempuh serta waktu tempuh perjalanan. Listing \ref{list:success_directions} menunjukkan contoh \textit{script} JSON dengan \textit{URL} \url{https://maps.googleapis.com/maps/api/directions/json?origin=unpar&destination=Rumah+Sakit+Santo+Borromeus&mode=walking&key=(disamarkan)} (parameter \textit{key} tidak dicantumkan). Pemanggilan yang gagal akan mengembalikan \textit{script} JSON yang menyatakan jalan di antara dua lokasi masukan tidak dapat ditemukan.
 
 
 \begin{lstlisting}[caption={Hasil Pemanggilan \textit{Directions API} yang Berhasil},label={list:success_directions},language=java]
@@ -762,7 +795,7 @@ Penjelasan mengenai atribut-atribut hasil keluaran \textit{Directions API} adala
 		\begin{itemize}
 			\item \textit{distance}
 			
-			Panjang dari jalan yang dilewati.
+			Panjang dari \textit{leg} yang dilewati, dalam meter.
 			\item \textit{duration}
 			
 			Lama waktu yang dibutuhkan untuk menempuh jalan sesuai \textit{mode}.
@@ -778,6 +811,32 @@ Penjelasan mengenai atribut-atribut hasil keluaran \textit{Directions API} adala
 			\item \textit{end\_location}
 			
 			Koordinat garis lintang dan garis bujur dari \textit{end\_address}.
+			\item \textit{steps}
+			
+			\textit{Array} dari objek \textit{step}, bagian dari \textit{legs}. Beberapa atribut yang dimiliki objek \textit{step} adalah:
+				\begin{itemize}
+					\item \textit{distance}
+					
+					Jarak dari\textit{step} ini.
+					\item \textit{duration}
+					
+					Lama waktu yang digunakan untuk menempuh \textit{step} ini.
+					\item \textit{start\_location}
+					
+					Koordinat garis lintang dan bujur dari titik awal \textit{step} ini.
+					\item \textit{end\_location}
+					
+					Koordinat garis lintang dan bujur dari titik akhir \textit{step} ini.
+					
+					\item \textit{polyline}
+					
+					Deretan titik di dalam \textit{steps} yang direpresentasikan dengan kumpulan karakter. 
+					\item \textit{travel\_mode} 
+					
+					\textit{Mode} perjalanan yang ditempuh 
+					
+					
+				\end{itemize}
 			
 		\end{itemize}				
 		
@@ -807,7 +866,7 @@ Penjelasan mengenai atribut-atribut hasil keluaran \textit{Directions API} adala
 \label{subs:motion-sensor}
 
 \subsection{Deskripsi \textit{Motion Sensor}}
-\textit{Motion sensor} adalah sensor pada \textit{smartphone} yang mendeteksi pergerakan gawai \textit{smartphone} ~\cite{motion-sensor}. Pergerakan yang dapat dideteksi termasuk saat gawai dimiringkan, digoyangkan, diayunkan, atau diputar (sumber). Beberapa contoh \textit{motion sensor} pada \textit{smartphone} adalah:
+\textit{Motion sensor} adalah sensor pada \textit{smartphone} yang mendeteksi pergerakan gawai \textit{smartphone}~\cite{motion-sensor}. Pergerakan yang dapat dideteksi termasuk saat gawai dimiringkan, digoyangkan, diayunkan, atau diputar (sumber). Beberapa contoh \textit{motion sensor} pada \textit{smartphone} adalah:
 \begin{itemize}
 	\item \textit{accelerometer}
 	
@@ -844,4 +903,5 @@ sensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 \end{lstlisting} 
 
 \subsection{Deskripsi \textit{Step Detector}}
+
 \textit{Step detector} adalah sensor yang digunakan untuk mendeteksi langkah kaki pengguna. Sensor ini dapat memicu suatu \textit{event} setiap kali langkah kaki pengguna diambil. Nilai yang dikembalikan adalah 1.0 dan \textit{timestamp} dari saat langkah kaki diambil pengguna (nilai 1.0 menunjukkan bahwa ada langkah yang telah diambil). \textit{Permission} yang dibutuhkan untuk mengaktifkan sensor ini adalah \texttt{android.permission.ACTIVITY\_RECOGNITION}. Latensi dari sensor ini sekitar kurang dari dua detik. 

@@ -1,76 +1,773 @@
 %%versi 2 (8-10-2016)
 %\chapter{Hasil Eksperimen}
 %\label{lamp:B}
-%
-%\def\scl{1}
-%% \def\leg{\legend{Switching,Homotopic,Buffer*Length,Length}}
-%\def\leg{} 
-%\def\std{none}
-%\def\ymin{}
-%\def\ymax{}
-%
-%Hasil eksperimen berikut dibuat dengan menggunakan {\sc tikzpicture} (bukan hasil excel yg diubah ke file bitmap). Sangat berguna jika ingin menampilkan tabel (yang kuantitasnya sangat banyak) yang datanya dihasilkan dari program komputer.\\
-%\begin{minipage}[c]{0.49\textwidth}
-%	\begin{figure}[H]
-%		\centering
-%		\begin{tikzpicture}[scale=\scl]
-%		\begin{axis}[\ymin,\ymax,xlabel= $P_{var}$(\%),ylabel=Number of Segments, xticklabel style={/pgf/number format/.cd, fixed,fixed zerofill, precision=1},legend pos = outer north east]
-%		\addplot+[smooth][color=green] coordinates {(0,3.846) (10,3.796) (20,3.553) (30,3.314) (40,3.308) (50,3.072) };
-%		\addplot+[smooth][color=red] coordinates {(0,7.098) (10,5.279) (20,4.641) (30,3.389) (40,2.960) (50,2.736) };
-%		\addplot+[smooth][color=blue] coordinates {(0,6.285) (10,5.798) (20,5.777) (30,5.408) (40,5.300) (50,5.217) };
-%		\addplot+[smooth][color=black] coordinates {(0,5.614) (10,5.114) (20,5.021) (30,4.417) (40,4.272) (50,4.228) };
-%		\leg
-%		\end{axis}
-%		\end{tikzpicture}
-%		\caption[Hasil 1]{Hasil 1}
-%		\label{fig:l1hasil1}
-%	\end{figure}
-%\end{minipage}
-%\begin{minipage}[c]{0.49\linewidth}
-%	\begin{figure}[H]
-%		\centering
-%		\begin{tikzpicture}[scale=\scl]
-%		\begin{axis}[\ymin,\ymax,xlabel=$m'$,ylabel=Number of Segments, xticklabel style={/pgf/number format/.cd, fixed,fixed zerofill, precision=1},legend pos = outer north east]
-%		\addplot+[smooth][color=green] coordinates {(8,3.427) (9,3.776) (10,3.600) (11,3.846) (12,3.760) (13,3.634) (14,3.516) (15,3.992) (16,3.933) (17,3.519) };
-%		\addplot+[smooth][color=red] coordinates {(8,7.058) (9,7.055) (10,7.167) (11,7.098) (12,7.150) (13,7.158) (14,6.977) (15,7.337) (16,7.287) (17,6.949) };
-%		\addplot+[smooth][color=blue] coordinates {(8,6.584) (9,6.482) (10,6.448) (11,6.285) (12,6.172) (13,6.038) (14,5.769) (15,6.010) (16,5.969) (17,5.857) };
-%		\addplot+[smooth][color=black] coordinates {(8,5.769) (9,5.747) (10,5.641) (11,5.614) (12,5.612) (13,5.492) (14,5.302) (15,5.428) (16,5.381) (17,5.222) };
-%		\leg
-%		\end{axis}
-%		\end{tikzpicture}
-%		\caption[Hasil 2]{Hasil 2}
-%		\label{fig:l1hasil2}
-%	\end{figure}
-%\end{minipage}\\
-%\begin{minipage}[c]{0.48\linewidth}
-%	\begin{figure}[H]
-%		\centering
-%		\begin{tikzpicture}[scale=\scl]
-%		\begin{axis}[\ymin,\ymax,xlabel=$m'$,ylabel=Number of Segments, xticklabel style={/pgf/number format/.cd, fixed,fixed zerofill, precision=1},legend pos = outer north east]
-%		\addplot+[smooth][color=green] coordinates {(8,3.326) (9,3.139) (10,3.158) (11,3.314) (12,3.366) (13,3.068) (14,3.204) (15,3.163) (16,3.236) (17,3.599) };
-%		\addplot+[smooth][color=red] coordinates {(8,3.464) (9,3.329) (10,3.370) (11,3.389) (12,3.452) (13,3.433) (14,3.524) (15,3.633) (16,3.388) (17,3.563) };
-%		\addplot+[smooth][color=blue] coordinates {(8,6.214) (9,5.830) (10,5.646) (11,5.408) (12,5.101) (13,5.014) (14,4.725) (15,4.508) (16,3.989) (17,3.169) };
-%		\addplot+[smooth][color=black] coordinates {(8,4.976) (9,4.881) (10,4.542) (11,4.417) (12,4.277) (13,4.144) (14,3.893) (15,3.794) (16,3.390) (17,2.790) };
-%		\leg
-%		\end{axis}
-%		\end{tikzpicture}
-%		\caption[Hasil 3]{Hasil 3}
-%		\label{fig:l1hasil3}
-%	\end{figure}
-%\end{minipage}
-%\begin{minipage}[c]{0.48\linewidth}
-%	\begin{figure}[H]
-%		\centering
-%		\begin{tikzpicture}[scale=\scl]
-%		\begin{axis}[\ymin,\ymax,xlabel=$m'$, xticklabel style={/pgf/number format/.cd, fixed,fixed zerofill, precision=1},legend pos = outer north east]
-%		\addplot+[smooth][color=green] coordinates {(8,0.463) (9,0.534) (10,0.499) (11,0.498) (12,0.465) (13,0.507) (14,0.504) (15,0.498) (16,0.489) (17,0.487) };
-%		\addplot+[smooth][color=red] coordinates {(8,0.152) (9,0.156) (10,0.150) (11,0.124) (12,0.133) (13,0.118) (14,0.102) (15,0.134) (16,0.153) (17,0.117) };
-%		\addplot+[smooth][color=blue] coordinates {(8,0.119) (9,0.110) (10,0.129) (11,0.143) (12,0.174) (13,0.174) (14,0.203) (15,0.242) (16,0.342) (17,0.452) };
-%		\addplot+[smooth][color=black] coordinates {(8,0.164) (9,0.130) (10,0.159) (11,0.195) (12,0.231) (13,0.244) (14,0.266) (15,0.301) (16,0.383) (17,0.492) };
-%		\leg
-%		\end{axis}
-%		\end{tikzpicture}
-%		\caption[Hasil 4]{Hasil 4} 
-%		\label{fig:l1hasil4}
-%	\end{figure}
-%\end{minipage}
+\chapter{Kode Program Aplikasi \textit{Jogging}}
+\label{lamp:B}
+
+\begin{lstlisting}[language=Java,caption=MainActivity.java]
+package id.ac.unpar.informatika.homerunner;
+
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class MainActivity extends Activity implements View.OnClickListener {
+
+    protected EditText originET, destET;
+    protected TextView oriTV, destTV;
+    protected Button startButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        startButton = (Button) findViewById(R.id.startBtn);
+        originET = (EditText) findViewById(R.id.originET);
+        destET = (EditText) findViewById(R.id.destET);
+        oriTV = (TextView) findViewById(R.id.originTV);
+        destTV = (TextView) findViewById(R.id.destTV);
+
+        oriTV.setText("Origin");
+        destTV.setText("Destination");
+
+        startButton.setText("Start Running");
+        startButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == startButton.getId()){
+
+            if (originET.getText().toString().equals("") || destET.getText().toString().equals("")) {
+                Toast.makeText(getBaseContext(),"Origin or Destination Text Box can't be Empty",
+                        Toast.LENGTH_SHORT).show();
+            } else {
+
+                DirectionsLoader dirLoader = new DirectionsLoader(this);
+
+                String dirURL = "https://maps.googleapis.com/maps/api/directions/json?" +
+                        "mode=walking&origin=" + originET.getText().toString() + "&destination=" +
+                        destET.getText().toString() + "&key=" + getString(R.string.key);
+
+                originET.setText("");
+                destET.setText("");
+
+                dirLoader.execute(dirURL);
+            }
+        }
+    }
+}
+
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java,caption=DirectionsLoader.java]
+package id.ac.unpar.informatika.homerunner;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.AsyncTask;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+public class DirectionsLoader extends AsyncTask<String,Void,Void> {
+
+    protected String jsonText;
+    protected Activity activity;
+
+    public DirectionsLoader(Activity activity){
+        this.activity = activity;
+        jsonText = "";
+    }
+
+    @Override
+    protected Void doInBackground(String... strings) {
+        try {
+            URL url = new URL(strings[0]);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.connect();
+            InputStream inputStream = conn.getInputStream();
+
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            String curLine = bufferedReader.readLine();;
+
+            while(curLine != null){
+                jsonText += curLine;
+                curLine = bufferedReader.readLine();
+
+            }
+
+            conn.disconnect();
+
+        } catch (Exception ex) {}
+
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        DirectionsExtractor dirExtractor = new DirectionsExtractor(jsonText);
+        dirExtractor.extractJSONDir();
+
+        Intent intent = new Intent(activity, VrActivity.class);
+
+        StreetViewLoader streetViewLoader = new StreetViewLoader(activity, intent, dirExtractor.arrSteps);
+        streetViewLoader.execute();
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java,caption=DirectionsExtractor.java]
+package id.ac.unpar.informatika.homerunner;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.StringReader;
+import java.util.ArrayList;
+
+public class DirectionsExtractor {
+
+    protected String jsonText;
+    protected ArrayList<JSONObject> arrSteps;
+
+    public DirectionsExtractor(String jsonText){
+        this.jsonText = jsonText;
+        arrSteps = new ArrayList<>();
+    }
+
+    public void extractJSONDir(){
+        String jsonTemp = "";
+        JSONObject jsonDir;
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new StringReader(jsonText));
+            String curLine = bufferedReader.readLine();
+
+            while (curLine != null){
+                jsonTemp += curLine;
+                curLine = bufferedReader.readLine();
+            }
+
+            jsonDir = new JSONObject(jsonTemp);
+
+            JSONArray jsonArrRoute = jsonDir.getJSONArray("routes");
+
+            for(int i = 0; i < jsonArrRoute.length(); i++){
+                JSONObject jsonRoute = jsonArrRoute.getJSONObject(i);
+
+                JSONArray jsonArrLegs = jsonRoute.getJSONArray("legs");
+
+                for(int j = 0; j < jsonArrLegs.length(); j++){
+                    JSONObject jsonLegs = jsonArrLegs.getJSONObject(j);
+
+
+                    JSONArray jsonArrSteps = jsonLegs.getJSONArray("steps");
+
+                    for(int k = 0; k < jsonArrSteps.length(); k++){
+                        arrSteps.add(jsonArrSteps.getJSONObject(k));
+                    }
+                }
+            }
+        }catch (Exception ex){
+
+        }
+    }
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java,caption=StreetViewLoader.java]
+package id.ac.unpar.informatika.homerunner;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.os.AsyncTask;
+import org.json.JSONObject;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.ArrayList;
+
+public class StreetViewLoader extends AsyncTask<Void, Void, Void> {
+
+    protected Bitmap streetViewBitmap;
+    protected Activity activity;
+    protected Intent intent;
+    protected ArrayList<JSONObject> arrSteps;
+    protected int imgCount;
+
+    public StreetViewLoader(Activity activity, Intent intent, ArrayList<JSONObject> arrSteps) {
+        this.intent = intent;
+        this.activity = activity;
+        this.arrSteps = arrSteps;
+        this.imgCount = 0;
+    }
+
+    @Override
+    protected Void doInBackground(Void... aVoid) {
+        for(int i = 0; i < arrSteps.size(); i++){
+            int length = 4;
+
+            boolean isEnd = (i == arrSteps.size() - 1 ? true : false);
+
+            createStreetViewImage(generateStreetViewURL(length, true));
+            publishProgress();
+
+            if(isEnd) {
+                createStreetViewImage(generateStreetViewURL(length,false));
+                publishProgress();
+            }
+        }
+
+        return null;
+    }
+
+    @Override
+    protected void onProgressUpdate(Void... values) {
+        imgCount++;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        intent.putExtra("length", imgCount);
+
+        int[] stepsDistance = new int[arrSteps.size()];
+        for (int i = 0; i < arrSteps.size(); i++){
+            try{
+                stepsDistance[i] = arrSteps.get(i).getJSONObject("distance").getInt("value");
+            } catch (Exception ex){}
+        }
+
+        intent.putExtra("stepDistances", stepsDistance);
+
+        activity.startActivity(intent);
+    }
+
+    protected String[] generateStreetViewURL(int svUrlLength, boolean isStart){
+        int heading = 0;
+
+        String[] urlArr = new String[svUrlLength];
+
+        String location = (isStart ? getLocation("start_location") : getLocation("end_location"));
+
+        String svTempURL = "https://maps.googleapis.com/maps/api/streetview?size=600x300&location="+
+                location +"&key="+ activity.getString(R.string.key) + "&heading=";
+
+        for(int i = 0 ; i < svUrlLength ; i++){
+            urlArr[i] = svTempURL + heading;
+            heading += 90;
+        }
+
+        return urlArr;
+    }
+
+    public String generateFilePath() {
+        return ("streetview" + imgCount + ".png");
+    }
+
+    public String getLocation(String startOrEndKey){
+        double startLoc = 0.0;
+        double endLoc = 0.0;
+        try {
+            startLoc = arrSteps.get(imgCount).getJSONObject(startOrEndKey).getDouble("lat");
+            endLoc = arrSteps.get(imgCount).getJSONObject(startOrEndKey).getDouble("lng");
+        } catch (Exception ex){}
+
+        return startLoc + "," + endLoc;
+    }
+
+    public void createStreetViewImage(String[] urls){
+        Bitmap[] bitmaps = new Bitmap[urls.length];
+        for (int j = 0; j < urls.length; j++) {
+            try {
+                URL url = new URL(urls[j]);
+                InputStream input = url.openStream();
+                bitmaps[j] = BitmapFactory.decodeStream(input);
+            } catch (Exception ex) {}
+        }
+
+        int width = bitmaps[0].getWidth();
+        int height = bitmaps[0].getHeight();
+
+        width *= bitmaps.length;
+
+        Bitmap allBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(allBitmap);
+        int left = 0;
+        for (int j = 0; j < bitmaps.length; j++) {
+            left = (j == 0 ? 0 : left + bitmaps[j].getWidth());
+            canvas.drawBitmap(bitmaps[j], left, 0, null);
+        }
+        streetViewBitmap = allBitmap;
+
+        try {
+            File file = new File(activity.getCacheDir(), generateFilePath());
+            if (file.exists()) {
+                file.delete();
+                file = new File(activity.getCacheDir(), generateFilePath());
+            }
+            FileOutputStream fOS = new FileOutputStream(file);
+            streetViewBitmap.compress(Bitmap.CompressFormat.PNG, 0, fOS);
+            fOS.flush();
+            fOS.close();
+        } catch (Exception e) {}
+    }
+
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java,caption=VrActivity.java]
+package id.ac.unpar.informatika.homerunner;
+
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.opengl.GLES20;
+import android.opengl.Matrix;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.google.vr.ndk.base.Properties;
+import com.google.vr.ndk.base.Properties.PropertyType;
+import com.google.vr.ndk.base.Value;
+import com.google.vr.sdk.base.AndroidCompat;
+import com.google.vr.sdk.base.Eye;
+import com.google.vr.sdk.base.GvrActivity;
+import com.google.vr.sdk.base.GvrView;
+import com.google.vr.sdk.base.HeadTransform;
+import com.google.vr.sdk.base.Viewport;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.microedition.khronos.egl.EGLConfig;
+
+public class VrActivity extends GvrActivity implements GvrView.StereoRenderer, SensorEventListener {
+
+  private static final float Z_NEAR = 0.01f;
+  private static final float Z_FAR = 10.0f;
+
+  private static final float[] POS_MATRIX_MULTIPLY_VEC = {0.0f, 0.0f, 0.0f, 1.0f};
+  private static final float[] FORWARD_VEC = {0.0f, 0.0f, -1.0f, 1.f};
+
+  private static final float DEFAULT_FLOOR_HEIGHT = -1.6f;
+
+  private static final String[] OBJECT_VERTEX_SHADER_CODE =
+          new String[] {
+                  "uniform mat4 u_MVP;",
+                  "attribute vec4 a_Position;",
+                  "attribute vec2 a_UV;",
+                  "varying vec2 v_UV;",
+                  "",
+                  "void main() {",
+                  "  v_UV = a_UV;",
+                  "  gl_Position = u_MVP * a_Position;",
+                  "}",
+          };
+  private static final String[] OBJECT_FRAGMENT_SHADER_CODE =
+          new String[] {
+                  "precision mediump float;",
+                  "varying vec2 v_UV;",
+                  "uniform sampler2D u_Texture;",
+                  "",
+                  "void main() {",
+                  "  // The y coordinate of this sample's textures is reversed compared to",
+                  "  // what OpenGL expects, so we invert the y coordinate.",
+                  "  gl_FragColor = texture2D(u_Texture, vec2(v_UV.x, 1.0 - v_UV.y));",
+                  "}",
+          };
+
+  protected int objectProgram;
+
+  protected int objectPositionParam;
+  protected int objectUvParam;
+  protected int objectModelViewProjectionParam;
+
+  private float[] camera;
+  private float[] view;
+  private float[] headView;
+  private float[] modelViewProjection;
+  private float[] modelView;
+
+  private float[] modelRoom;
+
+  private float[] headRotation;
+
+  private Properties gvrProperties;
+
+  protected TexturedMesh room;
+  protected ArrayList<Texture> roomTex;
+  protected Texture finishedTexture;
+
+  private final Value floorHeight = new Value();
+
+  private SensorManager sensorManager;
+  private Sensor stepDetector;
+
+  private static final int DISTANCE_PER_STEP = 100;
+
+  private int distanceElapsed;
+  private int curStepIndex;
+  private int curStepDistance;
+  private int[] stepsDistance;
+
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+
+    sensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+    stepDetector = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+
+    sensorManager.registerListener(this, stepDetector, SensorManager.SENSOR_DELAY_FASTEST);
+
+    distanceElapsed = 0;
+    curStepIndex = 0;
+
+    roomTex = new ArrayList<>();
+
+    stepsDistance = getIntent().getIntArrayExtra("stepDistances");
+
+    curStepDistance = stepsDistance[curStepIndex];
+
+    initializeGvrView();
+
+    camera = new float[16];
+    view = new float[16];
+    modelViewProjection = new float[16];
+    modelView = new float[16];
+    
+    headRotation = new float[4];
+    modelRoom = new float[16];
+    headView = new float[16];
+
+    if (sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR) != null) {
+      Log.d("Step Detector", "This device has it");
+    } else {
+      Log.d("Step Detector", "This device don't have it");
+    }
+  }
+
+  public void initializeGvrView() {
+    setContentView(R.layout.activity_vr);
+
+    GvrView gvrView = findViewById(R.id.gvr_view);
+
+    gvrView.setRenderer(this);
+    gvrView.setTransitionViewEnabled(true);
+
+    gvrView.enableCardboardTriggerEmulation();
+
+    if (gvrView.setAsyncReprojectionEnabled(true)) {
+      // Async reprojection decouples the app framerate from the display framerate,
+      // allowing immersive interaction even at the throttled clockrates set by
+      // sustained performance mode.
+      AndroidCompat.setSustainedPerformanceMode(this, true);
+    }
+
+    setGvrView(gvrView);
+    gvrProperties = gvrView.getGvrApi().getCurrentProperties();
+  }
+
+  @Override
+  public void onPause() {
+    super.onPause();
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+  }
+
+  @Override
+  public void onRendererShutdown() {
+    floorHeight.close();
+  }
+
+  @Override
+  public void onSurfaceChanged(int width, int height) {}
+
+  
+  @Override
+  public void onSurfaceCreated(EGLConfig config) {
+    GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+
+    objectProgram = Util.compileProgram(OBJECT_VERTEX_SHADER_CODE, OBJECT_FRAGMENT_SHADER_CODE);
+
+    objectPositionParam = GLES20.glGetAttribLocation(objectProgram, "a_Position");
+    objectUvParam = GLES20.glGetAttribLocation(objectProgram, "a_UV");
+    objectModelViewProjectionParam = GLES20.glGetUniformLocation(objectProgram, "u_MVP");
+
+    Util.checkGlError("Object program params");
+
+    Matrix.setIdentityM(modelRoom, 0);
+    Matrix.translateM(modelRoom, 0, 0, DEFAULT_FLOOR_HEIGHT, 0);
+
+    int imgLength = getIntent().getIntExtra("length",0);
+
+    try {
+      finishedTexture = new Texture(this, "finish_image.png", false);
+    } catch (IOException e){
+
+    }
+
+    for(int i = 0; i < imgLength; i++) {
+      try {
+        room = new TexturedMesh(this, "Room.obj", objectPositionParam, objectUvParam);
+        roomTex.add(new Texture(this, "streetview" + i + ".png", true));
+      } catch (IOException e) {}
+    }
+  }
+  
+  @Override
+  public void onNewFrame(HeadTransform headTransform) {
+    // Build the camera matrix and apply it to the ModelView.
+    Matrix.setLookAtM(camera, 0, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f);
+
+    if (gvrProperties.get(PropertyType.TRACKING_FLOOR_HEIGHT, floorHeight)) {
+      // The floor height can change each frame when tracking system detects a new floor position.
+      Matrix.setIdentityM(modelRoom, 0);
+      Matrix.translateM(modelRoom, 0, 0, floorHeight.asFloat(), 0);
+    } // else the device doesn't support floor height detection so DEFAULT_FLOOR_HEIGHT is used.
+
+    headTransform.getHeadView(headView, 0);
+
+    headTransform.getQuaternion(headRotation, 0);
+    Util.checkGlError("onNewFrame");
+  }
+
+  @Override
+  public void onDrawEye(Eye eye) {
+    GLES20.glEnable(GLES20.GL_DEPTH_TEST);
+    // The clear color doesn't matter here because it's completely obscured by
+    // the room. However, the color buffer is still cleared because it may
+    // improve performance.
+    GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
+
+    // Apply the eye transformation to the camera.
+    Matrix.multiplyMM(view, 0, eye.getEyeView(), 0, camera, 0);
+
+    // Build the ModelView and ModelViewProjection matrices
+    // for calculating the position of the target object.
+    float[] perspective = eye.getPerspective(Z_NEAR, Z_FAR);
+
+    Matrix.multiplyMM(modelViewProjection, 0, perspective, 0, modelView, 0);
+
+    // Set modelView for the room, so it's drawn in the correct location
+    Matrix.multiplyMM(modelView, 0, view, 0, modelRoom, 0);
+    Matrix.multiplyMM(modelViewProjection, 0, perspective, 0, modelView, 0);
+    drawRoom();
+  }
+
+  @Override
+  public void onFinishFrame(Viewport viewport) {
+    File cacheDir = getCacheDir();
+    emptyDir(cacheDir);
+  }
+
+  public static boolean emptyDir(File dir) {
+    if (dir.isDirectory()) {
+      String[] children = dir.list();
+      for (int i = 0; i < children.length; i++) {
+        if (!emptyDir(new File(dir, children[i])))
+          return false;
+      }
+    }
+    return dir.delete();
+  }
+  
+  public void drawRoom() {
+    GLES20.glUseProgram(objectProgram);
+    GLES20.glUniformMatrix4fv(objectModelViewProjectionParam, 1, false, modelViewProjection, 0);
+    if (curStepIndex >= roomTex.size())
+      finishedTexture.bind();
+    else
+      roomTex.get(curStepIndex).bind();
+    room.draw();
+    Util.checkGlError("drawRoom");
+  }
+
+  @Override
+  public void onCardboardTrigger() {}
+
+  @Override
+  public void onSensorChanged(SensorEvent sensorEvent) {
+    if(sensorEvent.sensor == this.stepDetector) {
+      if (curStepIndex <= stepsDistance.length) {
+        distanceElapsed += DISTANCE_PER_STEP;
+        if (distanceElapsed >= curStepDistance) {
+          curStepIndex++;
+          if(curStepIndex < stepsDistance.length-1)
+            curStepDistance += stepsDistance[curStepIndex];
+        }
+      }
+      Log.d("Distance Elapsed", ""+distanceElapsed);
+    }
+  }
+
+  @Override
+  public void onAccuracyChanged(Sensor sensor, int i) {}
+}
+
+//Portions of this page are modifications based on work created and shared by Google 
+//and used according to terms described in the Creative Commons 4.0 Attribution License.
+
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java,caption=TexturedMesh.java]
+package id.ac.unpar.informatika.homerunner;
+
+import android.content.Context;
+import android.opengl.GLES20;
+import de.javagl.obj.Obj;
+import de.javagl.obj.ObjData;
+import de.javagl.obj.ObjReader;
+import de.javagl.obj.ObjUtils;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.nio.ShortBuffer;
+
+class TexturedMesh {
+  private static final String TAG = "TexturedMesh";
+
+  private final FloatBuffer vertices;
+  private final FloatBuffer uv;
+  private final ShortBuffer indices;
+  private final int positionAttrib;
+  private final int uvAttrib;
+
+  public TexturedMesh(Context context, String objFilePath, int positionAttrib, int uvAttrib)
+      throws IOException {
+    InputStream objInputStream = context.getAssets().open(objFilePath);
+    Obj obj = ObjUtils.convertToRenderable(ObjReader.read(objInputStream));
+    objInputStream.close();
+
+    IntBuffer intIndices = ObjData.getFaceVertexIndices(obj, 3);
+    vertices = ObjData.getVertices(obj);
+    uv = ObjData.getTexCoords(obj, 2);
+
+    indices =
+        ByteBuffer.allocateDirect(2 * intIndices.limit())
+            .order(ByteOrder.nativeOrder())
+            .asShortBuffer();
+    while (intIndices.hasRemaining()) {
+      indices.put((short) intIndices.get());
+    }
+    indices.rewind();
+
+    this.positionAttrib = positionAttrib;
+    this.uvAttrib = uvAttrib;
+  }
+
+  public void draw() {
+    GLES20.glEnableVertexAttribArray(positionAttrib);
+    GLES20.glVertexAttribPointer(positionAttrib, 3, GLES20.GL_FLOAT, false, 0, vertices);
+    GLES20.glEnableVertexAttribArray(uvAttrib);
+    GLES20.glVertexAttribPointer(uvAttrib, 2, GLES20.GL_FLOAT, false, 0, uv);
+    GLES20.glDrawElements(GLES20.GL_TRIANGLES, indices.limit(), GLES20.GL_UNSIGNED_SHORT, indices);
+  }
+}
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Java,caption=Util.java]
+
+package id.ac.unpar.informatika.homerunner;
+
+import static android.opengl.GLU.gluErrorString;
+
+import android.opengl.GLES20;
+import android.opengl.Matrix;
+import android.text.TextUtils;
+import android.util.Log;
+
+class Util {
+  private static final String TAG = "Util";
+
+  private static final boolean HALT_ON_GL_ERROR = true;
+
+  private Util() {}
+
+  public static void checkGlError(String label) {
+    int error = GLES20.glGetError();
+    int lastError;
+    if (error != GLES20.GL_NO_ERROR) {
+      do {
+        lastError = error;
+        Log.e(TAG, label + ": glError " + gluErrorString(lastError));
+        error = GLES20.glGetError();
+      } while (error != GLES20.GL_NO_ERROR);
+
+      if (HALT_ON_GL_ERROR) {
+        throw new RuntimeException("glError " + gluErrorString(lastError));
+      }
+    }
+  }
+
+  public static int compileProgram(String[] vertexCode, String[] fragmentCode) {
+    checkGlError("Start of compileProgram");
+    
+    int vertexShader = GLES20.glCreateShader(GLES20.GL_VERTEX_SHADER);
+    GLES20.glShaderSource(vertexShader, TextUtils.join("\n", vertexCode));
+    GLES20.glCompileShader(vertexShader);
+    checkGlError("Compile vertex shader");
+
+    int fragmentShader = GLES20.glCreateShader(GLES20.GL_FRAGMENT_SHADER);
+    GLES20.glShaderSource(fragmentShader, TextUtils.join("\n", fragmentCode));
+    GLES20.glCompileShader(fragmentShader);
+    checkGlError("Compile fragment shader");
+
+    int program = GLES20.glCreateProgram();
+    GLES20.glAttachShader(program, vertexShader);
+    GLES20.glAttachShader(program, fragmentShader);
+
+    GLES20.glLinkProgram(program);
+    int[] linkStatus = new int[1];
+    GLES20.glGetProgramiv(program, GLES20.GL_LINK_STATUS, linkStatus, 0);
+    if (linkStatus[0] != GLES20.GL_TRUE) {
+      String errorMsg = "Unable to link shader program: \n" + GLES20.glGetProgramInfoLog(program);
+      Log.e(TAG, errorMsg);
+      if (HALT_ON_GL_ERROR) {
+        throw new RuntimeException(errorMsg);
+      }
+    }
+    checkGlError("End of compileProgram");
+
+    return program;
+  }
+
+  public static float angleBetweenVectors(float[] vec1, float[] vec2) {
+    float cosOfAngle = dotProduct(vec1, vec2) / (vectorNorm(vec1) * vectorNorm(vec2));
+    return (float) Math.acos(Math.max(-1.0f, Math.min(1.0f, cosOfAngle)));
+  }
+
+  private static float dotProduct(float[] vec1, float[] vec2) {
+    return vec1[0] * vec2[0] + vec1[1] * vec2[1] + vec1[2] * vec2[2];
+  }
+
+  private static float vectorNorm(float[] vec) {
+    return Matrix.length(vec[0], vec[1], vec[2]);
+  }
+}
+\end{lstlisting}

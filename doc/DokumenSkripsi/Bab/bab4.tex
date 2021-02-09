@@ -6,13 +6,13 @@ Bab ini menjelaskan perancangan aplikasi, termasuk algoritma-algoritma untuk men
 Aplikasi yang akan dibangun terdiri atas dua \textit{activity}, yaitu \textit{activity} utama dan \textit{activity} VR.
 
 \subsection{\textit{Activity} Utama}
-\label{subs:main-page}
-\textit{Activity} utama adalah \textit{activity} yang ditampilkan pertama kali saat pengguna membuka aplikasi dengan \textit{portrait layout}. Fungsi \textit{activity} ini adalah menerima masukan pengguna, yaitu lokasi asal dan lokasi tujuan saat berlari, serta memicu \textit{activity} kedua, yaitu \textit{activity} VR. Ada tiga komponen utama dari \textit{activity} ini, yaitu dua buah \textit{textbox} dan sebuah tombol. Satu \textit{textbox} adalah \textit{textbox} "\textit{origin}", dan \textit{textbox} yang lain adalah \textit{textbox} "\textit{destination}". Gambar \ref{fig:main-page} menggambarkan tampilan \textit{activity} utama.  
+\label{subs:mockup-main-page}
+\textit{Activity} utama adalah \textit{activity} yang ditampilkan pertama kali saat pengguna membuka aplikasi dengan \textit{portrait layout}. Fungsi \textit{activity} ini adalah menerima masukan pengguna, yaitu lokasi asal dan lokasi tujuan saat berlari, serta memicu \textit{activity} kedua, yaitu \textit{activity} VR. Ada tiga komponen utama dari \textit{activity} ini, yaitu dua buah \textit{textbox} dan sebuah tombol. Satu \textit{textbox} adalah \textit{textbox} "\textit{origin}", dan \textit{textbox} yang lain adalah \textit{textbox} "\textit{destination}". Gambar \ref{fig:mockup-main-page} menggambarkan tampilan \textit{activity} utama.  
 
 \begin{figure}[!hp]
   \centering
     \includegraphics[scale=0.7]{Gambar/mockup-main-activity.png}
-    \caption{Rancangan \textit{Activity} utama aplikasi}\label{fig:main-page}
+    \caption{Rancangan \textit{Activity} utama aplikasi}\label{fig:mockup-main-page}
 \end{figure}
 
 
@@ -26,15 +26,15 @@ Aplikasi yang akan dibangun terdiri atas dua \textit{activity}, yaitu \textit{ac
 Tombol "\textit{Start Running}" adalah tombol yang akan memicu \textit{activity} VR yang sesuai dengan informasi dari dua \textit{textbox} di atas ketika ditekan. Tombol ini berada di bawah \textit{destination textbox}.
 
 \subsection{\textit{Activity} VR}
-\textit{Activity} VR adalah \textit{activity} yang menampilkan pemandangan VR secara VR ketika berlari. Untuk memunculkan \textit{activity} ini, pengguna harus menekan tombol dari \textit{activity} utama (dijelaskan pada Subbab \ref{subs:main-page}) terlebih dahulu. Karena posisi gawai masih dalam keadaan \textit{portrait}, ada satu \textit{activity} terlebih dahulu yang muncul seperti di Gambar \ref{fig:cardboard-page}. 
+\textit{Activity} VR adalah \textit{activity} yang menampilkan pemandangan VR secara VR ketika berlari. Untuk memunculkan \textit{activity} ini, pengguna harus menekan tombol dari \textit{activity} utama (dijelaskan pada Subbab \ref{subs:mockup-main-page}) terlebih dahulu.
 
-\textit{Activity} ini dimunculkan ketika mengakses \textit{Google Cardboard}. Untuk menuju ke \textit{activity} VR, pengguna harus memutar gawai sehingga gawai berada dalam posisi \textit{landscape}. Setelah gawai berada dalam posisi \textit{landscape}, \textit{activity} VR akan dimunculkan seperti yang ditunjukkan pada Gambar \ref{fig:vr-page}.
+\textit{Activity} ini dimunculkan ketika mengakses \textit{Google Cardboard}. Untuk menuju ke \textit{activity} VR, pengguna harus memutar perangkat sehingga perangkat berada dalam posisi \textit{landscape}. Setelah perangkat berada dalam posisi \textit{landscape}, \textit{activity} VR akan dimunculkan seperti yang ditunjukkan pada Gambar \ref{fig:mockup-vr-page}.
 
 \begin{figure}[h]
 	\centering
 		\includegraphics[scale=0.7]{Gambar/mockup-vr-page.png}
 	\caption{Rancangan \textit{Activity} VR}
-	\label{fig:vr-page}
+	\label{fig:mockup-vr-page}
 \end{figure}
 
 Pada tampilan VR tersebut, gambar akan berubah-ubah sesuai dengan langkah kaki pengguna. Perubahan tersebut akan terjadi ketika mencapai pengguna mencapai jarak 100 meter. Jika pengguna sudah mencapai tujuan sesuai dengan jarak yang ditempuh, \textit{activity} VR akan berhenti mengubah gambar.     
@@ -87,7 +87,7 @@ Beberapa kelas di Gambar \ref{fig:class-diagram} tidak memiliki deskripsi lebih 
 	\begin{itemize}
 		\item \texttt{private SensorManager sensorManager}
 		
-		Atribut yang mengatur sensor dari gawai Android.
+		Atribut yang mengatur sensor dari perangkat Android.
 		\item \texttt{private Sensor stepDetector}
 		
 		Sensor pendeteksi langkah kaki.
@@ -247,10 +247,11 @@ Beberapa kelas di Gambar \ref{fig:class-diagram} tidak memiliki deskripsi lebih 
 \end{enumerate} 
 
 \subsection{Algoritma-Algoritma yang Digunakan}
-Ada beberapa algoritma yang digunakan   untuk melakukan beberapa proses seperti mengolah \textit{Google StreetView API},\textit{Google Directions API}, dan pemanfaatan sensor \textit{step detector}.
+Ada beberapa algoritma yang digunakan   untuk melakukan beberapa proses seperti mengolah \textit{Google StreetView API},\textit{Google Directions API}, dan 
+ \textit{step detector}.
 
 \subsubsection{Pemanfaatan \textit{Google Directions API}}
-\textit{Directions API} adalah \textit{API} yang menggunakan protokol HTTP/HTTPS dan menghasilkan keluaran dalam bentuk JSON. Untuk memuat JSON berisi rute perjalanan dari asal sampai tujuan, pemanggilan \textit{Directions API} harus dilakukan melalui HTTP/HTTPS.
+\textit{Directions API} adalah \textit{API} yang menggunakan protokol HTTPS dan menghasilkan keluaran dalam bentuk JSON. Untuk memuat JSON berisi rute perjalanan dari asal sampai tujuan, pemanggilan \textit{Directions API} harus dilakukan melalui HTTP/HTTPS.
 
 \begin{algorithm}
 	\caption{Algoritma Mengunduh JSON dari \textit{Directions API} dan \textit{Parsing}}
@@ -278,14 +279,16 @@ Ada beberapa algoritma yang digunakan   untuk melakukan beberapa proses seperti 
 	\end{algorithmic}
 \end{algorithm}
 
-Setelah JSON rute diperoleh, JSON rute lari dapat digunakan dengan membaca atribut dan nilai-nilainya sesuai kebutuhan. Beberapa nilai atribut dalam JSON ini  berupa JSON \textit{object}, ada yang berupa JSON \textit{array}. Karena hal ini,  \textit{parsing} dari JSON ini harus dilakukan sesuai dengan ketentuan tersebut. Algoritma \textit{parsing} dari JSON \textit{Directions} dipaparkan pada \ref{alg:algoritma-directions-parsing}. 
+Setelah JSON rute diperoleh, JSON rute dapat digunakan dengan membaca atribut dan nilai-nilainya sesuai kebutuhan. Beberapa nilai atribut dalam JSON ini  berupa JSON \textit{object}, ada yang berupa JSON \textit{array}. Karena itu,  \textit{JSON parsing} harus dilakukan sesuai dengan ketentuan tersebut. Algoritma \textit{parsing} dari JSON \textit{Directions} dipaparkan pada Algoritma \ref{alg:algoritma-directions-parsing}. 
 
-Setelah JSON dari \textit{Directions API} diunduh, \textit{parsing} adalah langkah selanjutnya untuk mengambil informasi yang dibutuhkan. Karena bagian \textit{steps} yang harus diambil, haruslah \textit{value} dari \textit{key legs} harus diperoleh terlebih dahulu. Selanjutnya, \textit{JSON Array} yang merupakan \textit{value} dari \textit{key} \textit{"legs"}, dan objek-objek dari \textit{JSON Array} \textit{steps} itu dapat dimasukkan ke dalam sebuah struktur data seperti \textit{array} agar dapat digunakan.  
+Setelah JSON dari \textit{Directions API} diunduh, \textit{parsing} adalah langkah selanjutnya untuk mengambil informasi yang dibutuhkan. Karena bagian \textit{steps} adalah bagian yang harus diperoleh, haruslah \textit{value} dari \textit{key legs} harus diperoleh terlebih dahulu. Selanjutnya, \textit{JSON Array} yang merupakan \textit{value} dari \textit{key} \textit{"legs"}, dan objek-objek dari \textit{JSON Array} \textit{steps} itu dapat dimasukkan ke dalam sebuah struktur data seperti \textit{array} agar dapat digunakan.  
 
 \subsubsection{Algoritma Memperoleh dan Mengolah \textit{Google StreetView API}} 
-\textit{StreetView API} berfungsi untuk memuat gambar pemandangan dan menggunakan menggunakan HTTP/HTTPS. Karena satu kali pemanggilan hanya menghasilkan gambar dari satu \textit{heading} atau arah, beberapa gambar dari beberapa arah pandangan haruslah diunduh terlebih dahulu. Setelah semua gambar itu terunduh, semua gambar itu disatukan, menjadi satu gambar untuk menjadi tekstur bangun ruang silinder. Setelah gambar-gambar itu sudah disatukan, gambar tersebut harus disimpan di dalam \textit{file}.
+Pemandangan yang harus dibentuk adalah pemandangan dari lokasi asal dan tujuan dari pengguna untuk membentuk perjalanan dari pengguna, gambar-gambar dari lokasi asal dan setiap \textit{steps} sampai lokasi tujuan harus diperoleh. Artinya, semua gambar dari setiap \textit{steps} dari rute \textit{Directions API} haruslah dimuat terlebih dahulu seluruhnya. Jika sudah dimuat semuanya, gambar-gambar tersebut akan dapat dimanfaatkan untuk membentuk lingkungan lari virtual.   
 
-Karena pemandang yang harus diunduh adalah gambar dari lokasi asal dan tujuan dari pengguna untuk membentuk perjalanan lari dari pengguna, gambar-gambar dari lokasi asal dan setiap \textit{steps} sampai lokasi tujuan harus diperoleh. Gambar \ref{fig:streetview-flowchart} menunjukkan langkah-langkah yang dilakukan untuk memuat semua gambar lokasi dari setiap \textit{steps} rute lari pengguna.
+\textit{StreetView API} berfungsi untuk memuat gambar pemandangan dan menggunakan menggunakan HTTPS. Karena satu kali pemanggilan hanya menghasilkan gambar dari satu \textit{heading} atau arah, beberapa gambar dari beberapa arah pandang (\textit{heading)} haruslah diunduh terlebih dahulu. Setelah semua gambar itu terunduh, barulah semua gambar itu digabungkan menjadi satu gambar untuk menjadi tekstur bangun ruang silinder, lalu dapat disimpan dalam memori perangkat.
+
+Gambar \ref{fig:streetview-flowchart} menunjukkan langkah-langkah yang dilakukan untuk memuat semua gambar lokasi dari setiap \textit{steps} rute lari pengguna.
 	
 \begin{figure}[h]
 	\centering
@@ -294,8 +297,7 @@ Karena pemandang yang harus diunduh adalah gambar dari lokasi asal dan tujuan da
 	\label{fig:streetview-flowchart}
 \end{figure}
 
-Peubah \textit{i} pada \textit{flowchart} digunakan untuk iterasi semua elemen \textit{array} arrSteps. Untuk setiap iterasi, URL untuk mengakses \textit{StreetView API} dibuat sebanyak jumlah gambar yang ingin dihasilkan. Arah atau \textit{heading} dari gambar-gambar yang dihasilkan ditentukan dengan peubah \textit{x} pada \textit{flowchart}. Peubah \textit{y} merupakan selisih \textit{heading} dari satu iterasi ke iterasi yang berikutnya. Nilai 360 menunjuk pada 360 derajat dalam satu putaran. Untuk mendapatkan pemandangan yang sekeliling yang penuh, gambar dari setiap derajat ke-\textit{x} selama nilai \textit{x} masih bernilai lebih kecil dari 360. Setelah gambar-gambar  itu sudah diperoleh dari \textit{StreetView API}, gambar-gambar tersebut harus disatukan, lalu gambar itu dapat disimpan dalam \textit{file}, lalu gambar dalam \textit{file} itu dapat digunakan.
-
+Peubah \textit{i} pada \textit{flowchart} digunakan untuk mengiterasi semua elemen \textit{array} arrSteps. Untuk setiap iterasi, URL untuk mengakses \textit{StreetView API} dibuat sebanyak jumlah gambar yang ingin dihasilkan. Arah atau \textit{heading} dari gambar-gambar yang dihasilkan ditentukan dengan peubah \textit{x} pada \textit{flowchart}. Peubah \textit{y} merupakan selisih \textit{heading} dari satu iterasi ke iterasi yang berikutnya. Nilai 360 menunjuk pada 360 derajat dalam satu putaran. Untuk mendapatkan pemandangan yang sekeliling yang penuh, gambar dari setiap derajat ke-\textit{x} selama nilai \textit{x} masih bernilai lebih kecil dari 360. Setelah gambar-gambar  itu sudah diperoleh dari \textit{StreetView API}, gambar-gambar tersebut harus disatukan, lalu gambar itu dapat disimpan dalam \textit{file}, lalu gambar dalam \textit{file} itu dapat digunakan. 
 
 \subsubsection{Pemanfaatan Sensor \textit{Step Detector}}
 Sensor \textit{step detector} digunakan untuk mendeteksi langkah kaki pengguna. Untuk membentuk skenario yang tepat untuk memungkinkan perubahan pemandangan yang sudah ditangani oleh \textit{StreetView} dan \textit{Directions API}, waktu perubahan dari pemandangan itulah yang harus ditangani. Sensor \textit{step detector}lah yang akan menangani bagian waktu perubahan pemandangan. 
@@ -308,14 +310,17 @@ Dari \textit{JSON Object} dengan\textit{key "steps"}, dapat diperoleh \textit{JS
 	\begin{algorithmic}[1]
 	\Function{onStepDetectorChanged}{$stepsDist$}
 		\State $distanceElapsed \gets 0$ 
-		\State $currentStepDist \gets first$ $element$ $of$ $stepsDist.value$ 
+		\State $currentStepDist \gets first$ $element$ $of$ $stepsDist.value$
+		\State $curBenchMark \gets currentStepDist.value$
 		\If{sensor detects footstep}
     		\State $distanceElapsed \gets distanceElapsed + DISTANCE\_PER\_STEP$
-    		\If{$distanceElapsed < currentStepDist.value$}
-													\If{$currentStepDist.Next IS NOT NULL$}
-    			\State $currentStepDist \gets currentStepDist.value + currentStepDist.next$
+    		\If{$currentStepDist.Next IS NOT NULL$}
+    			\If{$distanceElapsed >= curBenchMark$}    			
+    			\State $currentStepDist \gets currentStepDist.next$    			
+				\State $curBenchMark \gets curBenchMark + currentStepDist.value$
+				
+    			\EndIf
     		\EndIf
-    	\EndIf
     	\EndIf
 	\EndFunction  
 	\end{algorithmic}
@@ -324,6 +329,3 @@ Dari \textit{JSON Object} dengan\textit{key "steps"}, dapat diperoleh \textit{JS
 \textit{StepsDist} merupakan \textit{array} dari \textit{steps distance}. \textit{DistanceElapsed} merupakan peubah yang mencatat \textit{progress} langkah dari pengguna, sementara \textit{currentStepDist} merupakan peubah yang mencatat jarak yang harus ditempuh untuk mencapai \textit{steps distance} berikutnya.
 Peubhan \textit{distanceElapsed} akan ditambah dengan konstanta \textit{DISTANCE\_PER\_STEP} setiap kali ada langkah kaki yang terdeteksi.
 Jika \textit{distanceElapsed} sudah mecapai \textit{curStepDistance}, \textit{curStepDistances} akan ditambah dengan nilai \textit{step distance} selanjutnya. 
-
-
-
