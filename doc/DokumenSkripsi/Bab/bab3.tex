@@ -257,21 +257,19 @@ Setelah mengetahui sumbu-sumbu sensor perangkat bergerak, langkah selanjutnya ad
     \label{tab:step-detector-test}
 \end{table}
 
-Gambar \ref{fig:step-detector-log} menunjukkan \textit{log} dari aplikasi perangkat bergerak pengujian \textit{step detector sensor} ketika \textit{step detector sensor} mendeteksi rangsang. 
+Listing \ref{stepdetectortest} menunjukkan \textit{log} dari aplikasi perangkat bergerak pengujian \textit{step detector sensor} ketika \textit{step detector sensor} mendeteksi rangsang. 
 
-\begin{figure}[h]
-	\centering	\includegraphics[scale=1]
-	{Gambar/step-detector-log.png}
-	\caption{\textit{Log console} dari dari aplikasi perangkat bergerak pengujian \textit{step detector sensor} ketika mendeteksi rangsang}
-	\label{fig:step-detector-log}
-\end{figure}
+\begin{lstlisting}[language=C,frame=single,caption=\textit{Log console} Pengujian Sensor \textit{Step Detector} Ketika Mendeteksi Langkah Kaki,label=stepdetectortest]
+...3985-3985/com.example.stepdetectorsensor D/Step: Step Taken 
+...3985-3985/com.example.stepdetectorsensor D/Step: Step Taken 
+...3985-3985/com.example.stepdetectorsensor D/Step: Step Taken 
+...3985-3985/com.example.stepdetectorsensor D/Step: Step Taken 
+...3985-3985/com.example.stepdetectorsensor D/Step: Step Taken
+...3985-3985/com.example.stepdetectorsensor D/Step: Step Taken
+
+\end{lstlisting}
 
 Dari eksperimen, dapat disimpulkan bahwa gerakan perangkat ke sana dan ke mari (gerakan vibrasi) adalah gerakan yang memberikan rangsang pada \textit{step detector sensor} sehingga memicu aksi pada aplikasi perangkat bergerak.
-
- 
-
-
-
 
 \subsection{Cara Memanfaatkan \textit{Step Detector Sensor}}
 Untuk membuat animasi atau perubahan pemandangan sesuai rute tempuh yang sudah diperoleh, harus ada perubahan gambar sesuai langkah kaki yang diambil pengguna. Jadi, setiap kali sensor mendapat rangsang, \textit{event} yang dipicu agar terjadi adalah gambar berubah seperti yang dijelaskan pada Subbab \ref{subs:directions-attr-use}, tetapi perubahan gambar \textit{StreetView} yang sesuai \textit{Directions API} harus berubah dengan tahap yang benar agar animasi pemandangan terlihat baik sesuai dengan rute. 

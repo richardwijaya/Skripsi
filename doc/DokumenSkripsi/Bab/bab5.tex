@@ -111,28 +111,51 @@ Hal pertama yang dilakukan pada pengujian fungsional ini adalah mencoba meng-\te
 \begin{table}[]
     \centering
     \caption{Daftar Perangkat yang digunakan dalam Pengujian}
-    \begin{tabular}{|p{1cm}||p{4cm}|p{4cm}|p{3cm}|}
+    \begin{tabular}{|p{1cm}||p{4cm}|p{4cm}|p{4cm}|p{2cm}|}
     \hline
-       No  & Processor & Sistem Operasi & RAM \\
+       No & Seri dan Model & Processor & Sistem Operasi & RAM \\
     \hline
-        1 &  Qualcomm Snapdragon 835 2.45 GHz & Android OS v9.0 (Pie) & 6GB\\
+        1 & Samsung Galaxy Note 8 & Qualcomm Snapdragon 835 2.45 GHz & Android OS v9.0 (Pie) & 6GB\\
     \hline
-        2 &  Quad-Core 2.3 GHz & Android v5.0 (Lollipop) & 4GB \\
+        2 & Asus Zenfone 2 & Quad-Core 2.3 GHz & Android v5.0 (Lollipop) & 4GB \\
     \hline
-        3 &  1.6GHz octa-core & Android OS v8.1 (Oreo) & 2GB\\
+        3 & Samsung Galaxy J7 & 1.6GHz octa-core & Android OS v8.1 (Oreo) & 2GB\\
     \hline
     \end{tabular}
     \label{tab:hardware-test}
 \end{table}
 
-Setelah memasang aplikasi pada mamsing-masing perangkat, pengujian fungsional dapat dilakukan dengan mempersiapkan himpunan masukan dengan keluaran yang diharapkan, lalu memasukkan setiap masukan pada himpunan masukan pada setiap perangkat saat menjalankan aplikasi. Tabel \ref{tab:input-test} memperlihatkan masukan pengujian beserta hasil yang diharapkan. 
+Setelah memasang aplikasi pada mamsing-masing perangkat, penentuan jenis pengujian fungsional dapat dilakukan. Ada dua hal yang diuji, yaitu antarmuka aplikasi dan fungsi aplikasi. Pengujian antarmuka dilakukan dengan melihat elemen-elemen pada \textit{activity} aplikasi dan pengalaman saat menggunakannya, sementara pengujian fungsi aplikasi dilakukan dengan mempersiapkan himpunan masukan dengan keluaran yang diharapkan, lalu memasukkan setiap masukan pada himpunan masukan pada setiap perangkat saat menjalankan aplikasi. 
+
+\subsubsection{Pengujian Antarmuka}
+Pengujian antarmuka ini dilakukan dengan melihat tampilan aplikasi dan merasakan pengalaman saat memasukkan masukan pada aplikasi. Pada aplikasi ini, masukan diterima pada \textit{activity} utama yang memiliki dua \textit{textbox} dan sebuah tombol. Secara tampilan, setiap elemen sudah berada di tempat yang tepat, seperti judul yang ada di paling atas, diikuti \textit{textbox} lokasi asal dan lokasi tujuan, lalu tombol "\textit{Start Running}" ada di bawahnya. Gambar \ref{fig:main-page} menunjukkan tampilan halaman utama.
+
+Meski tampilannya sudah baik, ada satu masalah saat memasukkan masukan ke \textit{textbox}, yaitu ketika \textit{soft keyboard}, \textit{keyboard} yang ada pada perangkat bergerak, yang menutupi tombol sehingga tidak bisa langsung menekan tombol ketika sudah selesai memasukkan masukan (harus menekan tombol \textit{backspace} untuk menghilangkan \textit{soft keyboard}). Masalah ini terjadi pada semua perangkat yang digunakan dalam pengujian, seperti yang ditunjukkan pada Gambar \ref{fig:note8-screenshot}, \ref{fig:zenfone2-screenshot}, dan \ref{fig:j7-screenshot}.
+
+\begin{figure}[!htb]
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{Gambar/samsung-note8-screenshot.png}
+  \caption{Perangkat 1 ketika sedang memasukkan masukan}\label{fig:note8-screenshot}
+\endminipage\hfill
+\minipage{0.32\textwidth}
+  \includegraphics[width=\linewidth]{Gambar/asus-zenfone2-screenshot.png}
+  \caption{Perangkat 2 ketika sedang memasukkan masukan}\label{fig:zenfone2-screenshot}
+\endminipage\hfill
+\minipage{0.32\textwidth}%
+  \includegraphics[width=\linewidth]{Gambar/samsung-j7-screenshot.png}
+  \caption{Perangkat 3 ketika sedang memasukkan masukan}\label{fig:j7-screenshot}
+\endminipage
+\end{figure} 
+
+\subsubsection{Pengujian Fungsi}
+Untuk melakukan pengujian ini, himpunan masukan dan hasil yang diharapkan harus ditentukan terlebih dahulu. Tabel \ref{tab:input-test} memperlihatkan masukan pengujian beserta hasil yang diharapkan. 
 
 \begin{table}[]
     \centering
     \caption{Himpunan Masukan untuk Pengujian Aplikasi}
     \begin{tabular}{|p{3cm}||p{5cm}|p{7cm}|}
     \hline
-       Nomor Masukan & Masukan \textit{origin},\textit{destination}  & Hasil yang Diharapkan\\
+       No. & Masukan \textit{origin},\textit{destination}  & Hasil yang Diharapkan\\
     \hline  \hline
      1 & "unpar","bip,bandung"   & Berhasil menampilkan pemandangan di sekitar Universitas Katolik Parahyangan, dapat berjalan sampai Bandung Indah Plaza, lalu menampilkan tulisan "Congratulations"\\ \hline
      2 & "unpar","bandung indah plaza" & 
@@ -155,9 +178,9 @@ Setelah himpunan masukan untuk pengujian telah ditentukan, pengujian dilakukan p
 \begin{table}[]
     \centering
     \caption{Hasil Pengujian pada Perangkat 1}
-    \begin{tabular}{|p{3cm}||p{7cm}|p{4cm}|}
+    \begin{tabular}{|p{1cm}||p{8cm}|p{3cm}|}
     \hline
-       Nomor Masukan & Hasil & Status \\
+       No. & Hasil & Status \\
     \hline \hline
         1 & Berhasil menampilkan pemandangan di sekitar Universitas Katolik Parahyangan, dapat berjalan sampai Bandung Indah Plaza, lalu menampilkan tulisan "Congratulations" & Berhasil\\
     \hline
@@ -180,9 +203,9 @@ Setelah himpunan masukan untuk pengujian telah ditentukan, pengujian dilakukan p
 \begin{table}[]
     \centering
     \caption{Hasil Pengujian pada Perangkat 2}
-    \begin{tabular}{|p{3cm}||p{4cm}|p{4cm}|}
+    \begin{tabular}{|p{1cm}||p{8cm}|p{3cm}|}
     \hline
-       Nomor Masukan & Hasil & Status \\
+       No. & Hasil & Status \\
     \hline \hline
         1 & Berhasil menampilkan pemandangan di sekitar Universitas Katolik Parahyangan, dapat berjalan sampai Bandung Indah Plaza, lalu menampilkan tulisan "Congratulations" & Berhasil\\
     \hline
@@ -205,9 +228,9 @@ Setelah himpunan masukan untuk pengujian telah ditentukan, pengujian dilakukan p
 \begin{table}[]
     \centering
     \caption{Hasil Pengujian pada Perangkat 3}
-    \begin{tabular}{|p{3cm}||p{4cm}|p{4cm}|}
+    \begin{tabular}{|p{1cm}||p{8cm}|p{3cm}|}
     \hline
-       Nomor Masukan & Hasil & Status \\
+       No. & Hasil & Status \\
     \hline \hline
         1 & Aplikasi menampilkan lokasi asal, namun gambar berhenti & Gagal\\
     \hline
@@ -236,23 +259,55 @@ Pada Perangkat 3, aplikasi tidak dapat berfungsi dengan baik karena pada tampila
 \subsection{Pengujian Eksperimental}
 Pada pengujian eksperimental, akan dilakukan \textit{logging} untuk melihat jarak yang ditempuh pada \textit{virtual jogging app}. Perangkat yang digunakan untuk pengujian ini adalah Perangkat 1 dan 2 yang dijelaskan pada Subbab \ref{subs:fungtional-test}. Perangkat 3 tidak digunakan karena aplikasi tidak dapat berjalan dengan seharusnya pada perangkat ini. Masukan untuk aplikasi pada masing-masing aplikasi adalah "unpar" untuk lokasi asal dan "bip,bandung" untuk lokasi tujuannya.
 
-Gambar \ref{fig:samsung-note-8-exp} dan Gambar \ref{fig:asus-zenfone-2-exp} menampilkan \textit{logging} dari beberapa langkah terakhir perjalanan. 
+Listing \ref{note8log} dan \ref{zenfone2log} menampilkan \textit{logging} dari beberapa langkah terakhir dari perjalanan pengguna pada Perangkat 1 dan 2. 
 
-\begin{figure}[h]
-	\centering	\includegraphics[scale=1]
-	{Gambar/samsung-note-8-exp.png}
-	\caption{\textit{Log console} yang Menampilkan Jarak Tempuh Pengguna pada Perangkat 1}
-	\label{fig:samsung-note-8-exp}
-\end{figure}
+\begin{lstlisting}[language=C,frame=single,caption=\textit{Log console} yang Menampilkan Jarak Tempuh Pengguna pada Perangkat 1,label=note8log]
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3000 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3100 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3200 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3300 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3400 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3500 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3600 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3700 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3800 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3900 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4000 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4100 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4200 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4300 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4400 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4500 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4600 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4700 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4800 
+...4497-4497/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4900
+\end{lstlisting}
 
-\begin{figure}[h]
-	\centering	\includegraphics[scale=1]
-	{Gambar/asus-zenfone-2-exp.png}
-	\caption{\textit{Log console} yang Menampilkan Jarak Tempuh Pengguna pada Perangkat 2}
-	\label{fig:asus-zenfone-2-exp}
-\end{figure}
+\begin{lstlisting}[language=C,frame=single,caption=\textit{Log console} yang Menampilkan Jarak Tempuh Pengguna pada Perangkat 2,label=zenfone2log]
+...1-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3000 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3100 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3200 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3300 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3400 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3500 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3600 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3700 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3800 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 3900 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4000 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4100 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4200 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4300 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4400 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4500 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4600 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4700 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4800 
+...-14984/id.ac.unpar.informatika.homerunner D/Distance Elapsed: 4900
+\end{lstlisting}
 
-Dari \textit{log console virtual jogging app}, dapat dilihat bahwa pada masing-masing perangkat, jarak tempuh pengguna terlihat bertambah setiap menerima rangsang yang adalah langkah  kaki pengguna. Hasil yang ditampilkan pada masing-masing \textit{log console} serupa. 
+Dari \textit{log console virtual jogging app}, dapat dilihat bahwa pada masing-masing perangkat, jarak tempuh pengguna terlihat bertambah setiap menerima rangsang yang adalah langkah  kaki pengguna, yaitu 100 meter per langkah. Hasil yang ditampilkan pada masing-masing \textit{log console} serupa. 
 
 
 \section{Masalah yang Dihadapi}

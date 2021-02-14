@@ -257,6 +257,9 @@ Ada beberapa algoritma yang digunakan   untuk melakukan beberapa proses seperti 
 	\caption{Algoritma Mengunduh JSON dari \textit{Directions API} dan \textit{Parsing}}
 	\label{alg:algoritma-directions-parsing}
 	\begin{algorithmic}[1]
+	\Require User has input origin and destination location 
+	\Ensure Steps data such as distance and location retrieved
+	
 	\Function{processJSONDirections}{$originLoc$,$destLoc$}
 		\State $dirText \gets getJSONFromDirAPI(originLoc,destLoc)$ 
 		
@@ -308,6 +311,9 @@ Dari \textit{JSON Object} dengan\textit{key "steps"}, dapat diperoleh \textit{JS
 	\caption{Algoritma Saat \textit{Step Detector} Menerima Rangsang}
 	\label{alg:algoritma-step-detector}
 	\begin{algorithmic}[1]
+	\Require User placed in origin location	
+	\Ensure User reached destination
+	
 	\Function{onStepDetectorChanged}{$stepsDist$}
 		\State $distanceElapsed \gets 0$ 
 		\State $currentStepDist \gets first$ $element$ $of$ $stepsDist.value$
