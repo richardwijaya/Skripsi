@@ -37,7 +37,7 @@ Tombol "\textit{Start Running}" adalah tombol yang akan memicu \textit{activity}
 	\label{fig:mockup-vr-page}
 \end{figure}
 
-Pada tampilan VR tersebut, gambar akan berubah-ubah sesuai dengan langkah kaki pengguna. Perubahan tersebut akan terjadi ketika mencapai pengguna mencapai jarak 100 meter. Jika pengguna sudah mencapai tujuan sesuai dengan jarak yang ditempuh, \textit{activity} VR akan berhenti mengubah gambar.     
+Pada tampilan VR tersebut, gambar akan berubah-ubah sesuai dengan langkah kaki pengguna. Jika pengguna sudah mencapai tujuan sesuai dengan jarak yang ditempuh, \textit{activity} VR akan berhenti mengubah gambar.     
 
 \section{Rancangan Program}
 Subbab ini akan menjelaskan rancangan  program, mulai dari rancangan kelas dan algoritma-algoritma yang digunakan pada \textit{method-method} yang penting. 
@@ -333,5 +333,5 @@ Dari \textit{JSON Object} dengan\textit{key "steps"}, dapat diperoleh \textit{JS
 \end{algorithm}
 
 \textit{StepsDist} merupakan \textit{array} dari \textit{steps distance}. \textit{DistanceElapsed} merupakan peubah yang mencatat \textit{progress} langkah dari pengguna, sementara \textit{currentStepDist} merupakan peubah yang mencatat jarak yang harus ditempuh untuk mencapai \textit{steps distance} berikutnya.
-Peubhan \textit{distanceElapsed} akan ditambah dengan konstanta \textit{DISTANCE\_PER\_STEP} setiap kali ada langkah kaki yang terdeteksi.
+Peubhan \textit{distanceElapsed} akan ditambah dengan konstanta \textit{DISTANCE\_PER\_STEP} setiap kali ada langkah kaki yang terdeteksi. Pada penelitian ini, diberikan nilai 100 untuk konstanta \textit{DISTANCE\_PER\_STEP} (satu langkah berjarak 100 meter). 
 Jika \textit{distanceElapsed} sudah mecapai \textit{curStepDistance}, \textit{curStepDistances} akan ditambah dengan nilai \textit{step distance} selanjutnya. 
